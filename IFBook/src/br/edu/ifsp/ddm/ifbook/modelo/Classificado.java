@@ -10,8 +10,8 @@ public class Classificado {
 	private String Titulo;
 	private String Descricao;
 	private Blob Imagem;
-	private Integer AreaInteresse_idAreaInteresse;
-	private Integer Usuario_idUsuario;
+	private AreaInteresse AreaInteresse_idAreaInteresse;
+	private Usuario Usuario_idUsuario;
 	
 	public Integer getIdClassificado() {
 		return idClassificado;
@@ -43,19 +43,18 @@ public class Classificado {
 	public void setImagem(Blob imagem) {
 		Imagem = imagem;
 	}
-	public Integer getAreaInteresse_idAreaInteresse() {
+	public AreaInteresse getAreaInteresse_idAreaInteresse() {
 		return AreaInteresse_idAreaInteresse;
 	}
 	public void setAreaInteresse_idAreaInteresse(
-			Integer areaInteresse_idAreaInteresse) {
+			AreaInteresse areaInteresse_idAreaInteresse) {
 		AreaInteresse_idAreaInteresse = areaInteresse_idAreaInteresse;
 	}
-	public Integer getUsuario_idUsuario() {
+	public Usuario getUsuario_idUsuario() {
 		return Usuario_idUsuario;
 	}
-	public void setUsuario_idUsuario(Integer usuario_idUsuario) {
+	public void setUsuario_idUsuario(Usuario usuario_idUsuario) {
 		Usuario_idUsuario = usuario_idUsuario;
 	}
 	
 }
-

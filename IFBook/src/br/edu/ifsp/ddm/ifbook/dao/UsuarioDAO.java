@@ -16,7 +16,8 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	public UsuarioDAO(Context context) {
 		super(context);
-		campos = new String[]{"idUsuario","Nome", "strftime('%d/%m/%Y', Nascimento)", "Prontuario", "Senha", "Apelido", "LocalTrabalho", "Cidade", "Email", "Telefone", "Foto", "EstadoCivil_idEstadoCivil"};
+		campos = new String[] { "idUsuario", "Prontuario",
+		"Senha", "Nivel", "Nome", "Nascimento", "Apelido", "LocalTrabalho", "Cidade", "Email", "Telefone", "Foto", "EstadoCivil_idEstadoCivil" };
 		tableName = "usuario";
 		local_context = context;
 		database = getWritableDatabase();
