@@ -1,29 +1,26 @@
 package br.edu.ifsp.ddm.ifbook.dao;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+
+import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import java.sql.Date;
 
 public class UsuarioDAO extends DAO<Usuario>{
-	
-	
 	private SQLiteDatabase database;
- 
+	private Context local_context;
 	
 	public UsuarioDAO(Context context) {
 		super(context);
-		campos = new String[]{"idUsuario","Nome", "strftime('%m-%d', Nascimento)"};
+		campos = new String[]{"idUsuario","Nome", "strftime('%d/%m/%Y', Nascimento)", "Prontuario", "Senha", "Apelido", "LocalTrabalho", "Cidade", "Email", "Telefone", "Foto", "EstadoCivil_idEstadoCivil"};
 		tableName = "usuario";
+		local_context = context;
 		database = getWritableDatabase();
-		
-		
+				
 	}
 	
 
@@ -31,23 +28,51 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	private Usuario serializeByCursor(Cursor cursor)
 	{
-	    ;
-		
 		Usuario usuario = new Usuario();
+		EstadoCivil estadoCivil;
+		
 		usuario.setIdUsuario(cursor.getInt(0));
 		usuario.setNome(cursor.getString(1));
 	    usuario.setNascimento(cursor.getString(2));
-	
+	    usuario.setProntuario(cursor.getString(3));
+	    usuario.setSenha(cursor.getString(4));
+	    usuario.setApelido(cursor.getString(5));
+	    usuario.setLocalTrabalho(cursor.getString(6));
+	    usuario.setCidade(cursor.getString(7));
+	    usuario.setEmail(cursor.getString(8));
+	    usuario.setTelefone(cursor.getString(9));
+	    usuario.setFoto(cursor.getBlob(10));
+	    int numEstCivil = (cursor.getInt(11));	    
+	    EstadoCivilDAO estadoDAO = new EstadoCivilDAO(local_context, database);
+	    estadoCivil = estadoDAO.getById(numEstCivil);
+	    usuario.setIdEstadoCivil(estadoCivil);
+	   
 		return usuario;
 		
 	}
 	
+	private ContentValues serializeContentValues(Usuario usuario){
+		ContentValues values = new ContentValues();
+				
+		values.put("idUsuario",usuario.getIdUsuario());
+		values.put("Nome",usuario.getNome());
+		values.put("Nascimento",usuario.getNascimento());
+		values.put("Prontuario",usuario.getProntuario());
+		values.put("Senha",usuario.getSenha());
+		values.put("Apelido",usuario.getApelido());
+		values.put("LocalTrabalho",usuario.getLocalTrabalho());
+		values.put("Cidade",usuario.getCidade());
+		values.put("Email",usuario.getEmail());
+		values.put("Telefone",usuario.getTelefone());
+		values.put("Foto",usuario.getFoto());
+		values.put("EstadoCivil_idEstadoCivil",usuario.getIdEstadoCivil().getIdEstadoCivil());
+		
+		return values;
+	}
 
 	private Cursor executeSelect(String selection, String[] selectionArgs, String orderBy)
 	{
-		
-
-		return database.query(tableName,campos,selection, selectionArgs, null, null, orderBy);		
+		return database.query(tableName,campos,selection, selectionArgs, null, null, orderBy);
 
 	}
 	
@@ -69,10 +94,7 @@ public class UsuarioDAO extends DAO<Usuario>{
 			
 		}
 		
-		if(!cursor.isClosed())
-		{
-			cursor.close();
-		}
+		fecharConexao(cursor);
 		
 		return list;
 		
@@ -96,15 +118,46 @@ public class UsuarioDAO extends DAO<Usuario>{
 			
 		}
 		
-		if(!cursor.isClosed())
-		{
-			cursor.close();
-		}
+		fecharConexao(cursor);
 		
-		return list;
-		
-		
+		return list;	
+	
 	}
 	
-
+	public Usuario getByProntuario (String prontuario){
+		Usuario usuario = new Usuario();
+			
+		Cursor cursor = executeSelect("Prontuario = ?", new String[]{prontuario}, null);
+		
+		if(cursor!=null && cursor.moveToFirst())
+		{
+			usuario = serializeByCursor(cursor);
+		}
+		fecharConexao(cursor);
+		
+		return usuario;
+	}
+	public Usuario getById (int id){
+		Usuario usuario = new Usuario();
+			
+		Cursor cursor = executeSelect("idUsuario = ?", new String[]{String.valueOf(id)}, null);
+		
+		if(cursor!=null && cursor.moveToFirst())
+		{
+			usuario = serializeByCursor(cursor);
+		}
+		fecharConexao(cursor);
+		
+		return usuario;
+	}
+	
+	public boolean autualizar(Usuario usuario){
+		ContentValues values = serializeContentValues(usuario);
+		if(database.update(tableName, values, "idUsuario = ?", new String[]{String.valueOf(usuario.getIdUsuario())})>0)
+			return true;
+		else
+			return false;
+	}
+	
+	
 }

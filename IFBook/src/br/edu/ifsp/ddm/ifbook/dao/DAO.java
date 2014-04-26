@@ -1,6 +1,7 @@
 package br.edu.ifsp.ddm.ifbook.dao;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -141,11 +142,14 @@ public class DAO <T extends Object> extends SQLiteOpenHelper {
 	
 	
 	
-	protected void closeDatabase(SQLiteDatabase db)
-	{		
-		if(db.isOpen())
-			db.close();		
+	protected void fecharConexao(Cursor cursor) {
+		if (!cursor.isClosed()) {
+			cursor.close();
+			close();
+		}
+
 	}
+
 
 }	
 
