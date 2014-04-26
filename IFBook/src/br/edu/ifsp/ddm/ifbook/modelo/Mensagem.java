@@ -1,7 +1,7 @@
 package br.edu.ifsp.ddm.ifbook.modelo;
 
 import java.sql.Blob;
-import java.sql.Date;
+import java.util.Date;
 
 public class Mensagem {
 
