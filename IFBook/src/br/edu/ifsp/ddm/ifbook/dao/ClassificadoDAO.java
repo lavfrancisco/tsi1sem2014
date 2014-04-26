@@ -91,7 +91,7 @@ public class ClassificadoDAO extends DAO<Classificado> {
 
 		classificado.setAreaInteresse_idAreaInteresse(areainteresseDAO.getByID(cursor.getInt(5)));
 		UsuarioDAO usuarioDAO = new UsuarioDAO(this.context);
-		classificado.setUsuario_idUsuario(usuarioDAO.getByID(cursor.getInt(6)));
+		classificado.setUsuario_idUsuario(usuarioDAO.getById((cursor.getInt(6))));
 
 		return classificado;
 
@@ -105,8 +105,7 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		values.put("Descricao", classificado.getDescricao());
 		values.put("AreaInteresse_idAreaInteresse", classificado
 				.getAreaInteresse_idAreaInteresse().getNome());
-		values.put("Usuario_idUsuario", classificado.getUsuario_idUsuario()
-				.getNome());
+		values.put("Usuario_idUsuario", classificado.getUsuario_idUsuario().getIdUsuario());
 	
 
 		return values;

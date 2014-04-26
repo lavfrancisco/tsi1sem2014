@@ -3,8 +3,6 @@ package br.edu.ifsp.ddm.ifbook;
 import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
-import br.edu.ifsp.ddm.ifbook.modelo.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

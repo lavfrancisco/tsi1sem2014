@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
-import br.edu.ifsp.ddm.ifbook.modelo.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
