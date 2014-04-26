@@ -13,7 +13,7 @@ public class Usuario {
 	private String Cidade;
 	private String Email;
 	private String Telefone;
-	private Byte Foto;
+	private byte[] Foto = null;
 	private EstadoCivil idEstadoCivil;
 	public int getIdUsuario() {
 		return idUsuario;
@@ -81,10 +81,10 @@ public class Usuario {
 	public void setTelefone(String telefone) {
 		Telefone = telefone;
 	}
-	public Byte getFoto() {
+	public byte[] getFoto() {
 		return Foto;
 	}
-	public void setFoto(Byte foto) {
+	public void setFoto(byte[] foto) {
 		Foto = foto;
 	}
 	public EstadoCivil getIdEstadoCivil() {
@@ -102,6 +102,4 @@ public class Usuario {
 				+ ", Email=" + Email + ", Telefone=" + Telefone + ", Foto="
 				+ Foto + ", idEstadoCivil=" + idEstadoCivil + "]";
 	}
-
-		
 }

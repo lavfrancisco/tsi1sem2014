@@ -1,8 +1,6 @@
 package br.edu.ifsp.ddm.ifbook.modelo;
 
-
 public class EstadoCivil {
-	
 	private int idEstadoCivil;
 	private String EstadoCivil;
 	
@@ -23,5 +21,4 @@ public class EstadoCivil {
 		return "EstadoCivil [idEstadoCivil=" + idEstadoCivil + ", EstadoCivil="
 				+ EstadoCivil + "]";
 	}
-
 }
