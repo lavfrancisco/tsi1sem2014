@@ -1,6 +1,7 @@
 package br.edu.ifsp.ddm.ifbook;
 
 import java.util.List;
+import java.util.Date;
 
 import br.edu.ifsp.ddm.ifbook.dao.MensagemDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
@@ -38,15 +39,14 @@ public class MainActivityMensagem extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.perfil_login);
-		
-		setContentView(R.layout.mensagem);
-		edID = (EditText) findViewById(R.id.edID);
-		edTITULO = (EditText) findViewById(R.id.edTITULO);
-		edDESCRICAO = (EditText) findViewById(R.id.edDESCRICAO);
-		edDATA = (EditText) findViewById(R.id.edDATA);
-		spCATEGORIA = (Spinner) findViewById(R.id.spCATEGORIA);
-		edIDUSUARIO = (EditText) findViewById(R.id.edIDUSUARIO);
+		//setContentView(R.layout.perfil_login);
+        
+        setContentView(R.layout.mensagem);
+        //Esse ID será autoincrement
+        //edID = (EditText) findViewById(R.id.edID);
+        edTITULO = (EditText) findViewById(R.id.edTITULO);
+        edDESCRICAO = (EditText) findViewById(R.id.edDESCRICAO);
+        spCATEGORIA = (Spinner) findViewById(R.id.spCATEGORIA);
 		
 		operacao = new String ("Novo");
 		dao = new MensagemDAO(getApplicationContext());
@@ -82,14 +82,16 @@ public class MainActivityMensagem extends Activity {
 	
 		}
 		
-		p.setTitulo(edTITULO.getText().toString());
-		p.setDescricao(edDESCRICAO.getText().toString());
-		//inserir imagem comofaz? perguntar luis
-		p.setAreaInteresse_idAreaInteresse(categoria[spCATEGORIA.getSelectedItemPosition()]);
-		// data e id do usuário serrá preenchido automticamente, como fazer isso?
-		//p.setData(edDATA.getText().toString());
-		//p.setUsuario_idUsuario(edIDUSUARIO.getText().toString());
-		//limparDados();
+        Date d = new Date();
+        
+        p.setTitulo(edTITULO.getText().toString());
+        p.setDescricao(edDESCRICAO.getText().toString());
+        //inserir imagem comofaz? perguntar luis
+        p.setAreaInteresse_idAreaInteresse(categoria[spCATEGORIA.getSelectedItemPosition()]);
+        //Colocando um id do usuário aleatório pois será buscado do banco de dados.
+        p.setUsuario_idUsuario(1);
+        p.setData(d);
+        //limparDados();
 		
 	}
 	
@@ -157,3 +159,16 @@ public class MainActivityMensagem extends Activity {
 	}
 }
 
+//Comando para formatar a data:
+/*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+String dateInString = edDATA.getText().toString();
+
+try {
+
+  Date date = formatter.parse(dateInString);
+  System.out.println(date);
+  System.out.println(formatter.format(date));
+
+} catch (ParseException e) {
+  e.printStackTrace();
+}*/
