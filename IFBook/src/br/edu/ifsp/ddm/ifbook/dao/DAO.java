@@ -56,7 +56,7 @@ public class DAO <T extends Object> extends SQLiteOpenHelper {
 	+ "  FOREIGN KEY (AreaInteresse_idAreaInteresse) REFERENCES areaInteresse (idAreaInteresse), "
 	+ "  FOREIGN KEY (Usuario_idUsuario) REFERENCES usuario (idUsuario) );";
 	
-	private static final String CREATE_TABLE_CLASSIFICADO = "CREATE Classificado ( "
+	private static final String CREATE_TABLE_CLASSIFICADO = "CREATE TABLE classificado ( "
 	+ "  idClassificado INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "
 	+ "  Titulo VARCHAR(50) NULL , "
 	+ "  Descricao VARCHAR(600) NULL , "
