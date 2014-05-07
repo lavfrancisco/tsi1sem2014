@@ -1,7 +1,13 @@
 package br.edu.ifsp.ddm.ifbook.modelo;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4360718276063483351L;
 	private int idUsuario;
 	private String Prontuario;
 	private String Senha;

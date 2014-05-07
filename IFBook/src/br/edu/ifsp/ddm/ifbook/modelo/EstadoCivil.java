@@ -1,6 +1,12 @@
 package br.edu.ifsp.ddm.ifbook.modelo;
 
-public class EstadoCivil {
+import java.io.Serializable;
+
+public class EstadoCivil implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 55837854871669928L;
 	private int idEstadoCivil;
 	private String EstadoCivil;
 	
@@ -18,7 +24,9 @@ public class EstadoCivil {
 	}
 	@Override
 	public String toString() {
-		return "EstadoCivil [idEstadoCivil=" + idEstadoCivil + ", EstadoCivil="
-				+ EstadoCivil + "]";
+		/*return "EstadoCivil [idEstadoCivil=" + idEstadoCivil + ", EstadoCivil="
+				+ EstadoCivil + "]";*/
+		return this.EstadoCivil;
 	}
+	
 }

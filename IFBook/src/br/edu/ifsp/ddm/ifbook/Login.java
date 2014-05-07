@@ -1,19 +1,23 @@
 package br.edu.ifsp.ddm.ifbook;
 
+import java.security.MessageDigest;
+
 import br.edu.ifsp.ddm.ifbook.R;
 
 
 import br.edu.ifsp.ddm.ifbook.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
-import br.edu.ifsp.ddm.ifbook.util.LoginManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Login extends Activity {
@@ -28,6 +32,7 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.perfil_login);
 		c = getApplicationContext();
+
 		Button entrar = (Button) findViewById(R.id.buttonEntrar);
 		entrar.setOnClickListener(new View.OnClickListener() {
 			
@@ -46,17 +51,21 @@ public class Login extends Activity {
 				else{
 					try{
 						Usuario user = dao.getByProntuario(prontuario);
-
-						if(user.getSenha().equals(senha) && user.getProntuario().equals(prontuario)){
-							LoginManager.getLogin().setUsuario(user.getNome());
-							LoginManager.getLogin().setId(user.getIdUsuario());
-							LoginManager.getLogin().setNivel(user.getNivel());
-						
+						// 'Criptografando' a senha!
+						MessageDigest md = MessageDigest.getInstance("SHA-256");
+						md.update(senha.getBytes());
+						byte byteData[] = md.digest();
+						StringBuffer sb = new StringBuffer();
+				        for (int i = 0; i < byteData.length; i++) {
+				         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+				        }
+						if(user.getSenha().equals(sb.toString()) && user.getProntuario().equals(prontuario)){
 							Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+							it.putExtra("Usuario", user);
 							startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
 						}
 						else{
-							exibirMensagem("Prontuario ou Senha inv�lidos!");
+							exibirMensagem("Prontuario ou Senha inválidos!");
 						}
 					}
 					catch(Exception e){
@@ -65,6 +74,16 @@ public class Login extends Activity {
 					}
 
 				}
+				
+			}
+		});
+		
+		TextView recuperarSenha  = (TextView) findViewById(R.id.linkSenha);
+		recuperarSenha.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				exibirMensagem("Funcionalida não implementada\n por excesso de motivos! ;)");
 				
 			}
 		});

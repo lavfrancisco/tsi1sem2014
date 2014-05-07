@@ -16,8 +16,7 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	public UsuarioDAO(Context context) {
 		super(context);
-		campos = new String[] { "idUsuario", "Prontuario",
-		"Senha", "Nivel", "Nome", "Nascimento", "Apelido", "LocalTrabalho", "Cidade", "Email", "Telefone", "Foto", "EstadoCivil_idEstadoCivil" };
+		campos = new String[]{"idUsuario","Nome", "Nascimento", "Prontuario", "Senha", "Apelido", "LocalTrabalho", "Cidade", "Email", "Telefone", "Foto", "EstadoCivil_idEstadoCivil"};
 		tableName = "usuario";
 		local_context = context;
 		database = getWritableDatabase();
@@ -154,10 +153,19 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	public boolean autualizar(Usuario usuario){
 		ContentValues values = serializeContentValues(usuario);
-		if(database.update(tableName, values, "idUsuario = ?", new String[]{String.valueOf(usuario.getIdUsuario())})>0)
+		if(database.update(tableName, values, "idUsuario = ?", new String[]{String.valueOf(usuario.getIdUsuario())})>0){
+			close();
 			return true;
-		else
+		}
+		else{
+			try {
+				clone();
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return false;
+		}
 	}
 	
 	

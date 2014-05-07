@@ -1,10 +1,10 @@
 package br.edu.ifsp.ddm.ifbook.util;
 
+import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+
 public class LoginManager {
 	private boolean logado = false;
-	private String usuario;
-	private int id;
-	private int nivel;
+	private Usuario usuario;
 	private static LoginManager login = null; 
 	
 	public static LoginManager getLogin(){
@@ -15,23 +15,11 @@ public class LoginManager {
 		return login;
 	}
 	
-	public String getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(String usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getNivel() {
-		return nivel;
-	}
-	public void setNivel(int nivel) {
-		this.nivel = nivel;
 	}
 	public boolean isLogado() {
 		return logado;

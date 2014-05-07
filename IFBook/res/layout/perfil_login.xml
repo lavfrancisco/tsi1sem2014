@@ -4,27 +4,6 @@
     android:layout_height="match_parent"
     tools:context=".Login" >
 
-    <EditText
-        android:id="@+id/editLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/editSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editLogin"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="textPassword" />
-
     <TextView
         android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
@@ -48,9 +27,50 @@
         android:id="@+id/buttonEntrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editSenha"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginBottom="30dp"
         android:text="Entrar" />
+
+    <TextView
+        android:id="@+id/linkSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonEntrar"
+        android:layout_marginBottom="32dp"
+        android:layout_toRightOf="@+id/textViewLogin"
+        android:clickable="true"
+        android:text="Recuperar Senha"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/RecoveryPass" />
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linkSenha"
+        android:layout_alignLeft="@+id/editLogin"
+        android:layout_marginBottom="18dp"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/editLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewSenha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:ems="10" />
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewLogin"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/logo" />
 
 </RelativeLayout>

@@ -1,11 +1,11 @@
 package br.edu.ifsp.ddm.ifbook;
 
 import java.io.ByteArrayOutputStream;
-import java.nio.ByteBuffer;
+
+import br.edu.ifsp.ddm.ifbook.dao.EstadoCivilDAO;
 import br.edu.ifsp.ddm.ifbook.dao.UsuarioDAO;
-import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
-import br.edu.ifsp.ddm.ifbook.util.LoginManager;
+import br.edu.ifsp.ddm.ifbook.util.EstadoCivilListAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,7 +16,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.webkit.WebSettings.TextSize;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,14 +39,15 @@ public class EditarPerfil extends Activity{
 	private Button salvar;
 	private Usuario user;
 	private Bitmap imagem;
-	private UsuarioDAO dao;
+	private Intent i;
+	private EstadoCivilListAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.perfil_editar);
-		UsuarioDAO dao = new UsuarioDAO(getApplicationContext());
-		user = dao.getById(LoginManager.getLogin().getId());
+		i = getIntent();
+		user = (Usuario) i.getSerializableExtra("Usuario");
 		
 		foto = (ImageView) findViewById(R.id.imgEdit);
 		try{
@@ -68,8 +70,19 @@ public class EditarPerfil extends Activity{
 		email = (EditText) findViewById(R.id.editEmail);
 		email.setText(user.getEmail());
 		
+		EstadoCivilDAO dao = new EstadoCivilDAO(getApplicationContext());
+		adapter = new EstadoCivilListAdapter(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, dao.listAll());
 		estado_civil = (Spinner) findViewById(R.id.spinnerEstadoC);
-		//Ver codigo que precisa...
+		estado_civil.setAdapter(adapter);
+		estado_civil.setSelection(user.getIdEstadoCivil().getIdEstadoCivil() - 1);
+		estado_civil.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+	                user.setIdEstadoCivil(adapter.getItem(position));
+	                System.out.println(user.getIdEstadoCivil().getEstadoCivil());
+	        }
+			public void onNothingSelected(AdapterView<?> adapter) {  }
+		});
 		
 		foto = (ImageView) findViewById(R.id.imgEdit);
 		imagem = ((BitmapDrawable)foto.getDrawable()).getBitmap();
@@ -90,7 +103,7 @@ public class EditarPerfil extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
 				
 			}
@@ -109,15 +122,12 @@ public class EditarPerfil extends Activity{
 				user.setApelido(apelido.getText().toString());
 				user.setLocalTrabalho(trabalho.getText().toString());
 				user.setEmail(email.getText().toString());
-				//Ver como pegar valor Spinner
-				EstadoCivil relacionamento = new EstadoCivil();
-				relacionamento.setIdEstadoCivil(1);
-				user.setIdEstadoCivil(relacionamento);
 				
 				UsuarioDAO dao = new UsuarioDAO(getApplicationContext());
 				dao.autualizar(user);
 				
 				Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+				it.putExtra("Usuario", user);
 				startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
 
 			}
@@ -142,7 +152,6 @@ public class EditarPerfil extends Activity{
             cursor.close();
             imagem = BitmapFactory.decodeFile(picturePath); 
             foto.setImageBitmap(imagem);
-         
         }
     }
 }

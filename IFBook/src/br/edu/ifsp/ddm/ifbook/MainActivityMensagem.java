@@ -90,7 +90,7 @@ public class MainActivityMensagem extends Activity {
         p.setAreaInteresse_idAreaInteresse(categoria[spCATEGORIA.getSelectedItemPosition()]);
         //Colocando um id do usuário aleatório pois será buscado do banco de dados.
         p.setUsuario_idUsuario(1);
-        p.setData(d);
+        //p.setData(d);
         //limparDados();
 		
 	}

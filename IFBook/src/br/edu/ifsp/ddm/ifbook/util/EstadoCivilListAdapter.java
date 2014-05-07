@@ -1,52 +1,50 @@
 package br.edu.ifsp.ddm.ifbook.util;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
-
-
-
-import br.edu.ifsp.ddm.ifbook.R;
 import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
-
-
 import android.content.Context;
-import android.view.InflateException;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class EstadoCivilListAdapter extends BaseAdapter{
-	
+
+public class EstadoCivilListAdapter extends ArrayAdapter<EstadoCivil>{
+
 	private Context context;
-	private List<EstadoCivil> lista;
+	private List <EstadoCivil> relacionamentos;
 	
-	@Override
-	public int getCount() {
-		return lista.size();
+	public EstadoCivilListAdapter(Context context, int textViewResourceId, List <EstadoCivil> relacionamentos) {
+		super(context, textViewResourceId);
+		this.context = context;
+		this.relacionamentos = relacionamentos;
 	}
-
-	@Override
-	public Object getItem(int position) {
-		return lista.get(position);
+	
+	public int getCount(){
+		return relacionamentos.size();
 	}
-
-	@Override
-	public long getItemId(int position) {
+	
+	public EstadoCivil getItem(int position){
+		return relacionamentos.get(position);
+	}
+	
+	public long getItemId(int position){
 		return position;
 	}
-
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		EstadoCivil e = lista.get(position);
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.perfil_editar, null);
-		
-		TextView estado = (TextView) view.findViewById(R.id.estado_civil);
-		
-		return null;
+	
+	public View getDropDownView(int position, int convertView, ViewGroup parent){
+		TextView label = new TextView(context);
+		label.setText(relacionamentos.get(position).getEstadoCivil());
+		return label;
 	}
-
+	
+	public View getView(int position, int convertView, ViewGroup parent){
+		TextView label = new TextView(context);
+		label.setText(relacionamentos.get(position).getEstadoCivil());
+		return label;
+	}
 }

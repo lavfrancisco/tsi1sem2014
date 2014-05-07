@@ -29,7 +29,7 @@ public class EstadoCivilDAO extends DAO<EstadoCivil>{
 	private EstadoCivil serializeByCursor(Cursor cursor){
 		EstadoCivil estado = new EstadoCivil();
 		estado.setIdEstadoCivil(cursor.getInt(0));
-		estado.setIdEstadoCivil(cursor.getInt(1));
+		estado.setEstadoCivil(cursor.getString(1));
 		
 		return estado;
 	}
@@ -56,6 +56,7 @@ public class EstadoCivilDAO extends DAO<EstadoCivil>{
 		if(!cursor.isClosed())
 		{
 			cursor.close();
+			close();
 		}
 		
 		return list;	

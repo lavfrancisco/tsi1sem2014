@@ -1,10 +1,7 @@
 package br.edu.ifsp.ddm.ifbook;
 
 import br.edu.ifsp.ddm.ifbook.R;
-
-import br.edu.ifsp.ddm.ifbook.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
-import br.edu.ifsp.ddm.ifbook.util.LoginManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.VideoView;
+
 
 public class ExibePerfil extends Activity{
 	private TextView nome;
@@ -27,23 +24,23 @@ public class ExibePerfil extends Activity{
 	private Button editar;
 	private ImageView foto;
 	private Bitmap imagem;
-	private UsuarioDAO dao;
+	private Intent it;
+	private Usuario user;
 	private static final int ACTIVITY_EXIBIR_EDITAR = 1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.visualizar_perfil);
-		
-		dao = new UsuarioDAO(getApplicationContext());
-		Usuario user = dao.getById(LoginManager.getLogin().getId());
+		it = getIntent();
+		user = (Usuario) it.getSerializableExtra("Usuario");
 		
 		nome = (TextView) findViewById(R.id.perfilNome);
 		nome.setText(user.getNome());
 		
 		apelido = (TextView) findViewById(R.id.perfilApelido);
 		apelido.setText(user.getApelido());
-		
+
 		nascimento = (TextView) findViewById(R.id.perfilNasc);
 		nascimento.setText(user.getNascimento());
 		
@@ -59,25 +56,23 @@ public class ExibePerfil extends Activity{
 		telefone = (TextView) findViewById(R.id.perfilTelefone);
 		telefone.setText(user.getTelefone());
 		
-		foto = (ImageView) findViewById(R.id.imgEdit);
+		foto = (ImageView) findViewById(R.id.imagePerfil);
 		
-		if(user.getFoto()!=null){
-			try{
-				imagem = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
-				foto.setImageBitmap(imagem);
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-		}		
+		try{
+			imagem = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
+			foto.setImageBitmap(imagem);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		editar = (Button) findViewById(R.id.buttonEditPerfil);
 		editar.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent it = new Intent(getApplicationContext(), EditarPerfil.class);
+				it = new Intent(getApplicationContext(), EditarPerfil.class);
+				it.putExtra("Usuario", user);
 				startActivityForResult(it, ACTIVITY_EXIBIR_EDITAR);
-				
 			}
 		});
 	}
