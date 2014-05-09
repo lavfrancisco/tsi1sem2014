@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -98,5 +100,17 @@ public class ActivityListaMensagens extends Activity {
 	private void exibirMensagem(String msg) {
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 	}
+	
+	
+	private OnItemClickListener selecionarMensagem = new OnItemClickListener() {
+
+		public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long id) {
+			Intent it = new Intent(ActivityListaMensagens.this, Login.class);			
+			it.putExtra("idMensagem", mensagens.get(pos).getIdMensagem());
+			startActivity(it);
+
+		}
+
+	};
 
 }
