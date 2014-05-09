@@ -108,9 +108,7 @@ public class AreaInteresseDAO extends DAO<AreaInteresse> {
 
 		}
 
-		if (!cursor.isClosed()) {
-			cursor.close();
-		}
+		fecharConexao(cursor);
 
 		return area;
 

@@ -15,10 +15,9 @@ public class MensagemDAO extends DAO<Mensagem> {
 
 	public MensagemDAO(Context context) {
 		super(context);
-		this.context=context;
-		campos = new String[] { "idMensagem", "Titulo", "Descricao",
-				"Data", "Imagem", "AreaInteresse_idAreaInteresse",
-				"Usuario_idUsuario" };
+		this.context = context;
+		campos = new String[] { "idMensagem", "Titulo", "Descricao", "Data",
+				"Imagem", "AreaInteresse_idAreaInteresse", "Usuario_idUsuario" };
 
 		tableName = "Mensagem";
 		database = getWritableDatabase();
@@ -64,20 +63,23 @@ public class MensagemDAO extends DAO<Mensagem> {
 
 	public boolean atualizar(Mensagem mensagem) {
 		ContentValues values = serializeContentValues(mensagem);
-		if (database
-				.update(tableName, values, "id = ?", new String[] { String
-						.valueOf(mensagem.getIdMensagem()) }) > 0)
+		if (database.update(tableName, values, "idMensagem = ?",
+				new String[] { String.valueOf(mensagem.getIdMensagem()) }) > 0)
 			return true;
 		else
 			return false;
 	}
 
 	public boolean deletar(Integer id) {
-		if (database.delete(tableName, "id = ?",
-				new String[] { String.valueOf(id) }) > 0)
+		if (database.delete(tableName, "idMensagem = ?",
+				new String[] { String.valueOf(id) }) > 0) {
+			fecharConexao();
 			return true;
-		else
+			
+		} else {
+			fecharConexao();
 			return false;
+		}
 	}
 
 	private Mensagem serializeByCursor(Cursor cursor) {
@@ -89,9 +91,10 @@ public class MensagemDAO extends DAO<Mensagem> {
 		mensagem.setImagem(null);
 		AreaInteresseDAO areainteresseDAO = new AreaInteresseDAO(this.context);
 
-		mensagem.setAreaInteresse_idAreaInteresse(areainteresseDAO.getByID(cursor.getInt(5)));
+		mensagem.setAreaInteresse_idAreaInteresse(areainteresseDAO
+				.getByID(cursor.getInt(5)));
 		UsuarioDAO usuarioDAO = new UsuarioDAO(this.context);
-		mensagem.setUsuario_idUsuario(usuarioDAO.getByID(cursor.getInt(6)));
+		mensagem.setUsuario_idUsuario(usuarioDAO.getById((cursor.getInt(6))));
 
 		return mensagem;
 
@@ -107,7 +110,6 @@ public class MensagemDAO extends DAO<Mensagem> {
 				.getAreaInteresse_idAreaInteresse().getNome());
 		values.put("Usuario_idUsuario", mensagem.getUsuario_idUsuario()
 				.getNome());
-	
 
 		return values;
 	}

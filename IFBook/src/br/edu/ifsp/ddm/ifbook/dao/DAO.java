@@ -153,6 +153,11 @@ public class DAO <T extends Object> extends SQLiteOpenHelper {
 		}
 
 	}
+	
+	protected void fecharConexao() {		
+			close();		
+
+	}
 
 
 }	

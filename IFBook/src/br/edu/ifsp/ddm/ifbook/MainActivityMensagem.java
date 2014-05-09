@@ -87,9 +87,9 @@ public class MainActivityMensagem extends Activity {
         p.setTitulo(edTITULO.getText().toString());
         p.setDescricao(edDESCRICAO.getText().toString());
         //inserir imagem comofaz? perguntar luis
-        p.setAreaInteresse_idAreaInteresse(categoria[spCATEGORIA.getSelectedItemPosition()]);
+       // p.setAreaInteresse_idAreaInteresse(categoria[spCATEGORIA.getSelectedItemPosition()]);
         //Colocando um id do usuário aleatório pois será buscado do banco de dados.
-        p.setUsuario_idUsuario(1);
+       // p.setUsuario_idUsuario(1);
         //p.setData(d);
         //limparDados();
 		
@@ -116,7 +116,7 @@ public class MainActivityMensagem extends Activity {
 		edTITULO.setText(mensagem.getTitulo());
 		edDESCRICAO.setText(mensagem.getDescricao());
 		//edDATA.setText(String.valueOf(mensagem.getData()));
-		spCATEGORIA.setSelection(mensagem.getAreaInteresse_idAreaInteresse());
+		//spCATEGORIA.setSelection(mensagem.getAreaInteresse_idAreaInteresse());
 		//edIDUSUARIO.setText(String.valueOf(Mensagem.getIdUsuario()));
 	}
 	
