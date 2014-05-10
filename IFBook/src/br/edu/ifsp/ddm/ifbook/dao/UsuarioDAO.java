@@ -80,7 +80,7 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	public List<Usuario> Aniversariantes() {
 		List<Usuario> list = new ArrayList<Usuario>();
-		String sql = "SELECT idUsuario,Nome,strftime('%m/%d', Nascimento) FROM usuario WHERE strftime('%m/%d', Nascimento) <= strftime('%m/%d',date('now','+7 day')) ORDER BY Nascimento;";
+		String sql = "SELECT idUsuario,Nome, strftime('%m/%d', Nascimento), Prontuario, Senha, Apelido, LocalTrabalho, Cidade, Email, Telefone, Foto, EstadoCivil_idEstadoCivil FROM usuario WHERE strftime('%m/%d', Nascimento) >= strftime('%m/%d',date('now')) AND strftime('%m/%d', Nascimento) <= strftime('%m/%d',date('now','+7 day')) ORDER BY Nascimento;";
 		
 		Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 		if(cursor!=null && cursor.moveToFirst())
@@ -137,6 +137,7 @@ public class UsuarioDAO extends DAO<Usuario>{
 		
 		return usuario;
 	}
+	
 	public Usuario getById (int id){
 		Usuario usuario = new Usuario();
 			

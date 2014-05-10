@@ -1,35 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-   >
-    
-    
-    <TextView
-        android:id="@+id/txtidUsuario"
-        android:layout_width="match_parent"
+    >
+   
+
+    <ImageView
+        android:id="@+id/estrela"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible" />
+        android:src="@android:drawable/btn_star_big_off" />
 
     <TextView
-        android:id="@+id/txtNome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:textColor="#F2F8FA"
-        android:background="#3CB371"
-         android:textStyle="bold"
-         android:typeface="sans"
-         android:textSize="12px"
+        android:id="@+id/txtidUsuario"
+        android:layout_width="249dp"
+        android:layout_height="wrap_content"
+        android:layout_x="34dp"
         />
 
     <TextView
-        android:id="@+id/txtNascimento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:textColor="#000101"
-        android:background="#FAFAD2"
-        android:textSize="16px"
-       />
+        android:id="@+id/txtNome"
+        android:layout_width="252dp"
+        android:layout_height="23dp"
+        android:layout_x="67dp"
+        android:layout_y="4dp"
+        android:background="#63B8FF"
+        android:textColor="#F2F8FA"
+        android:textSize="12px"
+        android:textStyle="bold"
+        android:typeface="sans" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txtNascimento"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_x="66dp"
+        android:layout_y="28dp"
+        android:background="#FAFAD2"
+        android:textColor="#000101"
+        android:textSize="12px" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="33dp"
+        android:layout_height="wrap_content"
+        android:layout_x="31dp"
+        android:layout_y="-35dp"
+        android:src="@drawable/foto_perfil" />
+
+</AbsoluteLayout >

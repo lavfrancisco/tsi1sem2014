@@ -1,38 +1,91 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Perfil_listagem" >
-
-    <ListView
-        android:id="@+id/ListaAniversariantes"
-        android:layout_width="200dp"
-        android:layout_height="250dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" >
-
-    </ListView>
+    tools:context=".Perfil_listagem" 
+     android:background="#363636">
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ListaAniversariantes"
-        android:layout_alignParentLeft="true"
-        android:background="#2E8B57"
-        android:text="               Aniversariantes"
+        android:id="@+id/txtEstadoCivil"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_x="0dp"
+        android:layout_y="173dp"
+        android:background="#104E8B"
+        android:text="           Aniversariantes"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#F2F8FA"
-        android:textSize="16px"
+        android:textSize="18px"
         android:textStyle="bold"
         android:typeface="sans" />
 
+    <ListView
+        android:id="@+id/ListaAniversariantes"
+        android:layout_width="match_parent"
+        android:layout_height="278dp"
+        android:layout_x="1dp"
+        android:layout_y="208dp" >
+
+    </ListView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:layout_x="4dp"
+        android:layout_y="108dp"
+        android:src="@drawable/niver" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="83dp"
+        android:layout_height="113dp"
+        android:layout_x="241dp"
+        android:layout_y="95dp"
+        android:src="@drawable/bemvindo" />
+
     <ImageView
         android:id="@+id/imageView1"
+        android:layout_width="186dp"
+        android:layout_height="138dp"
+        android:layout_x="61dp"
+        android:layout_y="45dp"
+        android:src="@drawable/db2" />
+
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ListaAniversariantes"
-        android:layout_alignParentLeft="true"
-        android:src="@android:drawable/btn_star_big_on" />
+        android:layout_x="97dp"
+        android:layout_y="88dp"
+        android:text="Bem Vindo"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#1EEC6D"
+        android:textStyle="bold" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="1dp"
+        android:layout_y="1dp"
+        android:background="#a8cf45"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="3dp"
+        android:layout_y="-1dp"
+        android:src="@drawable/logotipovazado" />
+
+    <TextView
+        android:id="@+id/TextSaudacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="114dp"
+        android:layout_y="118dp"
+        android:text="" />
+
+</AbsoluteLayout>

@@ -14,12 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListaAniversariantes extends BaseAdapter {
 
 	private Context context;
 	private List<Usuario> lista;
+	public ImageView imagem;
 
 	public ListaAniversariantes(Context context, List<Usuario> lista) {
 		this.context = context;
@@ -42,6 +44,7 @@ public class ListaAniversariantes extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
+		
 		Usuario p = lista.get(position);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.aniversariantes, null);
@@ -55,6 +58,14 @@ public class ListaAniversariantes extends BaseAdapter {
 		
 		TextView nascimento = (TextView) view.findViewById(R.id.txtNascimento);
 		nascimento.setText(p.getNascimento());
+		
+		imagem = (ImageView) view.findViewById(R.id.estrela);
+		
+		if(p.getNascimento().equalsIgnoreCase("Hoje")){
+		imagem.setImageResource(android.R.drawable.btn_star_big_on);
+		}
+			
+			
 		
 		
 		return view;

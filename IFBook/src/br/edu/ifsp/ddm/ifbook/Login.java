@@ -60,12 +60,12 @@ public class Login extends Activity {
 				         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
 				        }
 						if(user.getSenha().equals(sb.toString()) && user.getProntuario().equals(prontuario)){
-							Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+							Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
 							it.putExtra("Usuario", user);
 							startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
 						}
 						else{
-							exibirMensagem("Prontuario ou Senha inv√°lidos!");
+							exibirMensagem("Prontuario ou Senha inv·lidos!");
 						}
 					}
 					catch(Exception e){

@@ -1,0 +1,128 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#363636"
+    tools:context=".Perfil_Usuario" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="508dp"
+        android:layout_height="800dp"
+        android:layout_x="-104dp"
+        android:layout_y="-136dp"
+        android:src="@drawable/db3" />
+
+    <TextView
+        android:id="@+id/textNomeUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:layout_x="9dp"
+        android:layout_y="162dp"
+        android:text="nome"
+        android:textColor="#363636"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/textUsuarioApelido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:layout_x="8dp"
+        android:layout_y="182dp"
+        android:text="apelido"
+        android:textColor="#363636"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/txtEstadoCivil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="8dp"
+        android:layout_y="202dp"
+        android:text="estadocivil"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#363636"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/textLocaltrabalho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="7dp"
+        android:layout_y="222dp"
+        android:text="trabalho"
+        android:textColor="#363636"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/txtAniversario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="8dp"
+        android:layout_y="240dp"
+        android:text="aniversario"
+        android:textColor="#363636"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/textCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="9dp"
+        android:layout_y="260dp"
+        android:text="cidade"
+        android:textColor="#363636"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="9dp"
+        android:layout_y="278dp"
+        android:text="email"
+        android:textColor="#363636"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="58dp"
+        android:background="#104E8B"
+        android:text="Perfil"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#F2F8FA"
+        android:textSize="18px"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="-1dp"
+        android:layout_y="0dp"
+          android:background="#a8cf45"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+          android:layout_x="3dp"
+        android:layout_y="-1dp"
+        android:src="@drawable/logotipovazado" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="47dp"
+        android:layout_height="52dp"
+        android:layout_x="2dp"
+        android:layout_y="76dp"
+        android:src="@drawable/foto_perfil" />
+
+</AbsoluteLayout>

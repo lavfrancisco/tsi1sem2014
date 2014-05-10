@@ -31,7 +31,7 @@ public class DAO <T extends Object> extends SQLiteOpenHelper {
 	+ " Senha VARCHAR(65) NOT NULL , "
 	+ " Nivel INTEGER NOT NULL , "
 	+ " Nome VARCHAR(50) NOT NULL , "
-	+ " Nascimento VARCHAR(10) NOT NULL, "
+	+ " Nascimento DATETIME NOT NULL, "
 	+ " Apelido VARCHAR(15) NOT NULL , "
 	+ " LocalTrabalho VARCHAR(30) NULL , "
 	+ " Cidade VARCHAR(30) NULL , "
@@ -86,37 +86,37 @@ public class DAO <T extends Object> extends SQLiteOpenHelper {
 		database.execSQL("INSERT INTO estadocivil (idEstadoCivil,EstadoCivil) VALUES (2,'Solteiro(a)');");
 		database.execSQL("INSERT INTO estadocivil (idEstadoCivil,EstadoCivil) VALUES (3,'Divorciado(a)');");
 		database.execSQL("INSERT INTO estadocivil (idEstadoCivil,EstadoCivil) VALUES (4,'Separado(a)');");
-		database.execSQL("INSERT INTO estadocivil (idEstadoCivil,EstadoCivil) VALUES (5,'Vi√∫vo(a)');");
-		database.execSQL("INSERT INTO estadocivil (idEstadoCivil,EstadoCivil) VALUES (6,'Uni√£o Est√°vel');");
+		database.execSQL("INSERT INTO estadocivil (idEstadoCivil,EstadoCivil) VALUES (5,'Vi˙vo(a)');");
+		database.execSQL("INSERT INTO estadocivil (idEstadoCivil,EstadoCivil) VALUES (6,'Uni„o Est·vel');");
 		/* 
 		 * SENHAS 'CRIPTOGRAFADAS' usando o algoritimo SHA-256 n√£o alterar!!! Exceto se voc√™ adicionar uma hash gerada por esse algoritimo
 		 * as senhas para efetuar login s√£o 123456 para todos usuarios 
 		 * 
 		 */
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (1,'bv1111248','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Danilo Oliveira Bezerra','00/00/0000','Twist√£o','21','Agua√≠','daniloob_361@hotmail.coml','(19)99329-5108',NULL,6);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (2,'bv1110977','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Ricardo Borges J√∫nior','00/00/0000','Or√°culo','Lady Night','S√£o Jo√£o da Boa Vista','ricardoborges.jr@gmail.com','(19)99323-2716',NULL,2);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (3,'bv111090x','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Maximilian Silva Chiocheti','00/00/0000','Max','Banco do Brasil','S√£o Jo√£o da Boa Vista','mchiocheti@hotmail.com','(19)98175-1505',NULL,1);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (4,'bv1111019','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Jess√© Cuzini Gestin','00/00/0000','Bigorna','Corujas Noturnas','Vargem Grande do Sul','jessegestin@gmail.com','(19)98287-6259',NULL,2);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (5,'bv1111132','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Tiago Modena','00/00/0000','Papai','Gogo-Boy','Vargem Grande do Sul','tiagoantoniomodena@gmail.com','(19)99399-2055',NULL,3);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (6,'bv1110993','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Simone Consentino Jus','00/00/0000','Si','Casa Cristal','S√£o Jo√£o da Boa Vista','simone.jus@bol.com.br','(19)98170-8648',NULL,1);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (7,'bv1111124','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Samara Ribeiro Vieira ','00/00/0000','Sah Jonas',NULL,'S√£o Jo√£o da Boa Vista','samara_skatmusic@hotmail.com','(19)98349-9013',NULL,2);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (8,'bv1111051','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Daiane Ribeiro Pereira','00/00/0000','Daiane','Sercon Web','S√£o Jo√£o da Boa Vista','daianegalvao123@hotmail.com','',NULL,2);");
-	    database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (9,'bv1011073','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Lucas Grabert','00/00/0000','Lucas','','Itatinga','smartzig@gmail.com','(19)9999-7777',NULL,2);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (10,'bv1110837','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Marcio Delarolle','00/00/0000','Marcio','Unimed Leste-Paulista','S√£o Jo√£o da Boa Vista','marcio.delarolle@gmail.com',NULL,NULL,6);");
-	    database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (11,'bv1110195','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Felipe Baldon Benutti','00/00/0000','Pelps','Simpliss Ltda','S√£o Jo√£o da Boa Vista','fbenuti@gmail.com','(19)9190-0948',NULL,5);");
-		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (12,'bv1110799','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Michele Hermann','00/00/0000','MiHermann','Departamento de Sa√∫de','S√£o Jo√£o da Boa Vista','michele.hermann@hotmail.com','',NULL,6);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (1,'bv1111248','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Danilo Oliveira Bezerra','1988-08-03','Twist„o','21','AguaÌ','daniloob_361@hotmail.coml','(19)99329-5108',NULL,6);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (2,'bv1110977','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Ricardo Borges J˙nior','1988-05-09','Or√°culo','Lady Night','S„o Jo„o da Boa Vista','ricardoborges.jr@gmail.com','(19)99323-2716',NULL,2);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (3,'bv111090x','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Maximilian Silva Chiocheti','1988-05-10','Max','Banco do Brasil','S„o Jo„o da Boa Vista','mchiocheti@hotmail.com','(19)98175-1505',NULL,1);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (4,'bv1111019','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'JessÈ Cuzini Gestin','1988-05-11','Bigorna','Corujas Noturnas','Vargem Grande do Sul','jessegestin@gmail.com','(19)98287-6259',NULL,2);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (5,'bv1111132','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Tiago Modena','1988-05-12','Papai','Gogo-Boy','Vargem Grande do Sul','tiagoantoniomodena@gmail.com','(19)99399-2055',NULL,3);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (6,'bv1110993','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Simone Consentino Jus','1988-05-13','Si','Casa Cristal','S„o Jo„o da Boa Vista','simone.jus@bol.com.br','(19)98170-8648',NULL,1);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (7,'bv1111124','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Samara Ribeiro Vieira ','1988-05-14','Sah Jonas',NULL,'S„o Jo„o da Boa Vista','samara_skatmusic@hotmail.com','(19)98349-9013',NULL,2);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (8,'bv1111051','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Daiane Ribeiro Pereira','1988-05-15','Daiane','Sercon Web','S„o Jo„o da Boa Vista','daianegalvao123@hotmail.com','',NULL,2);");
+	    database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (9,'bv1011073','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Lucas Grabert','1988-05-16','Lucas','','Itatinga','smartzig@gmail.com','(19)9999-7777',NULL,2);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (10,'bv1110837','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Marcio Delarolle','1988-05-17','Marcio','Unimed Leste-Paulista','S„o Jo„o da Boa Vista','marcio.delarolle@gmail.com',NULL,NULL,6);");
+	    database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (11,'bv1110195','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Felipe Baldon Benutti','1988-05-18','Pelps','Simpliss Ltda','S„o Jo„o da Boa Vista','fbenuti@gmail.com','(19)9190-0948',NULL,5);");
+		database.execSQL("INSERT INTO usuario (idUsuario,Prontuario,Senha,Nivel,Nome,Nascimento,Apelido,LocalTrabalho,Cidade,Email,Telefone,Foto,EstadoCivil_idEstadoCivil) VALUES (12,'bv1110799','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92',1,'Michele Hermann','1988-05-19','MiHermann','Departamento de Sa˙de','S„o Jo„o da Boa Vista','michele.hermann@hotmail.com','',NULL,6);");
 
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (1,'Compras',2);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (2,'Vendas',2);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (3,'Aluguel',2);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (4,'Vagas de Emprego',2);");
-		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (5,'Est√°gios',2);");
+		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (5,'Est·gios',2);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (6,'Inform√°tica',1);");
-		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (7,'Automa√ß√£o',1);");
+		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (7,'AutomaÁ„o',1);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (8,'Eletr√¥nica',1);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (9,'Engenharia',1);");
-		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (10,'Qu√≠mica',1);");
-		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (11,'Administra√ß√£o',1);");
+		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (10,'QuÌmica',1);");
+		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (11,'AdministraÁ„o',1);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (12,'Eventos',1);");
 		database.execSQL("INSERT INTO areainteresse (idAreaInteresse,Nome,Tipo) VALUES (13,'Informativos',1);");
 		
@@ -126,7 +126,7 @@ public class DAO <T extends Object> extends SQLiteOpenHelper {
 		database.execSQL("INSERT INTO mensagem (idMensagem,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (4,date('now'),'Auxilio Estundatil','Sed sodales sapien ultrices, tristique velit at, adipiscing tortor. Mauris pulvinar, orci at commodo molestie.',NULL,13,12);");
 
 	    database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (1,date('now'),'Vendo um Tablet','Sed sodales sapien ultrices, tristique velit at, adipiscing tortor. Mauris pulvinar, orci at commodo molestie, nisi sed.',NULL,2,10);");
-		database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (2,date('now'),'Est√°gios','Nullam sit amet quam diam. Integer velit justo, mattis sit amet erat eget, suscipit iaculis velit. In magna metus metus.',NULL,5,9);");
+		database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (2,date('now'),'Est·gios','Nullam sit amet quam diam. Integer velit justo, mattis sit amet erat eget, suscipit iaculis velit. In magna metus metus.',NULL,5,9);");
 	    database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (3,date('now'),'Alugo um quarto','Etiam et mi venenatis lectus dignissim vestibulum. Nullam interdum consequat nulla, at auctor lectus consequat volutpat.',NULL,3,11);");
 		database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (4,date('now'),'Quero um PlayStation18','Integer aliquam massa in justo facilisis condimentum. Donec fringilla lobortis lectus et condimentum.',NULL,1,4);");
 
