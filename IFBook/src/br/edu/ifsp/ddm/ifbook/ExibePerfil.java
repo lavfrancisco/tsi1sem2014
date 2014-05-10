@@ -31,7 +31,9 @@ public class ExibePerfil extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-
+		setContentView(R.layout.visualizar_perfil);
+		it = getIntent();
+		user = (Usuario) it.getSerializableExtra("Usuario");
 		
 		nome = (TextView) findViewById(R.id.perfilNome);
 		nome.setText(user.getNome());

@@ -10,6 +10,8 @@ import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ public class ListaAniversariantes extends BaseAdapter {
 	private Context context;
 	private List<Usuario> lista;
 	public ImageView imagem;
+	private ImageView foto;
 
 	public ListaAniversariantes(Context context, List<Usuario> lista) {
 		this.context = context;
@@ -60,6 +63,17 @@ public class ListaAniversariantes extends BaseAdapter {
 		nascimento.setText(p.getNascimento());
 		
 		imagem = (ImageView) view.findViewById(R.id.estrela);
+		
+		foto = (ImageView) view.findViewById(R.id.fotoAnivesasriante);
+		
+		try{
+			Bitmap bitmap = BitmapFactory.decodeByteArray(p.getFoto(), 0, p.getFoto().length);
+			foto.setImageBitmap(bitmap);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		
 		if(p.getNascimento().equalsIgnoreCase("Hoje")){
 		imagem.setImageResource(android.R.drawable.btn_star_big_on);

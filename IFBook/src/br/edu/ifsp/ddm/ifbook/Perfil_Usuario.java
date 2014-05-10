@@ -9,8 +9,11 @@ import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -24,6 +27,7 @@ public class Perfil_Usuario extends Activity {
 	private TextView EstadoCivil;
 	private TextView aniversario;
 	private TextView email;
+	private ImageView foto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +40,12 @@ public class Perfil_Usuario extends Activity {
 		EstadoCivil = (TextView) findViewById(R.id.txtEstadoCivil);		
 		aniversario = (TextView) findViewById(R.id.txtAniversario);
 		email = (TextView) findViewById(R.id.txtEmail);
+
+
+
 		
 		
-		System.out.println("ENTREI NA CLASSE PERFIL_USUARIO!!");
+	
 	
 		this.getIntent().getStringExtra("idUsuario");
 		String idUsuario = this.getIntent().getStringExtra("idUsuario");
@@ -48,12 +55,22 @@ public class Perfil_Usuario extends Activity {
 
 	    usuario = usuariodao.getById(idusuario);
 	      
-	    nome.setText(("Nome: "+usuario.getNome()));
-	    apelido.setText("Apelido: "+usuario.getApelido());
-	    localTrabalho.setText("Local de Trabalho: "+usuario.getLocalTrabalho());		   
-	    Cidade.setText("Cidade: " + usuario.getCidade());
-	    EstadoCivil.setText("Estado Civil: "+usuario.getIdEstadoCivil().getEstadoCivil());
-	    email.setText("Email: "+usuario.getEmail());
+	    nome.setText((usuario.getNome()));
+	    apelido.setText(usuario.getApelido());
+	    localTrabalho.setText(usuario.getLocalTrabalho());		   
+	    Cidade.setText(usuario.getCidade());
+	    EstadoCivil.setText(usuario.getIdEstadoCivil().getEstadoCivil());
+	    email.setText(usuario.getEmail());
+	    
+foto = (ImageView) findViewById(R.id.fotoPerfilUsuario);
+		
+		try{
+			Bitmap bitmap = BitmapFactory.decodeByteArray(usuario.getFoto(), 0, usuario.getFoto().length);
+			foto.setImageBitmap(bitmap);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	
 		Calendar c = Calendar.getInstance();  
 	    SimpleDateFormat f = new SimpleDateFormat("yyyy");

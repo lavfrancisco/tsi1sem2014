@@ -2,16 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#363636"
     tools:context=".Perfil_Usuario" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="508dp"
-        android:layout_height="800dp"
-        android:layout_x="-104dp"
-        android:layout_y="-136dp"
-        android:src="@drawable/db3" />
 
     <TextView
         android:id="@+id/textNomeUsuario"
@@ -102,27 +93,27 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_x="-1dp"
-        android:layout_y="0dp"
-          android:background="#a8cf45"
+         android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_x="1dp"
+        android:layout_y="1dp"
+        android:background="#a8cf45"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-          android:layout_x="3dp"
-        android:layout_y="-1dp"
+        android:layout_x="5dp"
+        android:layout_y="14dp"
         android:src="@drawable/logotipovazado" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="47dp"
-        android:layout_height="52dp"
+        android:id="@+id/fotoPerfilUsuario"
+        android:layout_width="70dp"
+        android:layout_height="78dp"
         android:layout_x="2dp"
-        android:layout_y="76dp"
+        android:layout_y="85dp"
         android:src="@drawable/foto_perfil" />
 
 </AbsoluteLayout>

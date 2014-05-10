@@ -11,6 +11,8 @@ import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -29,6 +31,9 @@ public class Perfil_listagem extends Activity {
 	private Usuario usuario;
 	private Intent it;
 	private Usuario user;
+	private ImageView foto;
+	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
+
 	
 	
 	
@@ -38,7 +43,7 @@ public class Perfil_listagem extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_perfil_listagem);
-		
+	
 		boasvindas = (TextView) findViewById(R.id.TextSaudacao);
 		lvUsuarios = (ListView) findViewById(R.id.ListaAniversariantes);
 		lvUsuarios.setOnItemClickListener(selecionarUsuario);
@@ -46,12 +51,32 @@ public class Perfil_listagem extends Activity {
 		dao = new UsuarioDAO(getApplicationContext());
 		atualizarLista();
 		this.getIntent().getStringExtra("idUsuario");
-		Usuario user = new Usuario();
+		
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");	
 		
 		boasvindas.setText(user.getApelido()+"!");
+		
+		
+foto = (ImageView) findViewById(R.id.exibePerfil);
+		
+		try{
+			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
+			foto.setImageBitmap(bitmap);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	
+	}
+	
+	public void meuPerfil(View v){
+		  
+		Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+		it.putExtra("Usuario", user);
+		startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
+		
+		
 	}
 
 	private OnItemClickListener selecionarUsuario = new OnItemClickListener() {
