@@ -14,7 +14,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
+<<<<<<< .mine
+            android:name="br.edu.ifsp.ddm.ifbook.Login" android:screenOrientation="portrait"
+=======
             android:name="br.edu.ifsp.ddm.ifbook.ActivityListaMensagens" android:screenOrientation="portrait"
+>>>>>>> .r339
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +32,7 @@
         <activity android:name="br.edu.ifsp.ddm.ifbook.Perfil_listagem" />
 		<activity android:name="br.edu.ifsp.ddm.ifbook.ActivityListaClassificados" />
 		<activity android:name="br.edu.ifsp.ddm.ifbook.Login" />
+		<activity android:name="br.edu.ifsp.ddm.ifbook.Perfil_Usuario" />
         
         
     </application>
