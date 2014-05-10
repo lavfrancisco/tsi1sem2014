@@ -31,6 +31,7 @@ public class ActivityListaMensagens extends Activity {
 
 		lvMensagens = (ListView) findViewById(R.id.listaMensagens);
 		lvMensagens.setOnItemLongClickListener(excluirMensagem);
+		lvMensagens.setOnItemClickListener(selecionarMensagem);
 		mensagens = new ArrayList<Mensagem>();
 		dao = new MensagemDAO(getApplicationContext());
 		atualizarLista();

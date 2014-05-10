@@ -30,7 +30,6 @@ public class ActivityCadastroMensagem extends Activity {
 	private List<AreaInteresse> areas;
 	private MensagemDAO dao;
 	private AreaInteresseDAO daoAreaInteresse;
-	private EditText edID;
 	private EditText edTITULO;
 	private EditText edDESCRICAO;
 	private EditText edDATA;
@@ -48,7 +47,12 @@ public class ActivityCadastroMensagem extends Activity {
         edDESCRICAO = (EditText) findViewById(R.id.edDESCRICAO);
         spCATEGORIA = (Spinner) findViewById(R.id.spCATEGORIA);
 		operacao = new String ("Novo");
-		dao = new MensagemDAO(this);		
+			
+		
+		if(getIntent().getExtras()!=null)
+		{
+			carregarMensagem(getIntent().getExtras().getInt("idMensagem"));
+		}
 		preencherCategoria();
 		
 		
@@ -60,6 +64,19 @@ public class ActivityCadastroMensagem extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	public void carregarMensagem(int id)
+	{
+		dao = new MensagemDAO(this);	
+		if(id>0)
+		{
+			mensagem = dao.getById(id);
+			preencherDados(mensagem);
+			operacao= "Edicao";
+		}
+			
+		
 	}
 
 	private void preencherCategoria(){
@@ -78,6 +95,8 @@ public class ActivityCadastroMensagem extends Activity {
 	}
 	
 	public void salvar(View v){
+		dao = new MensagemDAO(this);	
+		
 		
 		if (operacao.equalsIgnoreCase("Novo")) {
 			mensagem = new Mensagem();
@@ -94,16 +113,30 @@ public class ActivityCadastroMensagem extends Activity {
         //Colocando um id do usuário aleatório pois será buscado do banco de dados.
         //mensagens.setUsuario_idUsuario(1);
         mensagem.setData(d);
-        
-        
-        if(dao.inserir(mensagem)){
-        	Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
-        	startActivity(it);
+        if(operacao.equalsIgnoreCase("Novo"))
+        {
+        	if(dao.inserir(mensagem)){
+            	Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+            	startActivity(it);
+            }
+            else
+            {
+            	exibirMensagem("Não foi possível adicionar a mensagem!");
+            }
         }
         else
         {
-        	exibirMensagem("Não foi possível adicionar a mensagem!");
+        	if(dao.atualizar(mensagem)){
+            	Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+            	startActivity(it);
+            }
+            else
+            {
+            	exibirMensagem("Não foi possível atualizar a mensagem!");
+            }
         }
+        
+        
         
         //limparDados();
 		
@@ -116,7 +149,6 @@ public class ActivityCadastroMensagem extends Activity {
 	}
 	
 	private void limparDados() {
-		edID.setText("");
 		edTITULO.requestFocus();
 		edDESCRICAO.setText("");
 		edDATA.setText("");
@@ -126,7 +158,6 @@ public class ActivityCadastroMensagem extends Activity {
 	}
 	
 	private void preencherDados(Mensagem mensagem) {
-		edID.setText(String.valueOf(mensagem.getIdMensagem()));
 		edTITULO.setText(mensagem.getTitulo());
 		edDESCRICAO.setText(mensagem.getDescricao());
 		//edDATA.setText(String.valueOf(mensagens.getData()));

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
+import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -106,6 +107,20 @@ public class MensagemDAO extends DAO<Mensagem> {
 
 		return mensagem;
 
+	}
+	
+	public Mensagem getById (int id){
+		Mensagem mensagem = new Mensagem();
+			
+		Cursor cursor = executeSelect("idMensagem = ?", new String[]{String.valueOf(id)}, null);
+		
+		if(cursor!=null && cursor.moveToFirst())
+		{
+			mensagem = serializeByCursor(cursor);
+		}
+		fecharConexao(cursor);
+		
+		return mensagem;
 	}
 
 	private ContentValues serializeContentValues(Mensagem mensagem) {
