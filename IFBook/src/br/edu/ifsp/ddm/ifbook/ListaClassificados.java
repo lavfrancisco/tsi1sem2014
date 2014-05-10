@@ -39,23 +39,24 @@ public class ListaClassificados  extends BaseAdapter {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			Classificado c = lista.get(position);
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View view = inflater.inflate(R.layout.classificados, null);
+			View view = inflater.inflate(R.layout.classificados2, null);
 			
-			TextView id = (TextView) view.findViewById(R.id.textViewIdClassificados);
+			TextView id = (TextView) view.findViewById(R.id.textIdClassificado);
 			id.setText("ID: "+String.valueOf(c.getIdClassificado()));
 			
 			
-			TextView nome = (TextView) view.findViewById(R.id.textViewUsuario);
+			TextView nome = (TextView) view.findViewById(R.id.textNomeUsuarioClassificado);
 			nome.setText(c.getUsuario_idUsuario().getNome());
 			
-			TextView titulo = (TextView) view.findViewById(R.id.textViewTitulo);
+			TextView titulo = (TextView) view.findViewById(R.id.textTituloClassificado);
 			titulo.setText(c.getTitulo());
 			
-			TextView descricao = (TextView) view.findViewById(R.id.textViewDescricao);
+			TextView descricao = (TextView) view.findViewById(R.id.textDescricaoClassificado);
 			descricao.setText(c.getDescricao());
 			
-			TextView area = (TextView) view.findViewById(R.id.textViewAreaInteresse);
+			TextView area = (TextView) view.findViewById(R.id.textAreaInteresseClassificado);
 			area.setText(c.getAreaInteresse_idAreaInteresse().getNome());
+
 			
 			
 			

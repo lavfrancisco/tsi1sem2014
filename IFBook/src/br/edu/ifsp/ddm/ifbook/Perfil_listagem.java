@@ -34,10 +34,6 @@ public class Perfil_listagem extends Activity {
 	private ImageView foto;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 
-	
-	
-	
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +54,7 @@ public class Perfil_listagem extends Activity {
 		boasvindas.setText(user.getApelido()+"!");
 		
 		
-foto = (ImageView) findViewById(R.id.exibePerfil);
+foto = (ImageView) findViewById(R.id.exibePerfil2);
 		
 		try{
 			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
@@ -78,6 +74,28 @@ foto = (ImageView) findViewById(R.id.exibePerfil);
 		
 		
 	}
+	
+	public void exibeClassificados(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), Lista_Classificados.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	   
+		
+		
+		
+	}
+	
+	public void ExibeHome(View v){
+		
+		Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	
+		
+	}
+	
 
 	private OnItemClickListener selecionarUsuario = new OnItemClickListener() {
 
@@ -86,13 +104,18 @@ foto = (ImageView) findViewById(R.id.exibePerfil);
 			usuario = usuarios.get(pos);
 			
 		       final Intent intent = new Intent(Perfil_listagem.this, Perfil_Usuario.class);
-	           
+		   
+				
 	              String iduser = String.valueOf(usuario.getIdUsuario());
-	              
+		    		
 	              intent.putExtra("idUsuario", iduser);
+	              intent.putExtra("Usuario", user);
 	              startActivity(intent);
+	              
+	          
 			
 
+	          	
 		}
 
 	};

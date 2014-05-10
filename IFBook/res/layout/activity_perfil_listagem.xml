@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Perfil_listagem" >
-
+   
     <TextView
         android:id="@+id/txtEstadoCivil"
         android:layout_width="match_parent"
@@ -11,10 +11,10 @@
         android:layout_x="0dp"
         android:layout_y="173dp"
         android:background="#104E8B"
-        android:text="           Aniversariantes"
+        android:text="        Aniversariantes"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#F2F8FA"
-        android:textSize="18px"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="sans" />
 
@@ -43,25 +43,6 @@
         android:layout_y="95dp"
         android:src="@drawable/bemvindo" />
 
-    <ImageView
-        android:id="@+id/fotoAnivesasriante"
-        android:layout_width="186dp"
-        android:layout_height="138dp"
-        android:layout_x="61dp"
-        android:layout_y="45dp"
-        android:src="@drawable/db2" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="97dp"
-        android:layout_y="88dp"
-        android:text="Bem Vindo"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#1EEC6D"
-        android:textStyle="bold" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -72,23 +53,17 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/Home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="5dp"
         android:layout_y="14dp"
-        android:src="@drawable/logotipovazado" />
-
-    <TextView
-        android:id="@+id/TextSaudacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="114dp"
-        android:layout_y="118dp"
-        android:text="" />
+        android:clickable="true"
+        android:src="@drawable/logotipovazado" 
+        android:onClick="ExibeHome"/>
 
     <ImageView
-        android:id="@+id/exibePerfil"
+        android:id="@+id/exibePerfil2"
         android:layout_width="62dp"
         android:layout_height="48dp"
         android:layout_x="256dp"
@@ -96,5 +71,58 @@
         android:clickable="true"
         android:onClick="meuPerfil"
         android:src="@drawable/foto_perfil" />
+
+    <ImageView
+        android:id="@+id/fotoAnivesasriante"
+        android:layout_width="131dp"
+        android:layout_height="98dp"
+        android:layout_x="103dp"
+        android:layout_y="74dp"
+        android:src="@drawable/db2" />
+
+    <TextView
+        android:id="@+id/textIdClassificado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="125dp"
+        android:layout_y="104dp"
+        android:text="Bem Vindo"
+        android:textColor="#1EEC6D"
+        android:textSize="22px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/TextSaudacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="148dp"
+        android:layout_y="124dp"
+        android:text="Usuario"
+        android:textSize="16px" />
+
+    <TextView
+        android:id="@+id/botaoMenssagens"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_x="2dp"
+        android:layout_y="55dp"
+        android:background="#FFA500"
+        android:clickable="true"
+        android:text="       Menssagens"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/botaoClassificados"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_x="161dp"
+        android:layout_y="55dp"
+        android:background="#FFA500"
+        android:clickable="true"
+        android:text="      Classificados"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" 
+        android:onClick="exibeClassificados"/>
 
 </AbsoluteLayout>

@@ -28,7 +28,8 @@
         <activity android:name="br.edu.ifsp.ddm.ifbook.ActivityCadastroMensagem" />
         <activity android:name="br.edu.ifsp.ddm.ifbook.Perfil_listagem" />
 		<activity android:name="br.edu.ifsp.ddm.ifbook.ActivityListaClassificados" />
-
+	    <activity android:name="br.edu.ifsp.ddm.ifbook.Lista_Classificados" />
+		<activity android:name="br.edu.ifsp.ddm.ifbook.ListaClassificados" />
 		<activity android:name="br.edu.ifsp.ddm.ifbook.Perfil_Usuario" />
         
         

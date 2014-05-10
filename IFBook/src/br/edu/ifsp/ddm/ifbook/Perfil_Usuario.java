@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,9 @@ public class Perfil_Usuario extends Activity {
 	private TextView aniversario;
 	private TextView email;
 	private ImageView foto;
+	private Intent it;
+	private Usuario user;
+	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +44,21 @@ public class Perfil_Usuario extends Activity {
 		EstadoCivil = (TextView) findViewById(R.id.txtEstadoCivil);		
 		aniversario = (TextView) findViewById(R.id.txtAniversario);
 		email = (TextView) findViewById(R.id.txtEmail);
+		
+		it = getIntent();
+		user = (Usuario) it.getSerializableExtra("Usuario");
+		
+	
 
-
-
+foto = (ImageView) findViewById(R.id.exibePerfil);
+		
+		try{
+			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
+			foto.setImageBitmap(bitmap);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		
 	
@@ -109,6 +125,38 @@ foto = (ImageView) findViewById(R.id.fotoPerfilUsuario);
 	    aniversario.setText("Idade: "+idade);
 	
 	}
+	
+	public void meuPerfil(View v){
+		  
+		Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+		it.putExtra("Usuario", user);
+		startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
+		
+		
+	}
+	
+	public void exibeClassificados(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), Lista_Classificados.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	   
+		
+		
+		
+	}
+	
+	public void ExibeHome(View v){
+		
+		Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	
+		
+	}
+	
+
 
 
 }
