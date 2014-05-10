@@ -97,7 +97,7 @@ public class ActivityCadastroMensagem extends Activity {
         
         
         if(dao.inserir(mensagem)){
-        	Intent it = new Intent(getApplicationContext(), Lista_Classificados.class);
+        	Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
         	startActivity(it);
         }
         else
@@ -105,7 +105,7 @@ public class ActivityCadastroMensagem extends Activity {
         	exibirMensagem("Não foi possível adicionar a mensagem!");
         }
         
-        limparDados();
+        //limparDados();
 		
 	}
 	

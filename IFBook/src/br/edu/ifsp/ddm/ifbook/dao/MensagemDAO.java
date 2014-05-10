@@ -115,9 +115,9 @@ public class MensagemDAO extends DAO<Mensagem> {
 		values.put("Titulo", mensagem.getTitulo());
 		values.put("Descricao", mensagem.getDescricao());
 		values.put("AreaInteresse_idAreaInteresse", mensagem
-				.getAreaInteresse().getNome());
-		values.put("Usuario_idUsuario", mensagem.getUsuario()
-				.getNome());
+				.getAreaInteresse().getIdAreaInteresse());
+		//valor fixo para testes
+		values.put("Usuario_idUsuario", 1);
 
 		return values;
 	}
