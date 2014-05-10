@@ -15,10 +15,9 @@ public class ClassificadoDAO extends DAO<Classificado> {
 
 	public ClassificadoDAO(Context context) {
 		super(context);
-		this.context=context;
-		campos = new String[] { "idClassificado", "Titulo", "Descricao",
-				"Data", "Imagem", "AreaInteresse_idAreaInteresse",
-				"Usuario_idUsuario" };
+		this.context = context;
+		campos = new String[] { "idClassificado", "Titulo", "Descricao", "Data",
+				"Imagem", "AreaInteresse_idAreaInteresse", "Usuario_idUsuario" };
 
 		tableName = "Classificado";
 		database = getWritableDatabase();
@@ -64,20 +63,23 @@ public class ClassificadoDAO extends DAO<Classificado> {
 
 	public boolean atualizar(Classificado classificado) {
 		ContentValues values = serializeContentValues(classificado);
-		if (database
-				.update(tableName, values, "id = ?", new String[] { String
-						.valueOf(classificado.getIdClassificado()) }) > 0)
+		if (database.update(tableName, values, "idClassificado = ?",
+				new String[] { String.valueOf(classificado.getIdClassificado()) }) > 0)
 			return true;
 		else
 			return false;
 	}
 
 	public boolean deletar(Integer id) {
-		if (database.delete(tableName, "id = ?",
-				new String[] { String.valueOf(id) }) > 0)
+		if (database.delete(tableName, "idClassificado = ?",
+				new String[] { String.valueOf(id) }) > 0) {
+			fecharConexao();
 			return true;
-		else
+			
+		} else {
+			fecharConexao();
 			return false;
+		}
 	}
 
 	private Classificado serializeByCursor(Cursor cursor) {
@@ -89,7 +91,8 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		classificado.setImagem(null);
 		AreaInteresseDAO areainteresseDAO = new AreaInteresseDAO(this.context);
 
-		classificado.setAreaInteresse_idAreaInteresse(areainteresseDAO.getByID(cursor.getInt(5)));
+		classificado.setAreaInteresse_idAreaInteresse(areainteresseDAO
+				.getByID(cursor.getInt(5)));
 		UsuarioDAO usuarioDAO = new UsuarioDAO(this.context);
 		classificado.setUsuario_idUsuario(usuarioDAO.getById((cursor.getInt(6))));
 
@@ -105,8 +108,8 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		values.put("Descricao", classificado.getDescricao());
 		values.put("AreaInteresse_idAreaInteresse", classificado
 				.getAreaInteresse_idAreaInteresse().getNome());
-		values.put("Usuario_idUsuario", classificado.getUsuario_idUsuario().getIdUsuario());
-	
+		values.put("Usuario_idUsuario", classificado.getUsuario_idUsuario()
+				.getNome());
 
 		return values;
 	}

@@ -105,7 +105,7 @@ public class ActivityListaMensagens extends Activity {
 	private OnItemClickListener selecionarMensagem = new OnItemClickListener() {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long id) {
-			Intent it = new Intent(ActivityListaMensagens.this, Login.class);			
+			Intent it = new Intent(ActivityListaMensagens.this, ActivityCadastroMensagem.class);			
 			it.putExtra("idMensagem", mensagens.get(pos).getIdMensagem());
 			startActivity(it);
 

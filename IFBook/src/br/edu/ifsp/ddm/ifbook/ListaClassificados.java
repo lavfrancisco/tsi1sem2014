@@ -28,7 +28,6 @@ public class ListaClassificados  extends BaseAdapter {
 		}
 		
 
-
 		public Object getItem(int position) {
 			return lista.get(position);
 		}
