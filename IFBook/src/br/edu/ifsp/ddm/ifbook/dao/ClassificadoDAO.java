@@ -60,6 +60,14 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		return list;
 
 	}
+	
+	public boolean inserir(Classificado classificado) {
+		ContentValues values = serializeContentValues(classificado);
+		if (database.insert(tableName, null, values) > 0)
+			return true;
+		else
+			return false;
+	}
 
 	public boolean atualizar(Classificado classificado) {
 		ContentValues values = serializeContentValues(classificado);
