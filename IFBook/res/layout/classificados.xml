@@ -1,42 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textViewIdClassificados"
+        android:id="@+id/txtTITULO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/titulo" />
+
+    <EditText
+        android:id="@+id/edTITULO"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtTITULO"
+        android:ems="10" />
 
     <TextView
-        android:id="@+id/textViewTitulo"
+        android:id="@+id/txtDESCRICAO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/edTITULO"
+        android:text="@string/descricao" />
+
+    <EditText
+        android:id="@+id/edDESCRICAO"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="300px"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtDESCRICAO"
+        android:layout_weight="0.71"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <TextView
-        android:id="@+id/textViewDescricao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/txtCATEGORIA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/edDESCRICAO"
+        android:layout_marginTop="16dp"
+        android:text="@string/categoria" />
 
-    <TextView
-        android:id="@+id/textViewUsuario"
+    <Spinner
+        android:id="@+id/spCATEGORIA"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtCATEGORIA" />
 
-    <TextView
-        android:id="@+id/textViewAreaInteresse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnENVIAR"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="salvar"
+        android:text="@string/btnenviar" />
 
-    <TextView
-        android:id="@+id/textViewImagem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textViewData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+</RelativeLayout>
