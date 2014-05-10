@@ -1,7 +1,8 @@
 package br.edu.ifsp.ddm.ifbook.modelo;
 
 import java.sql.Blob;
-import java.sql.Date;
+import java.util.Date;
+
 
 public class Mensagem {
 
@@ -10,8 +11,8 @@ public class Mensagem {
 	private String Titulo;
 	private String Descricao;
 	private Blob Imagem;
-	private AreaInteresse AreaInteresse_idAreaInteresse;
-	private Usuario Usuario_idUsuario;
+	private AreaInteresse AreaInteresse;
+	private Usuario Usuario;
 	
 	public Integer getIdMensagem() {
 		return idMensagem;
@@ -43,18 +44,18 @@ public class Mensagem {
 	public void setImagem(Blob imagem) {
 		Imagem = imagem;
 	}
-	public AreaInteresse getAreaInteresse_idAreaInteresse() {
-		return AreaInteresse_idAreaInteresse;
+	public AreaInteresse getAreaInteresse() {
+		return AreaInteresse;
 	}
-	public void setAreaInteresse_idAreaInteresse(
+	public void setAreaInteresse(
 			AreaInteresse areaInteresse_idAreaInteresse) {
-		AreaInteresse_idAreaInteresse = areaInteresse_idAreaInteresse;
+		AreaInteresse = areaInteresse_idAreaInteresse;
 	}
-	public Usuario getUsuario_idUsuario() {
-		return Usuario_idUsuario;
+	public Usuario getUsuario() {
+		return Usuario;
 	}
-	public void setUsuario_idUsuario(Usuario usuario_idUsuario) {
-		Usuario_idUsuario = usuario_idUsuario;
+	public void setUsuario(Usuario usuario_idUsuario) {
+		Usuario = usuario_idUsuario;
 	}
 	
 }

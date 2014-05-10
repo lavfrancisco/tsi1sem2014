@@ -61,6 +61,14 @@ public class MensagemDAO extends DAO<Mensagem> {
 
 	}
 
+	public boolean inserir(Mensagem mensagem) {
+		ContentValues values = serializeContentValues(mensagem);
+		if (database.insert(tableName, null, values) > 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public boolean atualizar(Mensagem mensagem) {
 		ContentValues values = serializeContentValues(mensagem);
 		if (database.update(tableName, values, "idMensagem = ?",
@@ -91,10 +99,10 @@ public class MensagemDAO extends DAO<Mensagem> {
 		mensagem.setImagem(null);
 		AreaInteresseDAO areainteresseDAO = new AreaInteresseDAO(this.context);
 
-		mensagem.setAreaInteresse_idAreaInteresse(areainteresseDAO
+		mensagem.setAreaInteresse(areainteresseDAO
 				.getByID(cursor.getInt(5)));
 		UsuarioDAO usuarioDAO = new UsuarioDAO(this.context);
-		mensagem.setUsuario_idUsuario(usuarioDAO.getById((cursor.getInt(6))));
+		mensagem.setUsuario(usuarioDAO.getById((cursor.getInt(6))));
 
 		return mensagem;
 
@@ -107,8 +115,8 @@ public class MensagemDAO extends DAO<Mensagem> {
 		values.put("Titulo", mensagem.getTitulo());
 		values.put("Descricao", mensagem.getDescricao());
 		values.put("AreaInteresse_idAreaInteresse", mensagem
-				.getAreaInteresse_idAreaInteresse().getNome());
-		values.put("Usuario_idUsuario", mensagem.getUsuario_idUsuario()
+				.getAreaInteresse().getNome());
+		values.put("Usuario_idUsuario", mensagem.getUsuario()
 				.getNome());
 
 		return values;

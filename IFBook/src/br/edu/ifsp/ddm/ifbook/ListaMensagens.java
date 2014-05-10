@@ -47,7 +47,7 @@ public class ListaMensagens  extends BaseAdapter {
 			
 			
 			TextView nome = (TextView) view.findViewById(R.id.textViewUsuario);
-			nome.setText(m.getUsuario_idUsuario().getNome());
+			nome.setText(m.getUsuario().getNome());
 			
 			TextView titulo = (TextView) view.findViewById(R.id.textViewTitulo);
 			titulo.setText(m.getTitulo());
@@ -56,7 +56,7 @@ public class ListaMensagens  extends BaseAdapter {
 			descricao.setText(m.getDescricao());
 			
 			TextView area = (TextView) view.findViewById(R.id.textViewAreaInteresse);
-			area.setText(m.getAreaInteresse_idAreaInteresse().getNome());
+			area.setText(m.getAreaInteresse().getNome());
 			
 			
 			

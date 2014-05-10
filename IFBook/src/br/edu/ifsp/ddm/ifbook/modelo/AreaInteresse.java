@@ -24,5 +24,10 @@ public class AreaInteresse {
 	public void setNome(String nome) {
 		Nome = nome;
 	}
+	
+	@Override
+	public String toString() {
+			return this.Nome;
+	}
 
 }
