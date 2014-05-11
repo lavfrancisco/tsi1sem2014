@@ -1,6 +1,8 @@
 package br.edu.ifsp.ddm.ifbook;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
@@ -109,8 +111,11 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 
 
 private void atualizarLista() {
+	
+	 
 		
-		classificados = dao.listAll();
+		classificados = dao.listAll2();
+		
 	
 		if (classificados != null) {
 		

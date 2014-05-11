@@ -122,7 +122,7 @@ foto = (ImageView) findViewById(R.id.fotoPerfilUsuario);
 	  	
 	   }
 	     
-	    aniversario.setText("Idade: "+idade);
+	    aniversario.setText(idade + "anos");
 	
 	}
 	

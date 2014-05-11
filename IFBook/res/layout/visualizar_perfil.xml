@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:scrollbarStyle="insideOverlay"
     android:scrollbars="vertical"
-    android:background="#E0EEEE"
+   android:background="#a8cf45"
     tools:context="br.edu.ifsp.ddm.ifbook.ExibePerfil" >
 
     <TableRow
@@ -26,7 +26,7 @@
                 android:layout_height="141dp"
                 android:maxHeight="@android:dimen/thumbnail_width"
                 android:maxWidth="@android:dimen/thumbnail_width"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/foto_perfil" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Editar" />
+            android:drawableTop="@drawable/edit" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

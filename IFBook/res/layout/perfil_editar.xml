@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:background="#E0EEEE"
+	android:background="#a8cf45"
 >
 
 <TableLayout
@@ -24,7 +24,7 @@
                 android:id="@+id/imgEdit"
                 android:layout_width="132dp"
                 android:layout_height="132dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/foto_perfil" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,15 +35,15 @@
                 <Button
                     android:id="@+id/buttonImgCamera"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_gravity="bottom"
-                    android:text="Camera" />
+                    android:drawableTop="@drawable/camera" />
 
                 <Button
                     android:id="@+id/buttonImgArquivo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Arquivo" />
+                    android:layout_height="39dp"
+                    android:drawableTop="@drawable/file" />
 
             </LinearLayout>
 
@@ -171,7 +171,7 @@
             android:id="@+id/buttonSalvar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Salvar" />
+            android:drawableTop="@drawable/save"/>
 
     </TableRow>
 

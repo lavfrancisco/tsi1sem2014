@@ -1,5 +1,7 @@
 package br.edu.ifsp.ddm.ifbook;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
@@ -59,8 +61,9 @@ public class ListaClassificados  extends BaseAdapter {
 			descricao.setText(c.getDescricao());
 			
 			TextView area = (TextView) view.findViewById(R.id.textAreaInteresseClassificado);
-			area.setText(c.getAreaInteresse_idAreaInteresse().getNome());
-			
+			area.setText(c.getAreaInteresse_idAreaInteresse().getNome());  
+		 
+		    
 			TextView data = (TextView) view.findViewById(R.id.textDataClassificado);
 			data.setText(c.getData());
 			

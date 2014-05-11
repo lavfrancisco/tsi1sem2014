@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0EEEE"
+    android:background="#a8cf45"
     tools:context=".Login" >
 
     <TextView
@@ -43,8 +43,9 @@
         android:layout_toRightOf="@+id/textViewLogin"
         android:clickable="true"
         android:text="Recuperar Senha"
+        android:textColor="#1E90FF"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/RecoveryPass" />
+        />
 
     <EditText
         android:id="@+id/editSenha"
@@ -65,23 +66,13 @@
         android:layout_marginBottom="22dp"
         android:ems="10" />
 
-    <TextView
-        android:id="@+id/textDataClassificado"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_x="1dp"
-        android:layout_y="1dp"
-        android:background="#a8cf45"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <ImageView
         android:id="@+id/fotoUsuarioClassificado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textDataClassificado"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textViewSenha"
+        android:layout_above="@+id/textViewLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="37dp"
         android:src="@drawable/logotipovazado" />
 
 </RelativeLayout>

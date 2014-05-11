@@ -28,6 +28,7 @@ public class EditarPerfil extends Activity{
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 	
+	
 	private EditText apelido;
 	private EditText trabalho;
 	private EditText telefone;
@@ -125,6 +126,8 @@ public class EditarPerfil extends Activity{
 				
 				UsuarioDAO dao = new UsuarioDAO(getApplicationContext());
 				dao.autualizar(user);
+				
+		        
 				
 				Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
 				it.putExtra("Usuario", user);

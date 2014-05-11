@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0EEEE"
+    android:background="#4F4F4F"
     tools:context=".Perfil_listagem" >
    
     <TextView
@@ -55,13 +55,13 @@
 
     <ImageView
         android:id="@+id/Home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    android:layout_width="111dp"
+        android:layout_height="35dp"
         android:layout_x="5dp"
         android:layout_y="14dp"
         android:clickable="true"
-        android:src="@drawable/logotipovazado" 
-        android:onClick="ExibeHome"/>
+        android:onClick="ExibeHome"
+        android:src="@drawable/logotipovazado" />
 
     <ImageView
         android:id="@+id/exibePerfil2"
@@ -75,31 +75,11 @@
 
     <ImageView
         android:id="@+id/fotoAnivesasriante"
-        android:layout_width="131dp"
+        android:layout_width="158dp"
         android:layout_height="98dp"
-        android:layout_x="103dp"
+        android:layout_x="74dp"
         android:layout_y="74dp"
         android:src="@drawable/db2" />
-
-    <TextView
-        android:id="@+id/textIdClassificado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="125dp"
-        android:layout_y="104dp"
-        android:text="Bem Vindo"
-        android:textColor="#1EEC6D"
-        android:textSize="22px"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/TextSaudacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="148dp"
-        android:layout_y="124dp"
-        android:text="Usuario"
-        android:textSize="16px" />
 
     <TextView
         android:id="@+id/botaoMenssagens"
@@ -125,5 +105,25 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" 
         android:onClick="exibeClassificados"/>
+
+    <TextView
+        android:id="@+id/textIdClassificado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="96dp"
+        android:layout_y="98dp"
+        android:text="Bem Vindo"
+        android:textColor="#1EEC6D"
+        android:textSize="22px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/TextSaudacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="114dp"
+        android:layout_y="124dp"
+        android:text="Usuario"
+        android:textSize="16px" />
 
 </AbsoluteLayout>

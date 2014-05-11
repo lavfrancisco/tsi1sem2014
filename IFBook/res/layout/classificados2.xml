@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-      android:background="#E0EEEE">
+        android:background="#4F4F4F">
 
     <TextView
         android:id="@+id/textTituloClassificado"
@@ -36,7 +36,7 @@
         android:layout_x="66dp"
         android:layout_y="17dp"
         android:text="Area"
-         android:textColor="#000000"
+          android:textColor="#F2F8FA"
         android:textSize="12sp" />
 
     <TextView
@@ -46,17 +46,17 @@
         android:layout_x="15dp"
         android:layout_y="53dp"
         android:text="Usuario"
-        android:textColor="#000000"
+         android:textColor="#F2F8FA"
         android:textSize="8sp" />
 
     <TextView
         android:id="@+id/textDataClassificado"
-        android:layout_width="64dp"
+        android:layout_width="86dp"
         android:layout_height="wrap_content"
-        android:layout_x="234dp"
+        android:layout_x="211dp"
         android:layout_y="22dp"
         android:text="data"
-        android:textColor="#1E90FF"
+       android:textColor="#F2F8FA"
         android:textSize="8sp" />
 
     <TextView

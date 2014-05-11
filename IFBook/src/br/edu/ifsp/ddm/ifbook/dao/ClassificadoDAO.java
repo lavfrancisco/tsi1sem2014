@@ -22,6 +22,31 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		tableName = "Classificado";
 		database = getWritableDatabase();
 	}
+	
+	
+	public List<Classificado> listAll2() {
+		List<Classificado> list = new ArrayList<Classificado>();
+		String sql = "SELECT idClassificado, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM classificado ORDER BY Data;";
+		
+		Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+		if(cursor!=null && cursor.moveToFirst())
+		{
+			do{
+				
+				
+				list.add(serializeByCursor(cursor));
+			}while(cursor.moveToNext());
+			
+			
+		}
+		
+		fecharConexao(cursor);
+		
+		return list;
+		
+		
+	}
+	
 
 	public List<Classificado> listAll() {
 		List<Classificado> list = new ArrayList<Classificado>();

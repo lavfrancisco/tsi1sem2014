@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Lista_Classificados" 
-        android:background="#E0EEEE">
+        android:background="#4F4F4F">
 
         <TextView
         android:id="@+id/textView2"
@@ -16,8 +16,8 @@
         
         <ImageView
         android:id="@+id/Home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+         android:layout_width="111dp"
+        android:layout_height="35dp"
         android:layout_x="5dp"
         android:layout_y="14dp"
         android:clickable="true"
