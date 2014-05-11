@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+      android:background="#E0EEEE"
     >
    
 
@@ -25,11 +26,12 @@
         android:layout_height="23dp"
         android:layout_x="98dp"
         android:layout_y="4dp"
-        android:background="#63B8FF"
-        android:textColor="#F2F8FA"
-        android:textSize="12px"
+
         android:textStyle="bold"
-        android:typeface="sans" />
+        android:typeface="sans" 
+                android:background="#63B8FF"
+        android:textColor="#F2F8FA"
+        android:textSize="12px"/>
 
     <TextView
         android:id="@+id/txtNascimento"

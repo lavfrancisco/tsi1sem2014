@@ -129,6 +129,7 @@ public class DAO <T extends Object> extends SQLiteOpenHelper {
 		database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (2,date('now'),'Estágios','Nullam sit amet quam diam. Integer velit justo, mattis sit amet erat eget, suscipit iaculis velit. In magna metus metus.',NULL,5,9);");
 	    database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (3,date('now'),'Alugo um quarto','Etiam et mi venenatis lectus dignissim vestibulum. Nullam interdum consequat nulla, at auctor lectus consequat volutpat.',NULL,3,11);");
 		database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (4,date('now'),'Quero um PlayStation18','Integer aliquam massa in justo facilisis condimentum. Donec fringilla lobortis lectus et condimentum.',NULL,1,4);");
+		database.execSQL("INSERT INTO classificado (idClassificado,Data,Titulo,Descricao,Imagem,AreaInteresse_idAreaInteresse,Usuario_idUsuario) VALUES (5,date('now'),'Testando','Integer aliquam massa in justo facilisis condimentum. Donec fringilla lobortis lectus et condimentum.',NULL,1,1);");
 
 		
 	}

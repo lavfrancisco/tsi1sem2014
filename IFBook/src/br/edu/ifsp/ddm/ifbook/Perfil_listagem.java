@@ -111,10 +111,6 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	              intent.putExtra("idUsuario", iduser);
 	              intent.putExtra("Usuario", user);
 	              startActivity(intent);
-	              
-	          
-			
-
 	          	
 		}
 

@@ -95,12 +95,10 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		classificado.setIdClassificado(cursor.getInt(0));
 		classificado.setTitulo(cursor.getString(1));
 		classificado.setDescricao(cursor.getString(2));
-		classificado.setData(null);
+		classificado.setData(cursor.getString(3));
 		classificado.setImagem(null);
 		AreaInteresseDAO areainteresseDAO = new AreaInteresseDAO(this.context);
-
-		classificado.setAreaInteresse_idAreaInteresse(areainteresseDAO
-				.getByID(cursor.getInt(5)));
+		classificado.setAreaInteresse_idAreaInteresse(areainteresseDAO.getByID(cursor.getInt(5)));
 		UsuarioDAO usuarioDAO = new UsuarioDAO(this.context);
 		classificado.setUsuario_idUsuario(usuarioDAO.getById((cursor.getInt(6))));
 

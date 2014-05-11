@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Classificado {
 
 	private Integer idClassificado;
-	private Date Data;
+	private String Data;
 	private String Titulo;
 	private String Descricao;
 	private Blob Imagem;
@@ -19,10 +19,10 @@ public class Classificado {
 	public void setIdClassificado(Integer idClassificado) {
 		this.idClassificado = idClassificado;
 	}
-	public Date getData() {
+	public String getData() {
 		return Data;
 	}
-	public void setData(Date data) {
+	public void setData(String data) {
 		Data = data;
 	}
 	public String getTitulo() {

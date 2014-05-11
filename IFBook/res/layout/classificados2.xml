@@ -1,37 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textIdClassificado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+    android:orientation="vertical" 
+      android:background="#E0EEEE">
 
     <TextView
         android:id="@+id/textTituloClassificado"
-        android:layout_width="match_parent"
+        android:layout_width="237dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_x="65dp"
+        android:layout_y="0dp"
+        android:background="#63B8FF"
+        android:text="Titulo"
+        android:textColor="#F2F8FA"
+        android:textStyle="bold"
+        android:typeface="sans" />
 
     <TextView
         android:id="@+id/textDescricaoClassificado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_width="237dp"
+        android:layout_height="94dp"
+        android:layout_x="66dp"
+        android:layout_y="34dp"
+        android:background="#FAFAD2"
+        android:text="
+        Descricao"
+        android:textColor="#000101"
+        android:textSize="8sp" />
 
     <TextView
         android:id="@+id/textAreaInteresseClassificado"
-        android:layout_width="match_parent"
+        android:layout_width="237dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_x="66dp"
+        android:layout_y="17dp"
+        android:text="Area"
+         android:textColor="#000000"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/textNomeUsuarioClassificado"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_x="15dp"
+        android:layout_y="53dp"
+        android:text="Usuario"
+        android:textColor="#000000"
+        android:textSize="8sp" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textDataClassificado"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_x="234dp"
+        android:layout_y="22dp"
+        android:text="data"
+        android:textColor="#1E90FF"
+        android:textSize="8sp" />
+
+    <TextView
+        android:id="@+id/textIdUsuarioClassificado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="19dp"
+        android:layout_y="26dp"
+        android:text="id2" />
+
+    <TextView
+        android:id="@+id/textIdClassificado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="22dp"
+        android:layout_y="4dp"
+        android:text="id" />
+
+    <ImageView
+        android:id="@+id/fotoUsuarioClassificado"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_x="2dp"
+        android:layout_y="2dp"
+        android:clickable="true"
+        android:onClick="exibePerfil"
+        android:src="@drawable/foto_perfil" />
+
+</AbsoluteLayout>
