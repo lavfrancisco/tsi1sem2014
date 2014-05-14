@@ -4,7 +4,6 @@
     <string name="app_name">IFBook</string>
     <string name="menu_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    
     <string name="id">Id: </string>
     <string name="titulo">Titulo: </string>
     <string name="descricao">Descricao</string>
@@ -12,8 +11,6 @@
     <string name="data">Data: </string>
     <string name="idusuario">Id Usuario: </string>
     <string name="btnenviar">Enviar</string>
-    
-    
+    <string name="title_activity_activity_cadastro_classificado">ActivityCadastroClassificado</string>
 
 </resources>
-

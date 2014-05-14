@@ -80,7 +80,7 @@ public class EditarPerfil extends Activity{
 			@Override
 			 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 	                user.setIdEstadoCivil(adapter.getItem(position));
-	                System.out.println(user.getIdEstadoCivil().getEstadoCivil());
+	     
 	        }
 			public void onNothingSelected(AdapterView<?> adapter) {  }
 		});
@@ -120,6 +120,7 @@ public class EditarPerfil extends Activity{
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				imagem.compress(Bitmap.CompressFormat.JPEG, 100, bos);
 				user.setFoto(bos.toByteArray());
+				
 				user.setApelido(apelido.getText().toString());
 				user.setLocalTrabalho(trabalho.getText().toString());
 				user.setEmail(email.getText().toString());

@@ -83,6 +83,16 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		}
 
 	};
+	
+	public void NovoClassificado(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityCadastroClassificado.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+		
+	}
 
 	private void atualizarLista() {
 

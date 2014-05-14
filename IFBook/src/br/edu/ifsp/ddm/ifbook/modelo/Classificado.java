@@ -1,15 +1,16 @@
 package br.edu.ifsp.ddm.ifbook.modelo;
 
-import java.sql.Blob;
-import java.sql.Date;
+import java.io.Serializable;
 
-public class Classificado {
 
+public class Classificado implements Serializable {
+
+	private static final long serialVersionUID = 4360718276063483351L;
 	private Integer idClassificado;
 	private String Data;
 	private String Titulo;
 	private String Descricao;
-	private Blob Imagem;
+	private byte[] Imagem = null;
 	private AreaInteresse AreaInteresse_idAreaInteresse;
 	private Usuario Usuario_idUsuario;
 	
@@ -37,10 +38,10 @@ public class Classificado {
 	public void setDescricao(String descricao) {
 		Descricao = descricao;
 	}
-	public Blob getImagem() {
+	public byte[] getImagem() {
 		return Imagem;
 	}
-	public void setImagem(Blob imagem) {
+	public void setImagem(byte[] imagem) {
 		Imagem = imagem;
 	}
 	public AreaInteresse getAreaInteresse_idAreaInteresse() {
@@ -56,5 +57,6 @@ public class Classificado {
 	public void setUsuario_idUsuario(Usuario usuario_idUsuario) {
 		Usuario_idUsuario = usuario_idUsuario;
 	}
+	
 	
 }

@@ -82,4 +82,12 @@
         android:layout_y="2dp"
         android:src="@drawable/foto_perfil" />
 
+    <ImageView
+        android:id="@+id/imgClassificado"
+        android:layout_width="221dp"
+        android:layout_height="221dp"
+        android:layout_x="72dp"
+        android:layout_y="83dp"
+        android:src="@drawable/image" />
+
 </AbsoluteLayout>

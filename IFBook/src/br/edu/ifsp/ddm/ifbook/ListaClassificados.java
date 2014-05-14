@@ -22,6 +22,7 @@ public class ListaClassificados  extends BaseAdapter {
 		private Context context;
 		private List<Classificado> lista;
 		private ImageView foto;
+		private ImageView img;
 
 		public ListaClassificados(Context context, List<Classificado> lista) {
 			this.context = context;
@@ -81,6 +82,21 @@ public class ListaClassificados  extends BaseAdapter {
 			}
 		
 		
+img = (ImageView) view.findViewById(R.id.imgClassificado);
+			
+			try{
+				Bitmap bitmap = BitmapFactory.decodeByteArray(c.getImagem(), 0, c.getImagem().length);
+				img.setImageBitmap(bitmap);
+			}
+			catch(Exception e){
+				
+				
+				e.printStackTrace();
+			}
+			if(c.getImagem() == null){
+				img.setImageResource(android.R.drawable.list_selector_background);
+				}
+			
 
 			
 			

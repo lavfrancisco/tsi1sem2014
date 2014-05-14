@@ -14,25 +14,31 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="br.edu.ifsp.ddm.ifbook.Login" android:screenOrientation="portrait"
-
-            android:label="@string/app_name" >
+            android:name="br.edu.ifsp.ddm.ifbook.Login"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="br.edu.ifsp.ddm.ifbook.EditarPerfil" android:screenOrientation="portrait" />
-        <activity android:name="br.edu.ifsp.ddm.ifbook.ExibePerfil" android:screenOrientation="portrait" />
+        <activity
+            android:name="br.edu.ifsp.ddm.ifbook.EditarPerfil"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="br.edu.ifsp.ddm.ifbook.ExibePerfil"
+            android:screenOrientation="portrait" />
         <activity android:name="br.edu.ifsp.ddm.ifbook.ActivityCadastroMensagem" />
         <activity android:name="br.edu.ifsp.ddm.ifbook.Perfil_listagem" />
-		<activity android:name="br.edu.ifsp.ddm.ifbook.ActivityListaClassificados" />
-		<activity android:name="br.edu.ifsp.ddm.ifbook.ActivityListaMensagens" />
-		<activity android:name="br.edu.ifsp.ddm.ifbook.ListaClassificados" />
-		<activity android:name="br.edu.ifsp.ddm.ifbook.Perfil_Usuario" />
-        
-        
+        <activity android:name="br.edu.ifsp.ddm.ifbook.ActivityListaClassificados" />
+        <activity android:name="br.edu.ifsp.ddm.ifbook.ActivityListaMensagens" />
+        <activity android:name="br.edu.ifsp.ddm.ifbook.ListaClassificados" />
+        <activity android:name="br.edu.ifsp.ddm.ifbook.Perfil_Usuario" />
+        <activity
+            android:name="br.edu.ifsp.ddm.ifbook.ActivityCadastroClassificado"
+            android:label="@string/title_activity_activity_cadastro_classificado" >
+        </activity>
     </application>
 
 </manifest>

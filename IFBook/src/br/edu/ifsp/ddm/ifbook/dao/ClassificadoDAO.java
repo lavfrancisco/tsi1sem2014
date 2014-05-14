@@ -87,9 +87,10 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	}
 	
 	public boolean inserir(Classificado classificado) {
+		
 		ContentValues values = serializeContentValues(classificado);
-		if (database.insert(tableName, null, values) > 0)
-			return true;
+		if(database.insert(tableName, null, values)>0)
+			return true;			
 		else
 			return false;
 	}
@@ -121,7 +122,7 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		classificado.setTitulo(cursor.getString(1));
 		classificado.setDescricao(cursor.getString(2));
 		classificado.setData(cursor.getString(3));
-		classificado.setImagem(null);
+		classificado.setImagem(cursor.getBlob(4));
 		AreaInteresseDAO areainteresseDAO = new AreaInteresseDAO(this.context);
 		classificado.setAreaInteresse_idAreaInteresse(areainteresseDAO.getByID(cursor.getInt(5)));
 		UsuarioDAO usuarioDAO = new UsuarioDAO(this.context);
@@ -134,13 +135,13 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	private ContentValues serializeContentValues(Classificado classificado) {
 		ContentValues values = new ContentValues();
 		values.put("idClassificado", classificado.getIdClassificado());
-		values.put("Data", classificado.getData().toString());
 		values.put("Titulo", classificado.getTitulo());
 		values.put("Descricao", classificado.getDescricao());
-		values.put("AreaInteresse_idAreaInteresse", classificado
-				.getAreaInteresse_idAreaInteresse().getNome());
-		values.put("Usuario_idUsuario", classificado.getUsuario_idUsuario()
-				.getNome());
+		values.put("Data", classificado.getData());
+		values.put("Imagem", classificado.getImagem());
+		values.put("AreaInteresse_idAreaInteresse", classificado.getAreaInteresse_idAreaInteresse().getIdAreaInteresse());
+		values.put("Usuario_idUsuario", classificado.getUsuario_idUsuario().getIdUsuario());
+	
 
 		return values;
 	}
