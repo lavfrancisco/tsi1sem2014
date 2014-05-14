@@ -38,8 +38,9 @@
         android:id="@+id/listaClassificados"
         android:layout_width="match_parent"
         android:layout_height="327dp"
-        android:layout_alignParentBottom="true"
-        android:layout_y="154dp" >
+        android:layout_y="154dp" 
+        android:layout_alignParentBottom="true">
+   
 
     </ListView>
     
@@ -53,7 +54,8 @@
         android:clickable="true"
         android:text="       Menssagens"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF" 
+        android:onClick="exibeMensagens"/>
     
     <TextView
         android:id="@+id/botaoClassificados"
@@ -83,16 +85,17 @@
         android:typeface="sans" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/botaoNovoClassificado"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="0dp"
         android:layout_y="119dp"
-        android:text="Novo" />
+        android:text="Novo" 
+    	android:onClick="NovoClassificado"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/botaoEditarMenssagem"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

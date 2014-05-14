@@ -78,12 +78,20 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	public void exibeClassificados(View v){
 		
 		
-		Intent it = new Intent(getApplicationContext(), Lista_Classificados.class);
+		Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
 		it.putExtra("Usuario", user);
 		startActivity(it);
 	   
 		
 		
+		
+	}
+	public void exibeMensagens(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
 		
 	}
 	

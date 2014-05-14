@@ -3,7 +3,6 @@ package br.edu.ifsp.ddm.ifbook;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
 import br.edu.ifsp.ddm.ifbook.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.os.Bundle;
@@ -29,6 +28,8 @@ public class Perfil_Usuario extends Activity {
 	private TextView aniversario;
 	private TextView email;
 	private ImageView foto;
+	private TextView tel;
+	
 	private Intent it;
 	private Usuario user;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
@@ -36,7 +37,7 @@ public class Perfil_Usuario extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_perfil__usuario);
+		setContentView(R.layout.activity_perfil_usuario);
 		nome = (TextView) findViewById(R.id.textNomeUsuario);
 		apelido = (TextView) findViewById(R.id.textUsuarioApelido);
 		localTrabalho = (TextView) findViewById(R.id.textLocaltrabalho);
@@ -44,6 +45,7 @@ public class Perfil_Usuario extends Activity {
 		EstadoCivil = (TextView) findViewById(R.id.txtEstadoCivil);		
 		aniversario = (TextView) findViewById(R.id.txtAniversario);
 		email = (TextView) findViewById(R.id.txtEmail);
+		tel = (TextView) findViewById(R.id.textTel);
 		
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
@@ -77,6 +79,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil);
 	    Cidade.setText(usuario.getCidade());
 	    EstadoCivil.setText(usuario.getIdEstadoCivil().getEstadoCivil());
 	    email.setText(usuario.getEmail());
+	    tel.setText(usuario.getTelefone());
 	    
 foto = (ImageView) findViewById(R.id.fotoPerfilUsuario);
 		
@@ -122,8 +125,17 @@ foto = (ImageView) findViewById(R.id.fotoPerfilUsuario);
 	  	
 	   }
 	     
-	    aniversario.setText(idade + "anos");
+	    aniversario.setText(idade + " anos");
 	
+	}
+	
+	public void exibeMensagens(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
 	}
 	
 	public void meuPerfil(View v){
@@ -138,7 +150,7 @@ foto = (ImageView) findViewById(R.id.fotoPerfilUsuario);
 	public void exibeClassificados(View v){
 		
 		
-		Intent it = new Intent(getApplicationContext(), Lista_Classificados.class);
+		Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
 		it.putExtra("Usuario", user);
 		startActivity(it);
 	   

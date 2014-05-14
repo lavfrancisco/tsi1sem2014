@@ -80,8 +80,6 @@
         android:layout_height="48dp"
         android:layout_x="2dp"
         android:layout_y="2dp"
-        android:clickable="true"
-        android:onClick="exibePerfil"
         android:src="@drawable/foto_perfil" />
 
 </AbsoluteLayout>

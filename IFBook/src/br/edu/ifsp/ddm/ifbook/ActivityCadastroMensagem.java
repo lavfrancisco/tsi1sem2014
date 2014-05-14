@@ -104,7 +104,7 @@ public class ActivityCadastroMensagem extends Activity {
 	
 		}
 		
-        Date d = new Date();
+     
         
         mensagem.setTitulo(edTITULO.getText().toString());
         mensagem.setDescricao(edDESCRICAO.getText().toString());
@@ -112,7 +112,7 @@ public class ActivityCadastroMensagem extends Activity {
         mensagem.setAreaInteresse(areas.get(spCATEGORIA.getSelectedItemPosition()));
         //Colocando um id do usuário aleatório pois será buscado do banco de dados.
         //mensagens.setUsuario_idUsuario(1);
-        mensagem.setData(d);
+     
         if(operacao.equalsIgnoreCase("Novo"))
         {
         	if(dao.inserir(mensagem)){

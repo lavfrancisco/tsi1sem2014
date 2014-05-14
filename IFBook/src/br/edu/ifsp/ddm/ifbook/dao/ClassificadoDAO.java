@@ -26,7 +26,7 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	
 	public List<Classificado> listAll2() {
 		List<Classificado> list = new ArrayList<Classificado>();
-		String sql = "SELECT idClassificado, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM classificado ORDER BY Data;";
+		String sql = "SELECT idClassificado, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM classificado ORDER BY Data DESC;";
 		
 		Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 		if(cursor!=null && cursor.moveToFirst())
@@ -104,11 +104,15 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	}
 
 	public boolean deletar(Integer id) {
-	
-		if(database.delete(tableName, "idClassificado = ?", new String[]{String.valueOf(id)})>0)
+		if (database.delete(tableName, "idClassificado = ?",
+				new String[] { String.valueOf(id) }) > 0) {
+			fecharConexao();
 			return true;
-		else
+			
+		} else {
+			fecharConexao();
 			return false;
+		}
 	}
 
 	private Classificado serializeByCursor(Cursor cursor) {

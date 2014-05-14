@@ -4,10 +4,13 @@ import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListaMensagens  extends BaseAdapter {
@@ -16,6 +19,7 @@ public class ListaMensagens  extends BaseAdapter {
 
 		private Context context;
 		private List<Mensagem> lista;
+		private ImageView foto;
 
 		public ListaMensagens(Context context, List<Mensagem> lista) {
 			this.context = context;
@@ -46,7 +50,7 @@ public class ListaMensagens  extends BaseAdapter {
 			
 			
 			TextView nome = (TextView) view.findViewById(R.id.textViewUsuario);
-			nome.setText(m.getUsuario().getNome());
+			nome.setText(m.getUsuario().getApelido());
 			
 			TextView titulo = (TextView) view.findViewById(R.id.textViewTitulo);
 			titulo.setText(m.getTitulo());
@@ -56,6 +60,21 @@ public class ListaMensagens  extends BaseAdapter {
 			
 			TextView area = (TextView) view.findViewById(R.id.textViewAreaInteresse);
 			area.setText(m.getAreaInteresse().getNome());
+			
+			TextView data = (TextView) view.findViewById(R.id.textViewData);
+			data.setText(m.getData());
+			
+	foto = (ImageView) view.findViewById(R.id.fotoUsuarioMensagem);
+			
+			try{
+				Bitmap bitmap = BitmapFactory.decodeByteArray(m.getUsuario().getFoto(), 0, m.getUsuario().getFoto().length);
+				foto.setImageBitmap(bitmap);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		
+		
 			
 			
 			

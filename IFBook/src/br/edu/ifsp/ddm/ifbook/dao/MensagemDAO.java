@@ -3,6 +3,7 @@ package br.edu.ifsp.ddm.ifbook.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
 import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.content.ContentValues;
@@ -96,7 +97,7 @@ public class MensagemDAO extends DAO<Mensagem> {
 		mensagem.setIdMensagem(cursor.getInt(0));
 		mensagem.setTitulo(cursor.getString(1));
 		mensagem.setDescricao(cursor.getString(2));
-		mensagem.setData(null);
+		mensagem.setData(cursor.getString(3));
 		mensagem.setImagem(null);
 		AreaInteresseDAO areainteresseDAO = new AreaInteresseDAO(this.context);
 
@@ -107,6 +108,30 @@ public class MensagemDAO extends DAO<Mensagem> {
 
 		return mensagem;
 
+	}
+	
+	
+	public List<Mensagem> listAll2() {
+		List<Mensagem> list = new ArrayList<Mensagem>();
+		String sql = "SELECT idMensagem, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM mensagem ORDER BY Data DESC;";
+		
+		Cursor cursor = getReadableDatabase().rawQuery(sql, null);
+		if(cursor!=null && cursor.moveToFirst())
+		{
+			do{
+				
+				
+				list.add(serializeByCursor(cursor));
+			}while(cursor.moveToNext());
+			
+			
+		}
+		
+		fecharConexao(cursor);
+		
+		return list;
+		
+		
 	}
 	
 	public Mensagem getById (int id){

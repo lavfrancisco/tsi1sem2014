@@ -7,7 +7,7 @@ import java.util.Date;
 public class Mensagem {
 
 	private Integer idMensagem;
-	private Date Data;
+	private String Data;
 	private String Titulo;
 	private String Descricao;
 	private Blob Imagem;
@@ -20,10 +20,10 @@ public class Mensagem {
 	public void setIdMensagem(Integer idMensagem) {
 		this.idMensagem = idMensagem;
 	}
-	public Date getData() {
+	public String getData() {
 		return Data;
 	}
-	public void setData(Date data) {
+	public void setData(String data) {
 		Data = data;
 	}
 	public String getTitulo() {

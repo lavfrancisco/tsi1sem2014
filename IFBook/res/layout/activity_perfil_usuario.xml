@@ -1,0 +1,159 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Perfil_Usuario" >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_x="1dp"
+        android:layout_y="1dp"
+        android:background="#a8cf45"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+ <ImageView
+        android:id="@+id/Home"
+    android:layout_width="111dp"
+        android:layout_height="35dp"
+        android:layout_x="5dp"
+        android:layout_y="14dp"
+        android:clickable="true"
+        android:src="@drawable/logotipovazado" 
+        android:onClick="ExibeHome"/>
+
+    <ImageView
+        android:id="@+id/exibePerfil"
+        android:layout_width="62dp"
+        android:layout_height="48dp"
+        android:layout_x="256dp"
+        android:layout_y="2dp"
+        android:clickable="true"
+        android:onClick="meuPerfil"
+        android:src="@drawable/foto_perfil" />
+
+    <TextView
+        android:id="@+id/textIdClassificado"
+        android:layout_width="320dp"
+        android:layout_height="29dp"
+        android:layout_x="2dp"
+        android:layout_y="96dp"
+        android:background="#104E8B"
+        android:text="Perfil"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#F2F8FA"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/textNomeUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:layout_x="6dp"
+        android:layout_y="216dp"
+        android:text="nome"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/textUsuarioApelido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:layout_x="6dp"
+        android:layout_y="236dp"
+        android:text="apelido"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/txtEstadoCivil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="6dp"
+        android:layout_y="256dp"
+        android:text="estadocivil"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/textLocaltrabalho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="4dp"
+        android:layout_y="276dp"
+        android:text="trabalho"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/txtAniversario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="6dp"
+        android:layout_y="294dp"
+        android:text="aniversario"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/textCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="6dp"
+        android:layout_y="314dp"
+        android:text="cidade"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="6dp"
+        android:layout_y="332dp"
+        android:text="email"
+        android:textSize="20px" />
+
+    <ImageView
+        android:id="@+id/fotoPerfilUsuario"
+        android:layout_width="116dp"
+        android:layout_height="86dp"
+        android:layout_x="0dp"
+        android:layout_y="129dp"
+        android:src="@drawable/foto_perfil" />
+    
+     <TextView
+        android:id="@+id/botaoMenssagens"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_x="2dp"
+        android:layout_y="55dp"
+        android:background="#4876FF"
+        android:clickable="true"
+        android:text="       Menssagens"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" 
+        android:onClick="exibeMensagens"/>
+
+    <TextView
+        android:id="@+id/botaoClassificados"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_x="161dp"
+        android:layout_y="55dp"
+        android:background="#FFA500"
+        android:clickable="true"
+        android:text="      Classificados"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" 
+        android:onClick="exibeClassificados"/>
+
+    <TextView
+        android:id="@+id/textTel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_x="6dp"
+        android:layout_y="352dp"
+        android:text="tel" 
+        android:textSize="20px" />
+
+</AbsoluteLayout>
