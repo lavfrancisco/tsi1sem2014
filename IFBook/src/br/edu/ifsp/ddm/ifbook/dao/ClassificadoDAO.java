@@ -19,7 +19,7 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		campos = new String[] { "idClassificado", "Titulo", "Descricao", "Data",
 				"Imagem", "AreaInteresse_idAreaInteresse", "Usuario_idUsuario" };
 
-		tableName = "Classificado";
+		tableName = "classificado";
 		database = getWritableDatabase();
 	}
 	
@@ -104,15 +104,11 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	}
 
 	public boolean deletar(Integer id) {
-		if (database.delete(tableName, "idClassificado = ?",
-				new String[] { String.valueOf(id) }) > 0) {
-			fecharConexao();
+	
+		if(database.delete(tableName, "idClassificado = ?", new String[]{String.valueOf(id)})>0)
 			return true;
-			
-		} else {
-			fecharConexao();
+		else
 			return false;
-		}
 	}
 
 	private Classificado serializeByCursor(Cursor cursor) {

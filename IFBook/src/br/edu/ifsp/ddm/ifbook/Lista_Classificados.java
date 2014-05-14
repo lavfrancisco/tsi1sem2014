@@ -9,6 +9,8 @@ import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +18,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 
 public class Lista_Classificados extends Activity {
 
@@ -38,9 +42,15 @@ public class Lista_Classificados extends Activity {
 		classificados = new ArrayList<Classificado>();
 		dao = new ClassificadoDAO(getApplicationContext());
 		lvClassificados.setOnItemClickListener(selecionarUsuarioClassificado);
-		atualizarLista();	
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
+	
+
+		if(user.getNivel() == 2){
+			lvClassificados.setOnItemLongClickListener(excluirClassificado);
+		}
+		atualizarLista();	
+
 
 foto = (ImageView) findViewById(R.id.exibePerfil2);
 		
@@ -74,8 +84,50 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	};
 		
 	
-	
-	
+	private OnItemLongClickListener excluirClassificado = new OnItemLongClickListener() {
+
+		public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos,
+				long arg3) {
+			excluirClassificado(classificados.get(pos).getIdClassificado());
+			
+			return true;
+		}
+
+	};
+	private void excluirClassificado(final int idClassificado) {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Excluir o Classificado?")
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setMessage("Deseja excluir o Classificado?")
+				.setCancelable(false)
+				.setPositiveButton("Sim",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								if (dao.deletar(idClassificado)) {
+									
+									exibirClassificado("Classificado excluído com sucesso!");
+									atualizarLista();
+								} else {
+									exibirClassificado("Não foi possível excluir o Classificado!");
+								}
+
+							}
+						})
+				.setNegativeButton("Não",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								dialog.cancel();
+							}
+						});
+		builder.create();
+		builder.show();
+
+	}
+
+
+
+
 
 	
 	public void meuPerfil(View v){
@@ -132,6 +184,8 @@ private void atualizarLista() {
 
 	}
 
-
+private void exibirClassificado(String msg) {
+	Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+}
 	
 }

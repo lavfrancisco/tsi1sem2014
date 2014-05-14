@@ -20,7 +20,7 @@ public class MensagemDAO extends DAO<Mensagem> {
 		campos = new String[] { "idMensagem", "Titulo", "Descricao", "Data",
 				"Imagem", "AreaInteresse_idAreaInteresse", "Usuario_idUsuario" };
 
-		tableName = "Mensagem";
+		tableName = "mensagem";
 		database = getWritableDatabase();
 	}
 

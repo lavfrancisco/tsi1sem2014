@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     android:background="#4F4F4F"
     tools:context=".Perfil_Usuario" >
 
     <TextView
@@ -56,7 +55,7 @@
         android:layout_x="6dp"
         android:layout_y="216dp"
         android:text="nome"
-        android:textColor="#E8E8E8"
+  
         android:textSize="20px" />
 
     <TextView
@@ -67,7 +66,7 @@
         android:layout_x="6dp"
         android:layout_y="236dp"
         android:text="apelido"
-      android:textColor="#E8E8E8"
+     
         android:textSize="20px" />
 
     <TextView
@@ -78,7 +77,7 @@
         android:layout_y="256dp"
         android:text="estadocivil"
         android:textAppearance="?android:attr/textAppearanceLarge"
-         android:textColor="#E8E8E8"
+
         android:textSize="20px" />
 
     <TextView
@@ -88,7 +87,7 @@
         android:layout_x="4dp"
         android:layout_y="276dp"
         android:text="trabalho"
-         android:textColor="#E8E8E8"
+     
         android:textSize="20px" />
 
     <TextView
@@ -98,7 +97,7 @@
         android:layout_x="6dp"
         android:layout_y="294dp"
         android:text="aniversario"
-         android:textColor="#E8E8E8"
+      
         android:textSize="20px" />
 
     <TextView
@@ -108,7 +107,7 @@
         android:layout_x="6dp"
         android:layout_y="314dp"
         android:text="cidade"
-         android:textColor="#E8E8E8"
+       
         android:textSize="20px" />
 
     <TextView
@@ -118,7 +117,7 @@
         android:layout_x="6dp"
         android:layout_y="332dp"
         android:text="email"
-         android:textColor="#E8E8E8"
+    
         android:textSize="20px" />
 
     <ImageView
@@ -135,7 +134,7 @@
         android:layout_height="wrap_content"
         android:layout_x="2dp"
         android:layout_y="55dp"
-        android:background="#FFA500"
+          android:background="#4876FF"
         android:clickable="true"
         android:text="       Menssagens"
         android:textAppearance="?android:attr/textAppearanceMedium"

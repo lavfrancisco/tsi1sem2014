@@ -2,8 +2,7 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-        android:background="#4F4F4F">
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textTituloClassificado"
@@ -11,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_x="65dp"
         android:layout_y="0dp"
-        android:background="#63B8FF"
+        android:background="#FFA500"
         android:text="Titulo"
         android:textColor="#F2F8FA"
         android:textStyle="bold"
@@ -23,11 +22,10 @@
         android:layout_height="94dp"
         android:layout_x="66dp"
         android:layout_y="34dp"
-        android:background="#FAFAD2"
         android:text="
         Descricao"
         android:textColor="#000101"
-        android:textSize="8sp" />
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/textAreaInteresseClassificado"
@@ -36,7 +34,8 @@
         android:layout_x="66dp"
         android:layout_y="17dp"
         android:text="Area"
-          android:textColor="#F2F8FA"
+ 
+          android:textColor="#43CD80"
         android:textSize="12sp" />
 
     <TextView
@@ -46,7 +45,7 @@
         android:layout_x="15dp"
         android:layout_y="53dp"
         android:text="Usuario"
-         android:textColor="#F2F8FA"
+         android:textColor="#1C1C1C"
         android:textSize="8sp" />
 
     <TextView
@@ -56,7 +55,7 @@
         android:layout_x="211dp"
         android:layout_y="22dp"
         android:text="data"
-       android:textColor="#F2F8FA"
+       android:textColor="#9FB6CD"
         android:textSize="8sp" />
 
     <TextView

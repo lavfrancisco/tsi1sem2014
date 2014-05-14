@@ -16,7 +16,7 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	public UsuarioDAO(Context context) {
 		super(context);
-		campos = new String[]{"idUsuario","Nome", "Nascimento", "Prontuario", "Senha", "Apelido", "LocalTrabalho", "Cidade", "Email", "Telefone", "Foto", "EstadoCivil_idEstadoCivil"};
+		campos = new String[]{"idUsuario","Nome", "Nascimento", "Prontuario", "Senha", "Apelido", "LocalTrabalho", "Cidade", "Email", "Telefone", "Foto", "EstadoCivil_idEstadoCivil","Nivel"};
 		tableName = "usuario";
 		local_context = context;
 		database = getWritableDatabase();
@@ -46,6 +46,8 @@ public class UsuarioDAO extends DAO<Usuario>{
 	    EstadoCivilDAO estadoDAO = new EstadoCivilDAO(local_context, database);
 	    estadoCivil = estadoDAO.getById(numEstCivil);
 	    usuario.setIdEstadoCivil(estadoCivil);
+	    int nivelUsuario = (cursor.getInt(12));
+	    usuario.setNivel(nivelUsuario);
 	   
 		return usuario;
 		
@@ -66,6 +68,7 @@ public class UsuarioDAO extends DAO<Usuario>{
 		values.put("Telefone",usuario.getTelefone());
 		values.put("Foto",usuario.getFoto());
 		values.put("EstadoCivil_idEstadoCivil",usuario.getIdEstadoCivil().getIdEstadoCivil());
+		values.put("Nivel", usuario.getNivel());
 		
 		return values;
 	}
@@ -80,7 +83,7 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	public List<Usuario> Aniversariantes() {
 		List<Usuario> list = new ArrayList<Usuario>();
-		String sql = "SELECT idUsuario,Nome, strftime('%m/%d', Nascimento), Prontuario, Senha, Apelido, LocalTrabalho, Cidade, Email, Telefone, Foto, EstadoCivil_idEstadoCivil FROM usuario WHERE strftime('%m/%d', Nascimento) >= strftime('%m/%d',date('now')) AND strftime('%m/%d', Nascimento) <= strftime('%m/%d',date('now','+7 day')) ORDER BY Nascimento;";
+		String sql = "SELECT idUsuario,Nome, strftime('%m/%d', Nascimento), Prontuario, Senha, Apelido, LocalTrabalho, Cidade, Email, Telefone, Foto, EstadoCivil_idEstadoCivil, Nivel FROM usuario WHERE strftime('%m/%d', Nascimento) >= strftime('%m/%d',date('now')) AND strftime('%m/%d', Nascimento) <= strftime('%m/%d',date('now','+7 day')) ORDER BY Nascimento;";
 		
 		Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 		if(cursor!=null && cursor.moveToFirst())

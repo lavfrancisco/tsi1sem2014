@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4F4F4F"
     tools:context=".Perfil_listagem" >
    
     <TextView
@@ -36,14 +35,6 @@
         android:layout_y="108dp"
         android:src="@drawable/niver" />
 
-    <ImageView
-        android:id="@+id/fotoPerfilUsuario"
-        android:layout_width="83dp"
-        android:layout_height="113dp"
-        android:layout_x="241dp"
-        android:layout_y="95dp"
-        android:src="@drawable/bemvindo" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -64,16 +55,6 @@
         android:src="@drawable/logotipovazado" />
 
     <ImageView
-        android:id="@+id/exibePerfil2"
-        android:layout_width="62dp"
-        android:layout_height="48dp"
-        android:layout_x="256dp"
-        android:layout_y="2dp"
-        android:clickable="true"
-        android:onClick="meuPerfil"
-        android:src="@drawable/foto_perfil" />
-
-    <ImageView
         android:id="@+id/fotoAnivesasriante"
         android:layout_width="158dp"
         android:layout_height="98dp"
@@ -87,7 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_x="2dp"
         android:layout_y="55dp"
-        android:background="#FFA500"
+       
+          android:background="#4876FF"
         android:clickable="true"
         android:text="       Menssagens"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -99,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_x="161dp"
         android:layout_y="55dp"
-        android:background="#FFA500"
+       android:background="#FFA500"
         android:clickable="true"
         android:text="      Classificados"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -125,5 +107,24 @@
         android:layout_y="124dp"
         android:text="Usuario"
         android:textSize="16px" />
+
+
+    <ImageView
+        android:id="@+id/exibePerfil2"
+        android:layout_width="59dp"
+        android:layout_height="45dp"
+        android:layout_x="263dp"
+        android:layout_y="5dp"
+        android:clickable="true"
+        android:onClick="meuPerfil"
+        android:src="@drawable/foto_perfil" />
+
+    <ImageView
+        android:id="@+id/fotoPerfilUsuario"
+        android:layout_width="83dp"
+        android:layout_height="113dp"
+        android:layout_x="235dp"
+        android:layout_y="104dp"
+        android:src="@drawable/bemvindo" />
 
 </AbsoluteLayout>
