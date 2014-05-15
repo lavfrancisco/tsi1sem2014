@@ -113,7 +113,7 @@ public class MensagemDAO extends DAO<Mensagem> {
 	
 	public List<Mensagem> listAll2() {
 		List<Mensagem> list = new ArrayList<Mensagem>();
-		String sql = "SELECT idMensagem, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM mensagem ORDER BY Data DESC;";
+		String sql = "SELECT idMensagem, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM mensagem ORDER BY idMensagem DESC;";
 		
 		Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 		if(cursor!=null && cursor.moveToFirst())

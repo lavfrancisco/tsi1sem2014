@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Lista_Classificados" 
-        >
+    tools:context=".ListarMeusClassificados" >
 
-        <TextView
+    
+            <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -35,7 +35,7 @@
         android:src="@drawable/foto_perfil" />
         
     <ListView
-        android:id="@+id/listaClassificados"
+        android:id="@+id/listaMeusClassificados"
         android:layout_width="match_parent"
         android:layout_height="327dp"
         android:layout_y="154dp" 
@@ -103,5 +103,5 @@
         android:layout_y="119dp"
         android:text="Editar" 
         android:onClick="editarClassificado"/>
-
+        
 </AbsoluteLayout>

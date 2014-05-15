@@ -2,6 +2,7 @@ package br.edu.ifsp.ddm.ifbook;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
@@ -15,14 +16,15 @@ import android.graphics.BitmapFactory;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-public class ActivityListaClassificados extends Activity {
+public class ListarMeusClassificados extends Activity {
 
+	
 	private List<Classificado> classificados;
 	private ClassificadoDAO dao;
 	private ListView lvClassificados;
@@ -31,17 +33,18 @@ public class ActivityListaClassificados extends Activity {
 	private Intent it;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 	private ImageView foto;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.lista_classificados);
-
-		lvClassificados = (ListView) findViewById(R.id.listaClassificados);
+		setContentView(R.layout.listar_meus_classificado);
+	
+		lvClassificados = (ListView) findViewById(R.id.listaMeusClassificados);
 		lvClassificados.setOnItemLongClickListener(excluirClassificado);
 		classificados = new ArrayList<Classificado>();
 		dao = new ClassificadoDAO(getApplicationContext());
 		lvClassificados.setOnItemClickListener(selecionarUsuarioClassificado);
+		
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
 
@@ -62,16 +65,16 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 			e.printStackTrace();
 		}
 		
-		
-	}
 	
+	
+	}
 	private OnItemClickListener selecionarUsuarioClassificado = new OnItemClickListener() {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long id) {
 			
 			classificado = classificados.get(pos);
 			
-		       final Intent intent = new Intent(ActivityListaClassificados.this, Perfil_Usuario.class);
+		       final Intent intent = new Intent(ListarMeusClassificados.this, Perfil_Usuario.class);
 
 				
 	              String iduser = String.valueOf(classificado.getUsuario_idUsuario().getIdUsuario());
@@ -93,21 +96,13 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		
 		
 	}
-	
-	public void editarClassificado(View v){
-		
-		
-		Intent it = new Intent(getApplicationContext(), ListarMeusClassificados.class);
-		it.putExtra("Usuario", user);
-		startActivity(it);
-		
-	}
-	
 
 	private void atualizarLista() {
 
 		dao = new ClassificadoDAO(this);
-		classificados = dao.listAll2();
+		
+		int id = user.getIdUsuario();
+		classificados = dao.listAll(id);
 
 		System.out.print("Classificados:" + classificados.size());
 		if (classificados != null) {
@@ -155,7 +150,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	
 
 	private void excluirClassificado(final int idClassificado) {
-		if(user.getNivel() == 2){
+	
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Excluir o Classificado?")
 				.setIcon(android.R.drawable.ic_dialog_alert)
@@ -182,11 +177,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 						});
 		builder.create();
 		builder.show();
-		}else{
-			
-			 atualizarLista();
-			
-		}
+	
 	}
 
 	private OnItemLongClickListener excluirClassificado = new OnItemLongClickListener() {
@@ -219,7 +210,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long id) {
 			
-			Intent it = new Intent(ActivityListaClassificados.this, Login.class);	
+			Intent it = new Intent(ListarMeusClassificados.this, Login.class);	
 			it.putExtra("idClassificado", classificados.get(pos).getIdClassificado());
 			startActivity(it);
 
@@ -227,4 +218,14 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 
 	};
 
+
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.listar_meus_classificado, menu);
+		return true;
+	}
+	
 }

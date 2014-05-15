@@ -26,7 +26,7 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	
 	public List<Classificado> listAll2() {
 		List<Classificado> list = new ArrayList<Classificado>();
-		String sql = "SELECT idClassificado, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM classificado ORDER BY Data DESC;";
+		String sql = "SELECT idClassificado, Titulo, Descricao, strftime('%d/%m/%Y %H:%M:%S', Data), Imagem, AreaInteresse_idAreaInteresse, Usuario_idUsuario FROM classificado ORDER BY idClassificado DESC;";
 		
 		Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 		if(cursor!=null && cursor.moveToFirst())
@@ -48,9 +48,10 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	}
 	
 
-	public List<Classificado> listAll() {
+	public List<Classificado> listAll(int id) {
 		List<Classificado> list = new ArrayList<Classificado>();
-		Cursor cursor = executeSelect(null, null, "1");
+
+		Cursor cursor = executeSelect("Usuario_idUsuario = ?", new String[]{String.valueOf(id)}, null);
 
 		if (cursor != null && cursor.moveToFirst()) {
 			do {

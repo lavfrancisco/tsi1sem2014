@@ -64,16 +64,18 @@ public class ActivityCadastroClassificado extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastro_classificado);
+	
         titulo = (EditText) findViewById(R.id.editTituloNovoClassificado);
         descricao = (EditText) findViewById(R.id.editDescricaoNovoClassificado);
         area = (Spinner) findViewById(R.id.spArea);
-    	img = (ImageView) findViewById(R.id.imagemClassificado);
-		imagem = ((BitmapDrawable)img.getDrawable()).getBitmap();		
+    	
 		arquivo = (Button) findViewById(R.id.botaoImagemClassificado);
+		   postar = (Button) findViewById(R.id.botaoPostarClassificado);
+	
         
    	it = getIntent();
 	user = (Usuario) it.getSerializableExtra("Usuario");
-	postar = (Button) findViewById(R.id.botaoPostarClassificado);
+
       preencherAreaInteresse();
 		
       foto = (ImageView) findViewById(R.id.exibePerfil2);
@@ -86,7 +88,8 @@ public class ActivityCadastroClassificado extends Activity {
 			e.printStackTrace();
 		}
 
-	
+		img = (ImageView) findViewById(R.id.imagemClassificado);
+		imagem = ((BitmapDrawable)img.getDrawable()).getBitmap();	
 		arquivo.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -96,27 +99,12 @@ public class ActivityCadastroClassificado extends Activity {
 				
 			}
 		});	
-	}
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+		
+	
+	
 
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
  
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
- 
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            imagem = BitmapFactory.decodeFile(picturePath); 
-            img.setImageBitmap(imagem);
-        }
-    
-
-
-
 	postar.setOnClickListener(new View.OnClickListener() {
 		
 		@Override
@@ -125,9 +113,10 @@ public class ActivityCadastroClassificado extends Activity {
 			classificado = new Classificado();
 			usuario = new Usuario();
 			usuario.setIdUsuario(user.getIdUsuario());
+			
 								
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			imagem.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+			imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
 			classificado.setImagem(bos.toByteArray());
 			classificado.setTitulo(titulo.getText().toString());
 			classificado.setDescricao(descricao.getText().toString());
@@ -143,8 +132,8 @@ public class ActivityCadastroClassificado extends Activity {
 
 		}
 	});
-}
-		
+	}
+
 	
 	private void preencherAreaInteresse(){
 		daoArea = new AreaInteresseDAO(this);
@@ -179,5 +168,25 @@ public class ActivityCadastroClassificado extends Activity {
 		getMenuInflater().inflate(R.menu.activity_cadastro_classificado, menu);
 		return true;
 	}
+	
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+    	
+ 	 
+     if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+         Uri selectedImage = data.getData();
+         String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+         Cursor cursor = getContentResolver().query(selectedImage,
+                 filePathColumn, null, null, null);
+         cursor.moveToFirst();
+
+         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+         String picturePath = cursor.getString(columnIndex);
+         cursor.close();
+         imagem = BitmapFactory.decodeFile(picturePath); 
+         img.setImageBitmap(imagem);
+     }
+ 
+ }
 
 }

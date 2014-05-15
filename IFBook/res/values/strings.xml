@@ -12,5 +12,7 @@
     <string name="idusuario">Id Usuario: </string>
     <string name="btnenviar">Enviar</string>
     <string name="title_activity_activity_cadastro_classificado">ActivityCadastroClassificado</string>
+    <string name="title_activity_listar_meus_classificados">ListarMeusClassificados</string>
+    <string name="title_activity_editar_meu_classificado">EditarMeuClassificado</string>
 
 </resources>

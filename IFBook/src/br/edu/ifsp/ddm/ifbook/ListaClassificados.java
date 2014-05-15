@@ -93,9 +93,7 @@ img = (ImageView) view.findViewById(R.id.imgClassificado);
 				
 				e.printStackTrace();
 			}
-			if(c.getImagem() == null){
-				img.setImageResource(android.R.drawable.list_selector_background);
-				}
+		
 			
 
 			

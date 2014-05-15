@@ -117,6 +117,9 @@ public class EditarPerfil extends Activity{
 			public void onClick(View v) {
 				
 				//Converte imagem para array de bytes para salvar no BD
+				
+		
+				
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				imagem.compress(Bitmap.CompressFormat.JPEG, 100, bos);
 				user.setFoto(bos.toByteArray());
