@@ -75,6 +75,15 @@ public class ActivityCadastroClassificado extends Activity {
         
    	it = getIntent();
 	user = (Usuario) it.getSerializableExtra("Usuario");
+	
+//	classificado = (Classificado) it.getSerializableExtra("meuClassificado");
+	
+//	System.out.println("ID CLASSIFICADO: "+ classificado.getIdClassificado());
+//	System.out.println("ID USUSARIO: "+ classificado.getIdClassificado());
+//	System.out.println("TITULO: "+ classificado.getTitulo());
+//	System.out.println("DESCRICAO: "+ classificado.getDescricao());
+//	System.out.println("IMAGEM: "+ classificado.getImagem());
+//	System.out.println("DATA: "+ classificado.getData());
 
       preencherAreaInteresse();
 		
@@ -108,7 +117,22 @@ public class ActivityCadastroClassificado extends Activity {
 	postar.setOnClickListener(new View.OnClickListener() {
 		
 		@Override
-		public void onClick(View v) {		
+		public void onClick(View v) {	
+			
+			
+			if(titulo.getText().toString().trim().length() == 0){
+				
+				
+				Toast.makeText(getApplicationContext(), "Título inválido!", Toast.LENGTH_LONG).show();
+				
+				
+				
+			}else if(descricao.getText().toString().trim().length() == 0){
+				
+				Toast.makeText(getApplicationContext(), "Descrição inválida!", Toast.LENGTH_LONG).show();
+				
+				
+			}else{
 			
 			classificado = new Classificado();
 			usuario = new Usuario();
@@ -122,13 +146,21 @@ public class ActivityCadastroClassificado extends Activity {
 			classificado.setDescricao(descricao.getText().toString());
 	        classificado.setAreaInteresse_idAreaInteresse(areas.get(area.getSelectedItemPosition()));
 	        classificado.setUsuario_idUsuario(usuario);
-			 
 	        dao = new ClassificadoDAO(getApplicationContext());
+	    	Calendar c = Calendar.getInstance();  
+		    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		    String data = f.format( c.getTime() );
+	        
+	        classificado.setData(data);
+			 
+	        
 			dao.inserir(classificado);
 
 			Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
 			it.putExtra("Usuario", user);
 			startActivity(it);
+			}
+			
 
 		}
 	});

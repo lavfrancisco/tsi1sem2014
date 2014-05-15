@@ -74,12 +74,19 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 			
 			classificado = classificados.get(pos);
 			
-		       final Intent intent = new Intent(ListarMeusClassificados.this, Perfil_Usuario.class);
+		       final Intent intent = new Intent(ListarMeusClassificados.this, ActivityEditarClassificado.class);
+  
+	          	System.out.println("ID CLASSIFICADO: "+ classificado.getIdClassificado());
+	    		System.out.println("ID USUSARIO: "+ classificado.getUsuario_idUsuario().getIdUsuario());
+	    		System.out.println("TITULO: "+ classificado.getTitulo());
+	    		System.out.println("DESCRICAO: "+ classificado.getDescricao());
+	    		System.out.println("IMAGEM: "+ classificado.getImagem());
+	    		System.out.println("DATA: "+ classificado.getData());
+	    		
 
-				
-	              String iduser = String.valueOf(classificado.getUsuario_idUsuario().getIdUsuario());
+	    	      String idclassificado = String.valueOf(classificado.getIdClassificado());
 		    		
-	              intent.putExtra("idUsuario", iduser);
+	    	      intent.putExtra("IdClassificado", idclassificado);
 	              intent.putExtra("Usuario", user);
 	              startActivity(intent);
 	          	
@@ -104,7 +111,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		int id = user.getIdUsuario();
 		classificados = dao.listAll(id);
 
-		System.out.print("Classificados:" + classificados.size());
+		
 		if (classificados != null) {
 
 			if (classificados.size() >=0) {

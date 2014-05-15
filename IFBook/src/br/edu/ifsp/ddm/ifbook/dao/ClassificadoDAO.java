@@ -3,7 +3,10 @@ package br.edu.ifsp.ddm.ifbook.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import br.edu.ifsp.ddm.ifbook.modelo.AreaInteresse;
 import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
+import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -45,6 +48,28 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		return list;
 		
 		
+	}
+	public Classificado getById (int id){
+		Classificado classificado = new Classificado();
+		
+		System.out.println("ID DAO: "+ id);	
+		
+		Cursor cursor = executeSelect("idClassificado = ?", new String[]{String.valueOf(id)}, null);
+		
+		if(cursor!=null && cursor.moveToFirst())
+		{
+			classificado = serializeByCursor(cursor);
+		}
+		fecharConexao(cursor);
+		
+		System.out.println("ID DAO: "+ classificado.getIdClassificado());	
+		System.out.println("ID DAO: "+ classificado.getData());	
+		System.out.println("ID DAO: "+ classificado.getTitulo());
+		System.out.println("ID DAO: "+ classificado.getDescricao());	
+		System.out.println("ID DAO: "+ classificado.getAreaInteresse_idAreaInteresse().getNome());	
+		System.out.println("ID DAO: "+ classificado.getImagem());	
+		
+		return classificado;
 	}
 	
 
