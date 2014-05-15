@@ -4,13 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.dao.AreaInteresseDAO;
-import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
-import br.edu.ifsp.ddm.ifbook.dao.EstadoCivilDAO;
+import br.edu.ifsp.ddm.ifbook.dao.MensagemDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.AreaInteresse;
-import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
+import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import br.edu.ifsp.ddm.ifbook.util.AreaInteresseListAdapter;
-import br.edu.ifsp.ddm.ifbook.util.EstadoCivilListAdapter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,7 +21,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,13 +29,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class ActivityEditarClassificado extends Activity {
+public class ActivityEditarMenssagem extends Activity {
 
-	private Classificado classificado;
-	private List<Classificado> classificados;
+	private Mensagem menssagem;
+	private List<Mensagem> classificados;
 	private List<AreaInteresse> areas;
 	private AreaInteresse areainteresse;
-	private ClassificadoDAO dao;
+	private MensagemDAO dao;
 	private EditText titulo;
 	private EditText descricao;
 	private Spinner area;
@@ -58,12 +55,11 @@ public class ActivityEditarClassificado extends Activity {
 	private Usuario usuario;
 	private TextView idText;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
-
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_editar_classificado);
+		setContentView(R.layout.activity_editar_minha_menssagem);
 		 it = getIntent();
 		   user = (Usuario) it.getSerializableExtra("Usuario");
 	    foto = (ImageView) findViewById(R.id.exibePerfil2);
@@ -76,36 +72,35 @@ public class ActivityEditarClassificado extends Activity {
 				e.printStackTrace();
 			}
 
-			img = (ImageView) findViewById(R.id.imagemClassificadoEditar);
+			img = (ImageView) findViewById(R.id.imagemMenssagemEditar);
 			imagem = ((BitmapDrawable)img.getDrawable()).getBitmap();	
 		
-		 titulo = (EditText) findViewById(R.id.editarClassificadoTitulo);
-	        descricao = (EditText) findViewById(R.id.editarClassificadoDescricao);
-	        area = (Spinner) findViewById(R.id.spClassificadoArea);
-	        idText = (TextView) findViewById(R.id.IdClassificadoEditar);
-			arquivo = (Button) findViewById(R.id.botaoImagemClassificadoEditar);
-			editar = (Button) findViewById(R.id.botaoEditarClassificado);
+		 titulo = (EditText) findViewById(R.id.editarMenssagemTitulo);
+	        descricao = (EditText) findViewById(R.id.editarMenssagemDescricao);
+	        area = (Spinner) findViewById(R.id.spMenssagemArea);
+	        idText = (TextView) findViewById(R.id.IdMenssagemEditar);
+			arquivo = (Button) findViewById(R.id.botaoImagemMenssagemEditar);
+			editar = (Button) findViewById(R.id.botaoEditarMenssagem);
 		
 			
 		  
 		   
-		this.getIntent().getStringExtra("IdClassificado");
-		String id = this.getIntent().getStringExtra("IdClassificado");
+		this.getIntent().getStringExtra("IdMenssagem");
+		String id = this.getIntent().getStringExtra("IdMenssagem");
 		
-		System.out.println("ID: "+ id);
 
-		int idclass = Integer.parseInt(id);
-		dao = new ClassificadoDAO(getApplicationContext());
-		classificado = new Classificado();
+		int idmen = Integer.parseInt(id);
+		dao = new MensagemDAO(getApplicationContext());
+		menssagem = new Mensagem();
 		
-			classificado = dao.getById(idclass);
+			menssagem = dao.getById(idmen);
 
 		
-		    titulo.setText((classificado.getTitulo()));
+		    titulo.setText((menssagem.getTitulo()));
 		    idText.setText(id);
-		    descricao.setText((classificado.getDescricao()));
+		    descricao.setText((menssagem.getDescricao()));
 		    try{
-				imagem = BitmapFactory.decodeByteArray(classificado.getImagem(), 0, classificado.getImagem().length);
+				imagem = BitmapFactory.decodeByteArray(menssagem.getImagem(), 0, menssagem.getImagem().length);
 				img.setImageBitmap(imagem);
 			}
 			catch(Exception e){
@@ -119,11 +114,11 @@ public class ActivityEditarClassificado extends Activity {
 		AreaInteresseDAO daoArea = new AreaInteresseDAO(getApplicationContext());
 		adapter = new AreaInteresseListAdapter(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, daoArea.listAll());
 		area.setAdapter(adapter);
-		area.setSelection(classificado.getAreaInteresse_idAreaInteresse().getIdAreaInteresse() - 1);
+		area.setSelection(menssagem.getAreaInteresse().getIdAreaInteresse() - 1);
 	area.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			 public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                classificado.setAreaInteresse_idAreaInteresse(adapter.getItem(position));
+				menssagem.setAreaInteresse(adapter.getItem(position));
 	     
 	       }
 		public void onNothingSelected(AdapterView<?> adapter) {  }
@@ -155,19 +150,19 @@ public class ActivityEditarClassificado extends Activity {
 			imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
 			if(bos.size() <= 319324){
 			
-			classificado.setImagem(bos.toByteArray());
+				menssagem.setImagem(bos.toByteArray());
 			
 			
-			classificado.setTitulo(titulo.getText().toString());
-			classificado.setDescricao(descricao.getText().toString());
-	        dao = new ClassificadoDAO(getApplicationContext());
+				menssagem.setTitulo(titulo.getText().toString());
+				menssagem.setDescricao(descricao.getText().toString());
+	        dao = new MensagemDAO(getApplicationContext());
 			
-			ClassificadoDAO dao2 = new ClassificadoDAO(getApplicationContext());
-			dao2.atualizar(classificado);
+			MensagemDAO dao2 = new MensagemDAO(getApplicationContext());
+			dao2.atualizar(menssagem);
 			
 	        
 			
-			Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
+			Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
 			it.putExtra("Usuario", user);
 			startActivity(it);
 			}else{
@@ -185,7 +180,7 @@ public class ActivityEditarClassificado extends Activity {
 		@Override
 		public void onClick(View v) {
 			i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(i, RESULT_LOAD_IMAGE);
+          startActivityForResult(i, RESULT_LOAD_IMAGE);
 			
 		}
 	});	

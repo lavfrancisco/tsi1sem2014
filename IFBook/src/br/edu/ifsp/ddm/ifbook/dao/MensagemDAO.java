@@ -44,12 +44,13 @@ public class MensagemDAO extends DAO<Mensagem> {
 
 	}
 
-	public List<Mensagem> listaMensagens() {
+	public List<Mensagem> listAll(int id) {
 		List<Mensagem> list = new ArrayList<Mensagem>();
-		Cursor cursor = executeSelect(null, null, "1");
+
+		Cursor cursor = executeSelect("Usuario_idUsuario = ?", new String[]{String.valueOf(id)}, null);
+
 		if (cursor != null && cursor.moveToFirst()) {
 			do {
-
 				list.add(serializeByCursor(cursor));
 			} while (cursor.moveToNext());
 

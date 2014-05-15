@@ -138,7 +138,8 @@
         android:clickable="true"
         android:text="       Menssagens"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF" 
+        android:onClick="exibeMensagens"/>
 
     <TextView
         android:id="@+id/botaoClassificados"

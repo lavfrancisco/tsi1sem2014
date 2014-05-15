@@ -55,6 +55,14 @@
             android:name="br.edu.ifsp.ddm.ifbook.ActivityCadastroMenssagem"
             android:label="@string/title_activity_activity_cadastro_menssagem" >
         </activity>
+        <activity
+            android:name="br.edu.ifsp.ddm.ifbook.ListaMinhasMenssagens"
+            android:label="@string/title_activity_lista_minhas_menssagens" >
+        </activity>
+        <activity
+            android:name="br.edu.ifsp.ddm.ifbook.ActivityEditarMenssagem"
+            android:label="@string/title_activity_activity_editar_menssagem" >
+        </activity>
     </application>
 
 </manifest>

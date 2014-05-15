@@ -16,5 +16,7 @@
     <string name="title_activity_editar_meu_classificado">EditarMeuClassificado</string>
     <string name="title_activity_activity_editar_classificado">ActivityEditarClassificado</string>
     <string name="title_activity_activity_cadastro_menssagem">ActivityCadastroMenssagem</string>
+    <string name="title_activity_lista_minhas_menssagens">ListaMinhasMenssagens</string>
+    <string name="title_activity_activity_editar_menssagem">ActivityEditarMenssagem</string>
 
 </resources>

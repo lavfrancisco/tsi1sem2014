@@ -72,6 +72,14 @@ public class ActivityListaMensagens extends Activity {
 		
 	}
 	
+	public void editarMenssagem(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ListaMinhasMenssagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+	}
 
 	
 	private OnItemClickListener selecionarUsuarioMenssagem = new OnItemClickListener() {

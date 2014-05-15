@@ -23,10 +23,12 @@ public class ExibePerfil extends Activity{
 	private TextView telefone;
 	private Button editar;
 	private ImageView foto;
+	private ImageView foto2;
 	private Bitmap imagem;
 	private Intent it;
 	private Usuario user;
 	private static final int ACTIVITY_EXIBIR_EDITAR = 1;
+	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -58,6 +60,16 @@ public class ExibePerfil extends Activity{
 		
 		foto = (ImageView) findViewById(R.id.imagePerfil);
 		
+foto2 = (ImageView) findViewById(R.id.exibePerfil);
+		
+		try{
+			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
+			foto2.setImageBitmap(bitmap);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		try{
 			imagem = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
 			foto.setImageBitmap(imagem);
@@ -76,4 +88,44 @@ public class ExibePerfil extends Activity{
 			}
 		});
 	}
+	
+	public void meuPerfil(View v){
+		  
+		Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+		it.putExtra("Usuario", user);
+		startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
+		
+		
+	}
+	
+	public void exibeClassificados(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	   
+		
+		
+		
+	}
+	public void exibeMensagens(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+	}
+	
+	public void ExibeHome(View v){
+		
+		Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	
+		
+	}
+	
+
 }

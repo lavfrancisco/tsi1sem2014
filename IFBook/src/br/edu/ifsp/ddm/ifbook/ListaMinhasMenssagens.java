@@ -3,8 +3,8 @@ package br.edu.ifsp.ddm.ifbook;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
-import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
+import br.edu.ifsp.ddm.ifbook.dao.MensagemDAO;
+import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.os.Bundle;
 import android.app.Activity;
@@ -22,65 +22,68 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
-public class ListarMeusClassificados extends Activity {
+public class ListaMinhasMenssagens extends Activity {
 
-	
-	private List<Classificado> classificados;
-	private ClassificadoDAO dao;
-	private ListView lvClassificados;
-	private Classificado classificado;
+	private List<Mensagem> mensagens;
+	private MensagemDAO dao;
+	private ListView lvMensagens;
+	private Mensagem mensagem;
 	private Usuario user;
 	private Intent it;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 	private ImageView foto;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.listar_meus_classificado);
-	
-		lvClassificados = (ListView) findViewById(R.id.listaMeusClassificados);
-		lvClassificados.setOnItemLongClickListener(excluirClassificado);
-		classificados = new ArrayList<Classificado>();
-		dao = new ClassificadoDAO(getApplicationContext());
-		lvClassificados.setOnItemClickListener(selecionarUsuarioClassificado);
-		
+		setContentView(R.layout.activity_lista_minhas_menssagens);
+		lvMensagens = (ListView) findViewById(R.id.listaMensagens);
+		lvMensagens.setOnItemLongClickListener(excluirMensagem);
+		lvMensagens.setOnItemClickListener(selecionarMensagem);
+		lvMensagens.setOnItemClickListener(selecionarUsuarioMenssagem);
+		mensagens = new ArrayList<Mensagem>();
+		dao = new MensagemDAO(getApplicationContext());
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
-
-		
-		
-			lvClassificados.setOnItemLongClickListener(excluirClassificado);
-		
 		atualizarLista();	
 
 
-foto = (ImageView) findViewById(R.id.exibePerfil2);
+		foto = (ImageView) findViewById(R.id.exibePerfil2);
+				
+				try{
+					Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
+					foto.setImageBitmap(bitmap);
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				
 		
-		try{
-			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
-			foto.setImageBitmap(bitmap);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
-		
-	
-	
+		atualizarLista();
 	}
-	private OnItemClickListener selecionarUsuarioClassificado = new OnItemClickListener() {
+	
+	public void NovaMenssagem(View v){
+		
+		Intent it = new Intent(getApplicationContext(), ActivityCadastroMensagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+	}
+	
+
+	
+	private OnItemClickListener selecionarUsuarioMenssagem = new OnItemClickListener() {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long id) {
 			
-			classificado = classificados.get(pos);
+			mensagem = mensagens.get(pos);
 			
-		       final Intent intent = new Intent(ListarMeusClassificados.this, ActivityEditarClassificado.class);
-  
+		       final Intent intent = new Intent(ListaMinhasMenssagens.this, ActivityEditarMenssagem.class);
+		       
 	    		
 
-	    	      String idclassificado = String.valueOf(classificado.getIdClassificado());
+	    	      String idmenssagem = String.valueOf(mensagem.getIdMensagem());
 		    		
-	    	      intent.putExtra("IdClassificado", idclassificado);
+	    	      intent.putExtra("IdMenssagem", idmenssagem);
 	              intent.putExtra("Usuario", user);
 	              startActivity(intent);
 	          	
@@ -88,36 +91,36 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 
 	};
 	
-	public void NovoClassificado(View v){
+	public void editarMenssagem(View v){
 		
 		
-		Intent it = new Intent(getApplicationContext(), ActivityCadastroClassificado.class);
+		Intent it = new Intent(getApplicationContext(), ListaMinhasMenssagens.class);
 		it.putExtra("Usuario", user);
 		startActivity(it);
 		
-		
 	}
-
+	
+	
 	private void atualizarLista() {
 
-		dao = new ClassificadoDAO(this);
-		
+		dao = new MensagemDAO(this);
 		int id = user.getIdUsuario();
-		classificados = dao.listAll(id);
+		mensagens = dao.listAll(id);
 
-		
-		if (classificados != null) {
+	
+		if (mensagens != null) {
 
-			if (classificados.size() >=0) {
+			if (mensagens.size() >=0) {
 
-				ListaClassificados men = new ListaClassificados(
-						getApplicationContext(), classificados);
-				lvClassificados.setAdapter(men);
+				ListaMensagens men = new ListaMensagens(
+						getApplicationContext(), mensagens);
+				lvMensagens.setAdapter(men);
 			}
 
 		}
 
 	}
+	
 	
 	public void meuPerfil(View v){
 		  
@@ -127,6 +130,15 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		
 		
 	}
+	public void exibeMensagens(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+	}
+	
 	
 	public void exibeClassificados(View v){
 		
@@ -150,22 +162,25 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	}
 	
 
-	private void excluirClassificado(final int idClassificado) {
-	
+	private void excluirMensagem(final int idMensagem) {
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Excluir o Classificado?")
+		builder.setTitle("Excluir a Mensagem?")
 				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setMessage("Deseja excluir o Classificado?")
+				.setMessage("Deseja excluir essa Mesagem?")
 				.setCancelable(false)
 				.setPositiveButton("Sim",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-								if (dao.deletar(idClassificado)) {
+							System.out.println("ID MENSSAGEM: "+idMensagem);
+							dao = new MensagemDAO(getApplicationContext());
+							
+								if (dao.deletar(idMensagem)) {
 									
-									exibirClassificado("Classificado excluído com sucesso!");
+									exibirMensagem("Mensagem excluída com sucesso!");
 									atualizarLista();
 								} else {
-									exibirClassificado("Não foi possível excluir o Classificado!");
+									exibirMensagem("Não foi possível excluir a Mensagem!");
 								}
 
 							}
@@ -178,41 +193,31 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 						});
 		builder.create();
 		builder.show();
-	
+		
+
 	}
 
-	private OnItemLongClickListener excluirClassificado = new OnItemLongClickListener() {
+	private OnItemLongClickListener excluirMensagem = new OnItemLongClickListener() {
 
 		public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos,
 				long arg3) {
-			excluirClassificado(classificados.get(pos).getIdClassificado());
+			excluirMensagem(mensagens.get(pos).getIdMensagem());
 			
 			return true;
 		}
 
 	};
-	
-	public void exibeMensagens(View v){
-		
-		
-		Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
-		it.putExtra("Usuario", user);
-		startActivity(it);
-		
-	}
-	
 
-	private void exibirClassificado(String msg) {
+	private void exibirMensagem(String msg) {
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 	}
 	
 	
-	private OnItemClickListener selecionarClassificado = new OnItemClickListener() {
+	private OnItemClickListener selecionarMensagem = new OnItemClickListener() {
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long id) {
-			
-			Intent it = new Intent(ListarMeusClassificados.this, Login.class);	
-			it.putExtra("idClassificado", classificados.get(pos).getIdClassificado());
+			Intent it = new Intent(ListaMinhasMenssagens.this, ActivityCadastroMensagem.class);			
+			it.putExtra("idMensagem", mensagens.get(pos).getIdMensagem());
 			startActivity(it);
 
 		}
@@ -220,13 +225,12 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	};
 
 
-
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.listar_meus_classificado, menu);
+		getMenuInflater()
+				.inflate(R.menu.activity_lista_minhas_menssagens, menu);
 		return true;
 	}
-	
+
 }

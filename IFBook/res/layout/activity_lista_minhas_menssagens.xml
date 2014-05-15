@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityListaMensagens" >
+    tools:context=".ListaMinhasMenssagens" >
 
-    
+   
      <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:text="       Menssagens"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" 
-      android:onClick="exibeMensagens"/>
+        android:onClick="exibeMensagens"/>
     
     <TextView
         android:id="@+id/botaoClassificados"
@@ -101,7 +101,6 @@
         android:layout_height="wrap_content"
         android:layout_x="46dp"
         android:layout_y="119dp"
-        android:text="Editar" 
-        android:onClick="editarMenssagem"/>
+        android:text="Editar" />
 
 </AbsoluteLayout>

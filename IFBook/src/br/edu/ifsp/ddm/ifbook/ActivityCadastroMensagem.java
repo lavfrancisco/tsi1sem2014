@@ -60,6 +60,7 @@ public class ActivityCadastroMensagem extends Activity {
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static final int CAMERA_REQUEST = 1888;
 	private Usuario usuario;	
+	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 	
 	
 	@Override
@@ -79,14 +80,6 @@ public class ActivityCadastroMensagem extends Activity {
    	it = getIntent();
 	user = (Usuario) it.getSerializableExtra("Usuario");
 	
-//	classificado = (Classificado) it.getSerializableExtra("meuClassificado");
-	
-//	System.out.println("ID CLASSIFICADO: "+ classificado.getIdClassificado());
-//	System.out.println("ID USUSARIO: "+ classificado.getIdClassificado());
-//	System.out.println("TITULO: "+ classificado.getTitulo());
-//	System.out.println("DESCRICAO: "+ classificado.getDescricao());
-//	System.out.println("IMAGEM: "+ classificado.getImagem());
-//	System.out.println("DATA: "+ classificado.getData());
 
       preencherAreaInteresse();
 		
@@ -144,6 +137,8 @@ public class ActivityCadastroMensagem extends Activity {
 								
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
+			
+			if(bos.size() <= 319324){
 			menssagem.setImagem(bos.toByteArray());
 			menssagem.setTitulo(titulo.getText().toString());
 			menssagem.setDescricao(descricao.getText().toString());
@@ -162,6 +157,10 @@ public class ActivityCadastroMensagem extends Activity {
 			Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
 			it.putExtra("Usuario", user);
 			startActivity(it);
+			}else{
+				Toast.makeText(getApplicationContext(), "Imagem muito grande!", Toast.LENGTH_LONG).show();
+					
+				}
 			}
 			
 
@@ -223,5 +222,41 @@ public class ActivityCadastroMensagem extends Activity {
      }
  
  }
+	public void exibeClassificados(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	   
+		
+		
+		
+	}
+	public void exibeMensagens(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+	}
+	
+	public void ExibeHome(View v){
+		
+		Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	
+		
+	}
+	public void meuPerfil(View v){
+		  
+		Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+		it.putExtra("Usuario", user);
+		startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
+		
+		
+	}
 
 }

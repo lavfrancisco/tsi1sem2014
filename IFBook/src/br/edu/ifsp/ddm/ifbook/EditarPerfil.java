@@ -40,6 +40,7 @@ public class EditarPerfil extends Activity{
 	private Button salvar;
 	private Usuario user;
 	private Bitmap imagem;
+	private ImageView foto2;
 	private Intent i;
 	private EstadoCivilListAdapter adapter;
 	
@@ -49,6 +50,17 @@ public class EditarPerfil extends Activity{
 		setContentView(R.layout.perfil_editar);
 		i = getIntent();
 		user = (Usuario) i.getSerializableExtra("Usuario");
+		
+		
+foto2 = (ImageView) findViewById(R.id.exibePerfil);
+		
+		try{
+			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
+			foto2.setImageBitmap(bitmap);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		foto = (ImageView) findViewById(R.id.imgEdit);
 		try{
@@ -161,4 +173,43 @@ public class EditarPerfil extends Activity{
             foto.setImageBitmap(imagem);
         }
     }
+    
+    public void meuPerfil(View v){
+		  
+		Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+		it.putExtra("Usuario", user);
+		startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
+		
+		
+	}
+	
+	public void exibeClassificados(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	   
+		
+		
+		
+	}
+	public void exibeMensagens(View v){
+		
+		
+		Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+	}
+	
+	public void ExibeHome(View v){
+		
+		Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+	
+		
+	}
 }
+
