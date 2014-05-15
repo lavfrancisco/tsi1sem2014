@@ -2,6 +2,8 @@ package br.edu.ifsp.ddm.ifbook;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
 import br.edu.ifsp.ddm.ifbook.dao.MensagemDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
@@ -61,6 +63,15 @@ public class ActivityListaMensagens extends Activity {
 		
 		atualizarLista();
 	}
+	
+	public void NovaMenssagem(View v){
+		
+		Intent it = new Intent(getApplicationContext(), ActivityCadastroMensagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+		
+	}
+	
 
 	
 	private OnItemClickListener selecionarUsuarioMenssagem = new OnItemClickListener() {
@@ -142,6 +153,9 @@ public class ActivityListaMensagens extends Activity {
 				.setPositiveButton("Sim",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
+							System.out.println("ID MENSSAGEM: "+idMensagem);
+							dao = new MensagemDAO(getApplicationContext());
+							
 								if (dao.deletar(idMensagem)) {
 									
 									exibirMensagem("Mensagem excluída com sucesso!");

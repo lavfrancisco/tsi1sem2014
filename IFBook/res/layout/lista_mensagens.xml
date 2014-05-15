@@ -91,7 +91,7 @@
         android:layout_x="0dp"
         android:layout_y="119dp"
         android:text="Novo" 
-    	android:onClick="NovoClassificado"/>
+    	android:onClick="NovaMenssagem"/>
 
     <Button
         android:id="@+id/botaoEditarMenssagem"

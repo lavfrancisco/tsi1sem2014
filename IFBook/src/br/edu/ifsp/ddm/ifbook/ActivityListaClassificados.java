@@ -164,6 +164,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 				.setPositiveButton("Sim",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
+								dao = new ClassificadoDAO(getApplicationContext());
 								if (dao.deletar(idClassificado)) {
 									
 									exibirClassificado("Classificado excluído com sucesso!");

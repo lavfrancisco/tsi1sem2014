@@ -81,6 +81,7 @@ public class MensagemDAO extends DAO<Mensagem> {
 	}
 
 	public boolean deletar(Integer id) {
+		System.out.println("ID MENSSAGEM: "+ id);
 		if (database.delete(tableName, "idMensagem = ?",
 				new String[] { String.valueOf(id) }) > 0) {
 			fecharConexao();
@@ -98,7 +99,7 @@ public class MensagemDAO extends DAO<Mensagem> {
 		mensagem.setTitulo(cursor.getString(1));
 		mensagem.setDescricao(cursor.getString(2));
 		mensagem.setData(cursor.getString(3));
-		mensagem.setImagem(null);
+		mensagem.setImagem(cursor.getBlob(4));
 		AreaInteresseDAO areainteresseDAO = new AreaInteresseDAO(this.context);
 
 		mensagem.setAreaInteresse(areainteresseDAO
@@ -150,14 +151,14 @@ public class MensagemDAO extends DAO<Mensagem> {
 
 	private ContentValues serializeContentValues(Mensagem mensagem) {
 		ContentValues values = new ContentValues();
+		
 		values.put("idMensagem", mensagem.getIdMensagem());
-		values.put("Data", mensagem.getData().toString());
 		values.put("Titulo", mensagem.getTitulo());
 		values.put("Descricao", mensagem.getDescricao());
-		values.put("AreaInteresse_idAreaInteresse", mensagem
-				.getAreaInteresse().getIdAreaInteresse());
-		//valor fixo para testes
-		values.put("Usuario_idUsuario", 1);
+		values.put("Data", mensagem.getData());
+		values.put("Imagem", mensagem.getImagem());
+		values.put("AreaInteresse_idAreaInteresse", mensagem.getAreaInteresse().getIdAreaInteresse());
+		values.put("Usuario_idUsuario", mensagem.getUsuario().getIdUsuario());
 
 		return values;
 	}

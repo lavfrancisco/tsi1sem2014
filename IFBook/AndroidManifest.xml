@@ -51,6 +51,10 @@
             android:name="br.edu.ifsp.ddm.ifbook.ActivityEditarClassificado"
             android:label="@string/title_activity_activity_editar_classificado" >
         </activity>
+        <activity
+            android:name="br.edu.ifsp.ddm.ifbook.ActivityCadastroMenssagem"
+            android:label="@string/title_activity_activity_cadastro_menssagem" >
+        </activity>
     </application>
 
 </manifest>

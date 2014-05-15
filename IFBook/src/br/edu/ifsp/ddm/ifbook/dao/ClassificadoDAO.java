@@ -52,7 +52,6 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	public Classificado getById (int id){
 		Classificado classificado = new Classificado();
 		
-		System.out.println("ID DAO: "+ id);	
 		
 		Cursor cursor = executeSelect("idClassificado = ?", new String[]{String.valueOf(id)}, null);
 		
@@ -62,12 +61,6 @@ public class ClassificadoDAO extends DAO<Classificado> {
 		}
 		fecharConexao(cursor);
 		
-		System.out.println("ID DAO: "+ classificado.getIdClassificado());	
-		System.out.println("ID DAO: "+ classificado.getData());	
-		System.out.println("ID DAO: "+ classificado.getTitulo());
-		System.out.println("ID DAO: "+ classificado.getDescricao());	
-		System.out.println("ID DAO: "+ classificado.getAreaInteresse_idAreaInteresse().getNome());	
-		System.out.println("ID DAO: "+ classificado.getImagem());	
 		
 		return classificado;
 	}

@@ -1,16 +1,18 @@
 package br.edu.ifsp.ddm.ifbook.modelo;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
 
 
-public class Mensagem {
+public class Mensagem implements Serializable {
 
+	private static final long serialVersionUID = 4360718276063483351L;
 	private Integer idMensagem;
 	private String Data;
 	private String Titulo;
 	private String Descricao;
-	private Blob Imagem;
+	private byte[] Imagem = null;
 	private AreaInteresse AreaInteresse;
 	private Usuario Usuario;
 	
@@ -38,10 +40,10 @@ public class Mensagem {
 	public void setDescricao(String descricao) {
 		Descricao = descricao;
 	}
-	public Blob getImagem() {
+	public byte[] getImagem() {
 		return Imagem;
 	}
-	public void setImagem(Blob imagem) {
+	public void setImagem(byte[] imagem) {
 		Imagem = imagem;
 	}
 	public AreaInteresse getAreaInteresse() {

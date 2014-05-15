@@ -20,6 +20,7 @@ public class ListaMensagens  extends BaseAdapter {
 		private Context context;
 		private List<Mensagem> lista;
 		private ImageView foto;
+		private ImageView img;
 
 		public ListaMensagens(Context context, List<Mensagem> lista) {
 			this.context = context;
@@ -75,7 +76,18 @@ public class ListaMensagens  extends BaseAdapter {
 			}
 		
 		
+img = (ImageView) view.findViewById(R.id.imgMenssagem);
 			
+			try{
+				Bitmap bitmap = BitmapFactory.decodeByteArray(m.getImagem(), 0, m.getImagem().length);
+				img.setImageBitmap(bitmap);
+			}
+			catch(Exception e){
+				
+				
+				e.printStackTrace();
+			}
+		
 			
 			
 			return view;
