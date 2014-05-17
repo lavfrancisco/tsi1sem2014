@@ -16,7 +16,7 @@
         android:layout_x="0dp"
         android:layout_y="87dp"
         android:background="#E8E8E8"
-        android:text="Classificado"
+        android:text="Novo Classificado"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFA500"
         android:textSize="20sp"
@@ -50,7 +50,7 @@
         android:layout_y="55dp"
         android:background="#4876FF"
         android:clickable="true"
-        android:text="       Menssagens"
+        android:text="       Mensagens"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" 
         android:onClick="exibeMensagens"/>
@@ -149,10 +149,9 @@
                   <ImageView
                       android:id="@+id/imagemClassificado"
                       android:layout_width="200dp"
-                android:layout_height="200dp"
+                      android:layout_height="200dp"
                       android:layout_x="51dp"
-                      android:layout_y="433dp"
-                      android:src="@drawable/image" />
+                      android:layout_y="433dp" />
 
    </AbsoluteLayout>
 </ScrollView>

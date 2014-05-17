@@ -87,6 +87,12 @@ img = (ImageView) view.findViewById(R.id.imgMenssagem);
 				
 				e.printStackTrace();
 			}
+			if(m.getImagem() == null){
+				img.setVisibility(View.GONE);
+				
+				
+				
+			}
 		
 			
 			

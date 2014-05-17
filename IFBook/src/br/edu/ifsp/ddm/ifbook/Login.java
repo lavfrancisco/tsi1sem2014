@@ -62,7 +62,7 @@ public class Login extends Activity {
 						if(user.getSenha().equals(sb.toString()) && user.getProntuario().equals(prontuario)){
 							Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
 							it.putExtra("Usuario", user);
-							startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
+							startActivity(it);
 						}
 						else{
 							exibirMensagem("Prontuario ou Senha inválidos!");

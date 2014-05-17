@@ -64,7 +64,9 @@
         android:layout_above="@+id/textViewSenha"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="22dp"
-        android:ems="10" />
+        android:ems="10" >
+           <requestFocus />
+        </EditText>
 
     <ImageView
         android:id="@+id/fotoUsuarioClassificado"

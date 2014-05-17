@@ -60,6 +60,7 @@ public class ListaClassificados  extends BaseAdapter {
 			
 			TextView descricao = (TextView) view.findViewById(R.id.textDescricaoClassificado);
 			descricao.setText(c.getDescricao());
+			//descricao.setHeight(10);
 			
 			TextView area = (TextView) view.findViewById(R.id.textAreaInteresseClassificado);
 			area.setText(c.getAreaInteresse_idAreaInteresse().getNome());  
@@ -93,7 +94,12 @@ img = (ImageView) view.findViewById(R.id.imgClassificado);
 				
 				e.printStackTrace();
 			}
+	if(c.getImagem() == null){
+		img.setVisibility(View.GONE);
 		
+		
+		
+	}
 			
 
 			

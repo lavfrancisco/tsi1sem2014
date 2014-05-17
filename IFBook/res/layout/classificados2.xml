@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/textDescricaoClassificado"
         android:layout_width="237dp"
-        android:layout_height="94dp"
+        android:layout_height="wrap_content"
         android:layout_x="66dp"
         android:layout_y="34dp"
         android:text="
@@ -84,10 +84,10 @@
 
     <ImageView
         android:id="@+id/imgClassificado"
-        android:layout_width="221dp"
-        android:layout_height="221dp"
-        android:layout_x="72dp"
-        android:layout_y="83dp"
+            android:layout_width="221dp"
+            android:layout_height="221dp"
+            android:layout_x="74dp"
+            android:layout_y="62dp"
         android:src="@drawable/image" />
 
 </AbsoluteLayout>

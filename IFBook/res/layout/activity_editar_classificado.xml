@@ -18,7 +18,7 @@
         android:layout_x="0dp"
         android:layout_y="87dp"
         android:background="#E8E8E8"
-        android:text="Classificado"
+        android:text="Editar Classificado"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFA500"
         android:textSize="20sp"
@@ -52,7 +52,7 @@
         android:layout_y="55dp"
         android:background="#4876FF"
         android:clickable="true"
-        android:text="       Menssagens"
+        android:text="       Mensagens"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" 
         android:onClick="exibeMensagens"/>

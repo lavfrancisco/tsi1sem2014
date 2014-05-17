@@ -57,6 +57,7 @@ public class ActivityCadastroMensagem extends Activity {
 	private Intent i;
 	private ImageView foto;
 	private ImageView img;
+	private boolean erroGravacao;
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static final int CAMERA_REQUEST = 1888;
 	private Usuario usuario;	
@@ -68,7 +69,7 @@ public class ActivityCadastroMensagem extends Activity {
 		
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_menssagem);
-
+    	erroGravacao = false;
         titulo = (EditText) findViewById(R.id.editTituloNovaMenssagem);
         descricao = (EditText) findViewById(R.id.editDescricaoNovaMenssagem);
         area = (Spinner) findViewById(R.id.spArea2);
@@ -94,27 +95,23 @@ public class ActivityCadastroMensagem extends Activity {
 		}
 
 		img = (ImageView) findViewById(R.id.imagemMenssagem);
-		imagem = ((BitmapDrawable)img.getDrawable()).getBitmap();	
 		arquivo.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+				i = new Intent(Intent.ACTION_PICK,
+						android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
 				
 			}
 		});	
 		
-	
-	
-
-
  
 	postar.setOnClickListener(new View.OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {	
-			
+			menssagem = new Mensagem();
 			
 			if(titulo.getText().toString().trim().length() == 0){
 				
@@ -129,17 +126,29 @@ public class ActivityCadastroMensagem extends Activity {
 				
 				
 			}else{
+				if (img.getDrawable() != null) {
+
+					imagem = ((BitmapDrawable) img.getDrawable())
+							.getBitmap();
+					ByteArrayOutputStream bos = new ByteArrayOutputStream();
+					imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+					if (bos.size() <= 319324) {
 			
-			menssagem = new Mensagem();
+						menssagem.setImagem(bos.toByteArray());
+					}else{
+						
+						erroGravacao = true;
+						Toast.makeText(getApplicationContext(),
+								"Imagem muito grande!", Toast.LENGTH_LONG)
+								.show();
+					}
+					}
+				if (erroGravacao == false){
 			usuario = new Usuario();
 			usuario.setIdUsuario(user.getIdUsuario());
 			
-								
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
-			
-			if(bos.size() <= 319324){
-			menssagem.setImagem(bos.toByteArray());
+		
 			menssagem.setTitulo(titulo.getText().toString());
 			menssagem.setDescricao(descricao.getText().toString());
 			menssagem.setAreaInteresse(areas.get(area.getSelectedItemPosition()));
@@ -157,10 +166,7 @@ public class ActivityCadastroMensagem extends Activity {
 			Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
 			it.putExtra("Usuario", user);
 			startActivity(it);
-			}else{
-				Toast.makeText(getApplicationContext(), "Imagem muito grande!", Toast.LENGTH_LONG).show();
-					
-				}
+			}
 			}
 			
 
@@ -201,6 +207,7 @@ public class ActivityCadastroMensagem extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_cadastro_menssagem, menu);
 		return true;
+		
 	}
 	
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
@@ -222,6 +229,9 @@ public class ActivityCadastroMensagem extends Activity {
      }
  
  }
+
+				
+		
 	public void exibeClassificados(View v){
 		
 		
@@ -258,5 +268,6 @@ public class ActivityCadastroMensagem extends Activity {
 		
 		
 	}
+
 
 }

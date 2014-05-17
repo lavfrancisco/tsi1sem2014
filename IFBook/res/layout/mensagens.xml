@@ -19,13 +19,15 @@
     <TextView
         android:id="@+id/textViewDescricao"
         android:layout_width="237dp"
-        android:layout_height="94dp"
+       android:layout_height="wrap_content"
         android:layout_x="66dp"
         android:layout_y="34dp"
         android:text="
         Descricao"
         android:textColor="#000101"
         android:textSize="10sp" />
+    
+   
 
     <TextView
         android:id="@+id/textViewAreaInteresse"
@@ -74,13 +76,13 @@
         android:layout_x="2dp"
         android:layout_y="2dp"
         android:src="@drawable/foto_perfil" />
-    
+
         <ImageView
-        android:id="@+id/imgMenssagem"
-        android:layout_width="221dp"
-        android:layout_height="221dp"
-        android:layout_x="72dp"
-        android:layout_y="83dp"
-        android:src="@drawable/image" />
+            android:id="@+id/imgMenssagem"
+            android:layout_width="221dp"
+            android:layout_height="221dp"
+            android:layout_x="74dp"
+            android:layout_y="62dp"
+            android:src="@drawable/image" />
 
 </AbsoluteLayout>
