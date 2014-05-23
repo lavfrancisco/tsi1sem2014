@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+      android:background="#E0EEEE"
+    >
+   
+
+    <ImageView
+        android:id="@+id/estrela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/btn_star_big_off" />
+
+    <TextView
+        android:id="@+id/txtidUsuario"
+        android:layout_width="249dp"
+        android:layout_height="wrap_content"
+        android:layout_x="34dp"
+        android:textColor="#E0EEEE"
+        />
+
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="220dp"
+        android:layout_height="23dp"
+        android:layout_x="98dp"
+        android:layout_y="4dp"
+
+        android:textStyle="bold"
+        android:typeface="sans" 
+                android:background="#63B8FF"
+        android:textColor="#F2F8FA"
+        android:textSize="12px"/>
+
+    <TextView
+        android:id="@+id/txtNascimento"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_x="98dp"
+        android:layout_y="28dp"
+        android:background="#FAFAD2"
+        android:textColor="#000101"
+        android:textSize="12px" />
+
+    <ImageView
+        android:id="@+id/fotoAnivesasriante"
+        android:layout_width="58dp"
+        android:layout_height="43dp"
+        android:layout_x="34dp"
+        android:layout_y="1dp"
+        android:src="@drawable/foto_perfil" />
+
+</AbsoluteLayout >

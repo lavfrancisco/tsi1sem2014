@@ -1,0 +1,130 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Perfil_listagem" >
+   
+    <TextView
+        android:id="@+id/txtEstadoCivil"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_x="0dp"
+        android:layout_y="173dp"
+        android:background="#104E8B"
+        android:text="        Aniversariantes"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#F2F8FA"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <ListView
+        android:id="@+id/ListaAniversariantes"
+        android:layout_width="match_parent"
+        android:layout_height="278dp"
+        android:layout_x="1dp"
+        android:layout_y="208dp" >
+
+    </ListView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:layout_x="4dp"
+        android:layout_y="108dp"
+        android:src="@drawable/niver" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_x="1dp"
+        android:layout_y="1dp"
+        android:background="#a8cf45"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/Home"
+    android:layout_width="111dp"
+        android:layout_height="35dp"
+        android:layout_x="5dp"
+        android:layout_y="14dp"
+        android:clickable="true"
+        android:onClick="ExibeHome"
+        android:src="@drawable/logotipovazado" />
+
+    <ImageView
+        android:id="@+id/fotoAnivesasriante"
+        android:layout_width="158dp"
+        android:layout_height="98dp"
+        android:layout_x="74dp"
+        android:layout_y="74dp"
+        android:src="@drawable/db2" />
+
+    <TextView
+        android:id="@+id/botaoMenssagens"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_x="2dp"
+        android:layout_y="55dp"
+        android:background="#4876FF"
+        android:clickable="true"
+        android:text="       Mensagens"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" 
+        android:onClick="exibeMensagens"/>
+
+    <TextView
+        android:id="@+id/botaoClassificados"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_x="161dp"
+        android:layout_y="55dp"
+       android:background="#FFA500"
+        android:clickable="true"
+        android:text="      Classificados"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" 
+        android:onClick="exibeClassificados"/>
+
+    <TextView
+        android:id="@+id/textIdClassificado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="96dp"
+        android:layout_y="98dp"
+        android:text="Bem Vindo"
+        android:textColor="#1EEC6D"
+        android:textSize="22px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/TextSaudacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="114dp"
+        android:layout_y="124dp"
+        android:text="Usuario"
+        android:textSize="16px" />
+
+
+    <ImageView
+        android:id="@+id/exibePerfil2"
+        android:layout_width="59dp"
+        android:layout_height="45dp"
+        android:layout_x="263dp"
+        android:layout_y="5dp"
+        android:clickable="true"
+        android:onClick="meuPerfil"
+        android:src="@drawable/foto_perfil" />
+
+    <ImageView
+        android:id="@+id/fotoPerfilUsuario"
+        android:layout_width="83dp"
+        android:layout_height="113dp"
+        android:layout_x="235dp"
+        android:layout_y="104dp"
+        android:src="@drawable/bemvindo" />
+
+</AbsoluteLayout>
