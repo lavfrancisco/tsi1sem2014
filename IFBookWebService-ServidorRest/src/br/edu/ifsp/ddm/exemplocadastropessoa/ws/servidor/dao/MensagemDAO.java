@@ -8,9 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.Mensagem;
+import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.AreaInteresse;
+import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.Usuario;;
 
 
 public class MensagemDAO extends ConnectionFactory {
+	
+	AreaInteresseDAO areaDao;
 	
 	public String inserir(Mensagem m) {
 
@@ -25,26 +29,31 @@ public class MensagemDAO extends ConnectionFactory {
 
 			
 			
-			stmt.setInt(1, m.getIdade());
-			stmt.setString(2, m.getNome());
-			stmt.setString(3, m.getSexo());
+			stmt.setInt(1, m.getIdMensagem());
+			stmt.setString(2, m.getData());
+			stmt.setString(3, m.getTitulo());
+			stmt.setString(4, m.getDescricao());
+			//stmt.setString(5, m.getImagem());
+			stmt.setInt(6, m.getAreaInteresse().getIdAreaInteresse());
+			stmt.setInt(7, m.getUsuario().getIdUsuario());
+			
 			sucesso = stmt.executeUpdate();
 
 			if (sucesso > 0) {
-				return ("PESSOA INSERIDA!");
+				return ("MENSAGEM INSERIDA!");
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return ("ERRO AO INSERIR PESSOA!");
+			return ("ERRO AO INSERIR MENSAGEM!");
 		} finally {
 			closeConnection(conn, stmt);
 		}
-		return ("ERRO AO INSERIR PESSOA!");
+		return ("ERRO AO INSERIR MENSAGEM!");
 
 	}
 
-	public String inserir(List<Pessoa> pessoas) {
+	public String inserir(List<Mensagem> mensagens) {
 
 		Connection conn = null;
 		conn = getConnection();
@@ -52,15 +61,19 @@ public class MensagemDAO extends ConnectionFactory {
 
 		PreparedStatement stmt = null;
 
-		if (pessoas != null) {
-			for (Pessoa p : pessoas) {
+		if (mensagens != null) {
+			for (Mensagem m : mensagens) {
 				try {
 					stmt = conn.prepareStatement("INSERT INTO "
-							+ "PESSOA (IDADE,NOME,SEXO) VALUES(?,?,?)");
+							+ "MENSAGEM (IDMENSAGEM,DATA,TITULO,DESCRICAO,IMAGEM,AREAINTERESSE,USUARIO) VALUES(?,?,?,?,?,?,?)");
 
-					stmt.setInt(1, p.getIdade());
-					stmt.setString(2, p.getNome());
-					stmt.setString(3, p.getSexo());
+					stmt.setInt(1, m.getIdMensagem());
+					stmt.setString(2, m.getData());
+					stmt.setString(3, m.getTitulo());
+					stmt.setString(4, m.getDescricao());
+					//stmt.setString(5, m.getImagem());
+					stmt.setInt(6, m.getAreaInteresse().getIdAreaInteresse());
+					stmt.setInt(7, m.getUsuario().getIdUsuario());
 					sucesso = stmt.executeUpdate();
 
 				} catch (SQLException e) {
@@ -75,14 +88,14 @@ public class MensagemDAO extends ConnectionFactory {
 		closeConnection(conn, stmt);
 		
 		if (sucesso > 0) {
-			return ("PESSOAS INSERIDAS!");
+			return ("MENSAGENS INSERIDAS!");
 		} else {
-			return ("ERRO AO INSERIR AS PESSOAS!");
+			return ("ERRO AO INSERIR AS MENSAGENS!");
 		}
 
 	}
 
-	public String alterar(Pessoa p) {
+	public String alterar(Mensagem m) {
 
 		Connection conn = null;
 		conn = getConnection();
@@ -90,22 +103,25 @@ public class MensagemDAO extends ConnectionFactory {
 		int sucesso = 0;
 		try {
 			stmt = conn
-					.prepareStatement("UPDATE PESSOA SET IDADE = ?, NOME = ?, SEXO = ? WHERE ID = ?");
+					.prepareStatement("UPDATE MENSAGEM SET IDMENSAGEM = ?,DATA = ?,TITULO = ?,DESCRICAO = ?,IMAGEM = ?,AREAINTERESSE = ? WHERE ID = ?");
 
-			stmt.setInt(1, p.getIdade());
-			stmt.setString(2, p.getNome());
-			stmt.setString(3, p.getSexo());
-			stmt.setInt(4, p.getId());
+			stmt.setInt(1, m.getIdMensagem());
+			stmt.setString(2, m.getData());
+			stmt.setString(3, m.getTitulo());
+			stmt.setString(4, m.getDescricao());
+			//stmt.setString(5, m.getImagem());
+			stmt.setInt(6, m.getAreaInteresse().getIdAreaInteresse());
+			stmt.setInt(7, m.getUsuario().getIdUsuario());
 			sucesso = stmt.executeUpdate();
 
 			if (sucesso > 0) {
-				return ("PESSOA ALTERADO!");
+				return ("MENSAGEM ALTERADA!");
 			} else {
-				return ("PESSOA NÃO EXISTE!");
+				return ("MENSAGEM NÃO EXISTE!");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return ("ERRO AO ALTERAR PESSOA!");
+			return ("ERRO AO ALTERAR MENSAGEM!");
 		} finally {
 			closeConnection(conn, stmt);
 		}
@@ -119,42 +135,45 @@ public class MensagemDAO extends ConnectionFactory {
 		int excluidos = 0;
 		PreparedStatement stmt = null;
 		try {
-			stmt = conn.prepareStatement("DELETE FROM PESSOA WHERE ID = ?");
+			stmt = conn.prepareStatement("DELETE FROM MENSAGEM WHERE ID = ?");
 			stmt.setInt(1, id);
 			excluidos = stmt.executeUpdate();
 
 			if (excluidos > 0) {
-				return ("PESSOA REMOVIDA!");
+				return ("MENSAGEM REMOVIDA!");
 			} else {
-				return ("PESSOA NÃO EXISTE!");
+				return ("MENSAGEM NÃO EXISTE!");
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return ("ERRO AO DELETAR PESSOA!");
+			return ("ERRO AO DELETAR MENSAGEM!");
 		} finally {
 			closeConnection(conn, stmt);
 		}
 
 	}
 
-	public Pessoa buscar(int id) {
+	public Mensagem buscar(int id) {
 
 		Connection conn = null;
 		ResultSet resultSet = null;
 		PreparedStatement stmt = null;
 		conn = getConnection();
-		Pessoa p = null;
+		Mensagem m = null;
 		try {
-			stmt = conn.prepareStatement("SELECT * FROM PESSOA WHERE ID = ?");
+			stmt = conn.prepareStatement("SELECT * FROM MENSAGEM WHERE ID = ?");
 			stmt.setInt(1, id);
 			resultSet = stmt.executeQuery();
 			while (resultSet.next()) {
-				p = new Pessoa();
-				p.setId(resultSet.getInt("id"));
-				p.setIdade(resultSet.getInt("idade"));
-				p.setNome(resultSet.getString("nome"));
-				p.setSexo(resultSet.getString("sexo"));
+				m = new Mensagem();
+				m.setIdMensagem(resultSet.getInt("idMensagem"));
+				m.setData(resultSet.getString("data"));
+				m.setTitulo(resultSet.getString("titulo"));
+				m.setDescricao(resultSet.getString("descricao"));
+				//m.setImagem(resultSet.getString("imagem"));
+				//m.setAreaInteresse(resultSet.getString("areaInteresse_idAreaInteresse"));
+				//m.setUsuario(resultSet.getString("usuario_idUsuario"));
 
 			}
 		} catch (SQLException e) {
@@ -162,40 +181,43 @@ public class MensagemDAO extends ConnectionFactory {
 		} finally {
 			closeConnection(conn, stmt, resultSet);
 		}
-		return p;
+		return m;
 	}
 
-	public ArrayList<Pessoa> buscarTodos() {
+	public ArrayList<Mensagem> buscarTodos() {
 
 		Connection conn = null;
 		ResultSet resultSet = null;
 		PreparedStatement stmt = null;
 		conn = getConnection();
-		ArrayList<Pessoa> listaPessoas = null;
+		ArrayList<Mensagem> listaMensagens = null;
 
 		try {
 
 			stmt = conn
-					.prepareStatement("SELECT * FROM PESSOA ORDER BY NOME ASC");
+					.prepareStatement("SELECT * FROM MENSAGEM ORDER BY NOME ASC");
 			resultSet = stmt.executeQuery();
-			listaPessoas = new ArrayList<Pessoa>();
+			listaMensagens = new ArrayList<Mensagem>();
 
 			while (resultSet.next()) {
-				Pessoa p = new Pessoa();
-				p.setId(resultSet.getInt("id"));
-				p.setIdade(resultSet.getInt("idade"));
-				p.setNome(resultSet.getString("nome"));
-				p.setSexo(resultSet.getString("sexo"));
+				Mensagem m = new Mensagem();
+				m.setIdMensagem(resultSet.getInt("idMensagem"));
+				m.setData(resultSet.getString("data"));
+				m.setTitulo(resultSet.getString("titulo"));
+				m.setDescricao(resultSet.getString("descricao"));
+				//m.setImagem(resultSet.getString("imagem"));
+				//m.setAreaInteresse(resultSet.getString("areaInteresse_idAreaInteresse"));
+				//m.setUsuario(resultSet.getString("usuario_idUsuario"));
 
-				listaPessoas.add(p);
+				listaMensagens.add(m);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			listaPessoas = null;
+			listaMensagens = null;
 		} finally {
 			closeConnection(conn, stmt, resultSet);
 		}
-		return listaPessoas;
+		return listaMensagens;
 	}
 }
