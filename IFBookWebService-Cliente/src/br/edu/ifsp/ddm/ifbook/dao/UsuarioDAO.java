@@ -2,15 +2,18 @@ package br.edu.ifsp.ddm.ifbook.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+import br.edu.ifsp.ddm.ifbook.rest.UsuarioREST;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class UsuarioDAO extends DAO<Usuario>{
+	
+	private UsuarioREST rest = new UsuarioREST("usuario");
+	
 	private SQLiteDatabase database;
 	private Context local_context;
 	
@@ -107,69 +110,49 @@ public class UsuarioDAO extends DAO<Usuario>{
 	
 	public List<Usuario> listAll() {
 		List<Usuario> list = new ArrayList<Usuario>();
-		Cursor cursor = executeSelect(null, null, "1");
-		
+		try {
+			list = rest.getListaUsuarios();
+		} catch (Exception e) {
 
-		if(cursor!=null && cursor.moveToFirst())
-		{
-			do{
-				
-				
-				list.add(serializeByCursor(cursor));
-			}while(cursor.moveToNext());
-			
-			
+			e.printStackTrace();
 		}
-		
-		fecharConexao(cursor);
-		
-		return list;	
-	
+
+		return list;
+
 	}
 	
 	public Usuario getByProntuario (String prontuario){
-		Usuario usuario = new Usuario();
-			
-		Cursor cursor = executeSelect("Prontuario = ?", new String[]{prontuario}, null);
-		
-		if(cursor!=null && cursor.moveToFirst())
-		{
-			usuario = serializeByCursor(cursor);
+		Usuario usuario = null;
+		try {
+			usuario = rest.getProntuario(prontuario);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		fecharConexao(cursor);
-		
+
 		return usuario;
 	}
 	
 	public Usuario getById (int id){
-		Usuario usuario = new Usuario();
-			
-		Cursor cursor = executeSelect("idUsuario = ?", new String[]{String.valueOf(id)}, null);
-		
-		if(cursor!=null && cursor.moveToFirst())
-		{
-			usuario = serializeByCursor(cursor);
+		Usuario usuario = null;
+		try {
+			usuario = rest.getUsuario(id);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		fecharConexao(cursor);
-		
+
 		return usuario;
 	}
 	
 	public boolean autualizar(Usuario usuario){
-		ContentValues values = serializeContentValues(usuario);
-		if(database.update(tableName, values, "idUsuario = ?", new String[]{String.valueOf(usuario.getIdUsuario())})>0){
-			close();
-			return true;
-		}
-		else{
-			try {
-				clone();
-			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			if (rest.atualizar(usuario).equalsIgnoreCase(
+					"Usuario Atualizada!"))
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
+		return false;
 	}
 	
 	

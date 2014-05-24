@@ -22,6 +22,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -62,6 +63,7 @@ public class ActivityEditarClassificado extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_editar_classificado);
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
@@ -143,7 +145,20 @@ public class ActivityEditarClassificado extends Activity {
 					Toast.makeText(getApplicationContext(),
 							"Descrição inválida!", Toast.LENGTH_LONG).show();
 
-				} else {
+				}else if (descricao.getText().toString().trim().length() > 200) {
+
+					Toast.makeText(getApplicationContext(),
+							"Descrição inválida!", Toast.LENGTH_LONG).show();
+
+				} else if (titulo.getText().toString().trim().length() > 50) {
+
+				
+					Toast.makeText(getApplicationContext(), "Título inválido!",
+							Toast.LENGTH_LONG).show();
+
+				} 
+				
+				else {
 
 					ByteArrayOutputStream bos = new ByteArrayOutputStream();
 					imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);

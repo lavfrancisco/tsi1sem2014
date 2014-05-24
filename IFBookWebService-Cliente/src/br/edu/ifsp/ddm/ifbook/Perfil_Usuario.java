@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,6 +38,7 @@ public class Perfil_Usuario extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_perfil_usuario);
 		nome = (TextView) findViewById(R.id.textNomeUsuario);
 		apelido = (TextView) findViewById(R.id.textUsuarioApelido);

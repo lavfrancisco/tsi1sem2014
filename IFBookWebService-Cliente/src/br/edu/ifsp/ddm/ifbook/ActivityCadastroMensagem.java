@@ -27,6 +27,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,6 +69,7 @@ public class ActivityCadastroMensagem extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cadastro_menssagem);
     	erroGravacao = false;
         titulo = (EditText) findViewById(R.id.editTituloNovaMenssagem);
@@ -125,6 +127,17 @@ public class ActivityCadastroMensagem extends Activity {
 				Toast.makeText(getApplicationContext(), "Descrição inválida!", Toast.LENGTH_LONG).show();
 				
 				
+			}else if (descricao.getText().toString().trim().length() > 200) {
+
+				Toast.makeText(getApplicationContext(),
+						"Descrição inválida!", Toast.LENGTH_LONG).show();
+
+			} else if (titulo.getText().toString().trim().length() > 50) {
+
+			
+				Toast.makeText(getApplicationContext(), "Título inválido!",
+						Toast.LENGTH_LONG).show();
+
 			}else{
 				if (img.getDrawable() != null) {
 
