@@ -12,12 +12,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.dao.PessoaDAO;
+import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.exception.NoContentException;
 import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.Pessoa;
+import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.Usuario;
 
 import com.google.gson.Gson;
 
-@Path("/pessoa")
+@Path("/usuario")
 public class PessoaResource {
 
 	@GET
@@ -28,22 +30,34 @@ public class PessoaResource {
 	}
 
 	@GET
-	@Path("/buscarTodosGSON")
+	@Path("/getAniversariantes")
 	@Produces("application/json")
 	public String selTodosGSON() {
-		return new Gson().toJson(new PessoaDAO().buscarTodos());
+		return new Gson().toJson(new UsuarioDAO().Aniversariantes());
 	}
 
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public Pessoa getPessoa(@PathParam("id") int id) {
-		Pessoa p = new PessoaDAO().buscar(id);
+	public Usuario getUsuario(@PathParam("id") int id) {
+		Usuario usuario = new UsuarioDAO().getById(id);
 
-		if (p == null)
-			throw new NoContentException("Pessoa não encontrada!");
+		if (usuario == null)
+			throw new NoContentException("Usuario não encontrado!");
 
-		return p;
+		return usuario;
+	}
+	
+	@GET
+	@Path("/{bv}")
+	@Produces("application/json")
+	public Usuario getUsuario(@PathParam("bv") String bv) {
+		Usuario usuario = new UsuarioDAO().getProntuario(bv);
+
+		if (usuario == null)
+			throw new NoContentException("Usuario não encontrado!");
+
+		return usuario;
 	}
 
 	@GET
