@@ -5,10 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.EstadoCivil;
-import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.Pessoa;
 import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.Usuario;
 
 public class UsuarioDAO extends ConnectionFactory{

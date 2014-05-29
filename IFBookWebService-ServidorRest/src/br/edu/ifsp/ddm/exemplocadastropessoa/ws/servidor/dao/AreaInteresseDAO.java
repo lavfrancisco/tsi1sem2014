@@ -1,111 +1,83 @@
 package br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import br.edu.ifsp.ddm.exemplocadastropessoa.ws.servidor.modelo.AreaInteresse;
+
+
 
 
 
 public class AreaInteresseDAO  extends ConnectionFactory {
+	
+
+	public AreaInteresse getById(int id) {
+
+		Connection conn = null;
+		ResultSet resultSet = null;
+		PreparedStatement stmt = null;
+		conn = getConnection();
+		AreaInteresse area = null;
+		try {
+			stmt = conn.prepareStatement("SELECT * FROM areaInteresse WHERE idAreaInteresse = ?");
+			stmt.setInt(1, id);
+			resultSet = stmt.executeQuery();
+			while (resultSet.next()) {
+				area = new AreaInteresse();			
+				
+				area.setIdAreaInteresse(resultSet.getInt("idAreaInteresse"));
+				area.setTipo(resultSet.getInt("Tipo"));
+				area.setNome(resultSet.getString("Nome"));
+
+				
+				
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(conn, stmt, resultSet);
+		}
+		return area;
+	}
 
 
-	//private SQLiteDatabase database;
-	
-	//public AreaInteresseDAO(Context context) {
-//		super(context);
-//		campos = new String[]{"idAreaInteresse","Tipo","Nome"};
-		
-//		tableName = "areaInteresse";
-	//	database = getWritableDatabase();	
-	//}
 
-	
-	//public List<AreaInteresse> listAll() {
-	////	List<AreaInteresse> list = new ArrayList<AreaInteresse>();
-	//	Cursor cursor = executeSelect(null, null, "1");
-		
+	public ArrayList<AreaInteresse> Aniversariantes() {
 
-	//	if(cursor!=null && cursor.moveToFirst())
-	//	{
-	//		do{
-	//			list.add(serializeByCursor(cursor));
-	//		}while(cursor.moveToNext());
-	//		
-			
-	//	}
-		
-	//	if(!cursor.isClosed())
-	//	{
-	//		cursor.close();
-		//}
-		
-	//	return list;
-		
-		
-	//}
-	
-	//public boolean atualizar(AreaInteresse areainteresse) {
-	//	ContentValues values = serializeContentValues(areainteresse);
-	//	if(database.update(tableName, values, "id = ?", new String[]{String.valueOf(areainteresse.getIdAreaInteresse())})>0)
-	//		return true;
-	//	else
-	//		return false;
-	//}		
-	
-	//public boolean deletar(Integer id) {
-	//	if(database.delete(tableName, "id = ?", new String[]{String.valueOf(id)})>0)
-	//		return true;
-	///	else
-	//		return false;
-	//}
-	
-	
-	
-	//private AreaInteresse serializeByCursor(Cursor cursor)
-	//{
-	//	AreaInteresse areainteresse = new AreaInteresse();
-	//	areainteresse.setIdAreaInteresse(cursor.getInt(0));
-	//	areainteresse.setTipo(cursor.getInt(1));
-	//	areainteresse.setNome(cursor.getString(2));		
-		
-	//	return areainteresse;
-		
-	//}
-	
-	//private ContentValues serializeContentValues(AreaInteresse areainteresse)
-	//{
-	//	ContentValues values = new ContentValues();
-	//	values.put("IdAreaInteresse", areainteresse.getIdAreaInteresse());
-	//	values.put("Tipo", areainteresse.getTipo());
-	//	values.put("Nome", areainteresse.getNome());
-		
-		
-	//	return values;
-	//}	
-	
-	
-	//private Cursor executeSelect(String selection, String[] selectionArgs, String orderBy)
-	//{
-		
-	//	return database.query(tableName,campos, selection, selectionArgs, null, null, orderBy);		
+		Connection conn = null;
+		ResultSet resultSet = null;
+		PreparedStatement stmt = null;
+		conn = getConnection();
+		ArrayList<AreaInteresse> listaAreas = null;
 
-	//}
-	
-	
-//	public AreaInteresse getByID(Integer id) {
-	//	AreaInteresse area = new AreaInteresse();
-	//	Cursor cursor = executeSelect("idAreaInteresse = ?",
-	//			new String[] { String.valueOf(id) }, "idAreaInteresse");
+		try {
 
-	//	if (cursor != null && cursor.moveToFirst()) {
+			stmt = conn.prepareStatement("SELECT * FROM areaInteresse;");
+			resultSet = stmt.executeQuery();
+			listaAreas = new ArrayList<AreaInteresse>();
 
-//			area = serializeByCursor(cursor);
+			while (resultSet.next()) {
+				AreaInteresse area = new AreaInteresse();
+				area.setIdAreaInteresse(resultSet.getInt("idAreaInteresse"));
+				area.setTipo(resultSet.getInt("Tipo"));
+				area.setNome(resultSet.getString("Nome"));
+				listaAreas.add(area);
+			}
 
-	//	}
-
-	//	fecharConexao(cursor);
-//
-	//	return area;
-
-	//}
-	
+		} catch (SQLException e) {
+			e.printStackTrace();
+			listaAreas = null;
+		} finally {
+			closeConnection(conn, stmt, resultSet);
+		}
+		return listaAreas;
+	}
 }
+	
+	
+
