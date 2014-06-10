@@ -147,11 +147,11 @@ public class ActivityCadastroClassificado extends Activity {
 						
 						classificado.setTitulo(titulo.getText().toString());
 						classificado.setDescricao(descricao.getText().toString());
-						classificado.setAreaInteresse_idAreaInteresse(areas.get(area.getSelectedItemPosition()));
-						classificado.setUsuario_idUsuario(usuario);
+						classificado.setAreaInteresse(areas.get(area.getSelectedItemPosition()));
+						classificado.setUsuario(usuario);
 						
-						dao = new ClassificadoDAO(getApplicationContext());
-
+						dao = new ClassificadoDAO();
+						//dao = new ClassificadoDAO(getApplicationContext());
 				    	Calendar c = Calendar.getInstance();
 						SimpleDateFormat f = new SimpleDateFormat(
 								"yyyy-MM-dd hh:mm:ss");
@@ -159,7 +159,9 @@ public class ActivityCadastroClassificado extends Activity {
 
 						classificado.setData(data);
 
-						dao.inserir(classificado);
+						//dao.inserir(classificado);
+						dao.salvar(classificado);
+
 
 						Intent it = new Intent(getApplicationContext(),
 								ActivityListaClassificados.class);
@@ -174,7 +176,8 @@ public class ActivityCadastroClassificado extends Activity {
 	}
 
 	private void preencherAreaInteresse() {
-		daoArea = new AreaInteresseDAO(this);
+		//daoArea = new AreaInteresseDAO(this);
+		daoArea = new AreaInteresseDAO();
 		areas = daoArea.listAll();
 
 		try {

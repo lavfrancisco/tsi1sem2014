@@ -41,7 +41,8 @@ public class ListaMinhasMenssagens extends Activity {
 		lvMensagens.setOnItemClickListener(selecionarMensagem);
 		lvMensagens.setOnItemClickListener(selecionarUsuarioMenssagem);
 		mensagens = new ArrayList<Mensagem>();
-		dao = new MensagemDAO(getApplicationContext());
+		//dao = new MensagemDAO(getApplicationContext());
+		dao = new MensagemDAO();
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
 		atualizarLista();	
@@ -103,9 +104,11 @@ public class ListaMinhasMenssagens extends Activity {
 	
 	private void atualizarLista() {
 
-		dao = new MensagemDAO(this);
+		//dao = new MensagemDAO(this);
+		dao = new MensagemDAO();
 		int id = user.getIdUsuario();
-		mensagens = dao.listAll(id);
+		mensagens = dao.listAll2(id);
+		//mensagens = dao.listAll(id);
 
 	
 		if (mensagens != null) {
@@ -173,8 +176,8 @@ public class ListaMinhasMenssagens extends Activity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 							System.out.println("ID MENSSAGEM: "+idMensagem);
-							dao = new MensagemDAO(getApplicationContext());
-							
+							//dao = new MensagemDAO(getApplicationContext());
+							dao = new MensagemDAO();
 								if (dao.deletar(idMensagem)) {
 									
 									exibirMensagem("Mensagem excluída com sucesso!");

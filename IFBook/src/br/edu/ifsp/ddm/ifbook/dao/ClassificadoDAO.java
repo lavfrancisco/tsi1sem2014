@@ -1,6 +1,91 @@
 package br.edu.ifsp.ddm.ifbook.dao;
 
+
 import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
+import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
+import br.edu.ifsp.ddm.ifbook.rest.ClassificadoREST;
+import br.edu.ifsp.ddm.ifbook.rest.MensagemREST;
+
+public class ClassificadoDAO {
+
+	private ClassificadoREST rest = new ClassificadoREST("classificado");
+
+	public Classificado getByID(Integer id) {
+		Classificado classificado = null;
+		try {
+			classificado = rest.getClassificado(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return classificado;
+	}
+
+	public List<Classificado> listAll() {
+		List<Classificado> list = new ArrayList<Classificado>();
+		try {
+			list = rest.getListaClassificados();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return list;
+
+	}
+	
+	public List<Classificado> listAll2(int id) {
+		List<Classificado> list = new ArrayList<Classificado>();
+		try {
+			list = rest.getListaMeusClassificados(id);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return list;
+
+	}
+	
+	public boolean atualizar(Classificado classificado) {
+		try {
+			if (rest.atualizar(classificado).equalsIgnoreCase(
+					"Classificado Atualizado!"))
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean deletar(Integer id) {
+		try {
+			if (rest.deletar(id).equalsIgnoreCase("Classificado REMOVIDO!"))
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	public boolean salvar(Classificado classificado) {
+
+		try {
+			if (rest.inserirClassificado(classificado).equalsIgnoreCase("CLASSIFICADO INSERIDO!"))
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+}
+
+/*import java.util.ArrayList;
 import java.util.List;
 
 
@@ -174,3 +259,4 @@ public class ClassificadoDAO extends DAO<Classificado> {
 	}
 
 }
+*/

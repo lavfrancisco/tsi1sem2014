@@ -2,16 +2,14 @@ package br.edu.ifsp.ddm.ifbook;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import br.edu.ifsp.ddm.ifbook.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +27,6 @@ public class Perfil_Usuario extends Activity {
 	private TextView email;
 	private ImageView foto;
 	private TextView tel;
-	
 	private Intent it;
 	private Usuario user;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
@@ -46,7 +43,6 @@ public class Perfil_Usuario extends Activity {
 		aniversario = (TextView) findViewById(R.id.txtAniversario);
 		email = (TextView) findViewById(R.id.txtEmail);
 		tel = (TextView) findViewById(R.id.textTel);
-		
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
 		
@@ -67,12 +63,15 @@ foto = (ImageView) findViewById(R.id.exibePerfil);
 	
 		this.getIntent().getStringExtra("idUsuario");
 		String idUsuario = this.getIntent().getStringExtra("idUsuario");
-		usuariodao = new UsuarioDAO(getApplicationContext());
+		//usuariodao = new UsuarioDAO(getApplicationContext());
+		usuariodao = new UsuarioDAO();
 		int idusuario = Integer.parseInt(idUsuario);
 		Usuario usuario = new Usuario();
 
-	    usuario = usuariodao.getById(idusuario);
+	    //usuario = usuariodao.getById(idusuario);
+		usuario = usuariodao.getByID(idusuario);
 	      
+		//System.out.println("ESTADO CIVIL: "+usuario.getIdEstadoCivil().getEstadoCivil());
 	    nome.setText((usuario.getNome()));
 	    apelido.setText(usuario.getApelido());
 	    localTrabalho.setText(usuario.getLocalTrabalho());		   

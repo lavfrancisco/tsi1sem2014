@@ -50,32 +50,34 @@ public class ListaClassificados  extends BaseAdapter {
 			
 			TextView id = (TextView) view.findViewById(R.id.textIdClassificado);
 			id.setText("ID: "+String.valueOf(c.getIdClassificado()));
+		
 			
 			
 			TextView apelido = (TextView) view.findViewById(R.id.textNomeUsuarioClassificado);
-			apelido.setText(c.getUsuario_idUsuario().getApelido());
+			apelido.setText(c.getUsuario().getApelido());
 			
 			TextView titulo = (TextView) view.findViewById(R.id.textTituloClassificado);
 			titulo.setText(c.getTitulo());
+			
 			
 			TextView descricao = (TextView) view.findViewById(R.id.textDescricaoClassificado);
 			descricao.setText(c.getDescricao());
 			//descricao.setHeight(10);
 			
 			TextView area = (TextView) view.findViewById(R.id.textAreaInteresseClassificado);
-			area.setText(c.getAreaInteresse_idAreaInteresse().getNome());  
+			area.setText(c.getAreaInteresse().getNome());  
 		 
 		    
 			TextView data = (TextView) view.findViewById(R.id.textDataClassificado);
 			data.setText(c.getData());
 			
 			TextView idUsuario = (TextView) view.findViewById(R.id.textIdUsuarioClassificado);
-			idUsuario.setText("ID: "+String.valueOf(c.getUsuario_idUsuario().getIdUsuario()));
+			idUsuario.setText(""+String.valueOf(c.getUsuario().getIdUsuario()));
 			
 			foto = (ImageView) view.findViewById(R.id.fotoUsuarioClassificado);
 			
 			try{
-				Bitmap bitmap = BitmapFactory.decodeByteArray(c.getUsuario_idUsuario().getFoto(), 0, c.getUsuario_idUsuario().getFoto().length);
+				Bitmap bitmap = BitmapFactory.decodeByteArray(c.getUsuario().getFoto(), 0, c.getUsuario().getFoto().length);
 				foto.setImageBitmap(bitmap);
 			}
 			catch(Exception e){

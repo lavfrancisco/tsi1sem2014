@@ -4,6 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
+import br.edu.ifsp.ddm.ifbook.rest.EstadoCivilREST;
+
+
+	public class EstadoCivilDAO  {
+
+		private EstadoCivilREST rest = new EstadoCivilREST("estadocivil");
+
+		public EstadoCivil getByID(Integer id) {
+			EstadoCivil estadoCivil = null;
+			try {
+				estadoCivil = rest.getEstadoCivil(id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return estadoCivil;
+		}
+
+		public List<EstadoCivil> listAll() {
+			List<EstadoCivil> list = new ArrayList<EstadoCivil>();
+			try {
+				list = rest.getListaEstadoCivis();
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+
+			return list;
+
+		}
+
+	}
+
+
+
+/*import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -81,3 +120,4 @@ public class EstadoCivilDAO extends DAO<EstadoCivil>{
 		return estado;
 	}	
 }
+*/

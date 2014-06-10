@@ -40,7 +40,8 @@ public class ActivityListaClassificados extends Activity {
 		lvClassificados = (ListView) findViewById(R.id.listaClassificados);
 		lvClassificados.setOnItemLongClickListener(excluirClassificado);
 		classificados = new ArrayList<Classificado>();
-		dao = new ClassificadoDAO(getApplicationContext());
+		dao = new ClassificadoDAO();
+		//dao = new ClassificadoDAO(getApplicationContext());
 		lvClassificados.setOnItemClickListener(selecionarUsuarioClassificado);
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
@@ -74,7 +75,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		       final Intent intent = new Intent(ActivityListaClassificados.this, Perfil_Usuario.class);
 
 				
-	              String iduser = String.valueOf(classificado.getUsuario_idUsuario().getIdUsuario());
+	              String iduser = String.valueOf(classificado.getUsuario().getIdUsuario());
 		    		
 	              intent.putExtra("idUsuario", iduser);
 	              intent.putExtra("Usuario", user);
@@ -105,9 +106,11 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	
 
 	private void atualizarLista() {
-
-		dao = new ClassificadoDAO(this);
-		classificados = dao.listAll2();
+//int id = user.getIdUsuario();
+		//dao = new ClassificadoDAO(this);
+		dao = new ClassificadoDAO();
+		//classificados = dao.listAll2(id);
+		classificados = dao.listAll();
 
 		System.out.print("Classificados:" + classificados.size());
 		if (classificados != null) {
@@ -164,7 +167,8 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 				.setPositiveButton("Sim",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-								dao = new ClassificadoDAO(getApplicationContext());
+								dao = new ClassificadoDAO();
+								//dao = new ClassificadoDAO(getApplicationContext());
 								if (dao.deletar(idClassificado)) {
 									
 									exibirClassificado("Classificado excluído com sucesso!");

@@ -7,10 +7,12 @@ import br.edu.ifsp.ddm.ifbook.R;
 
 import br.edu.ifsp.ddm.ifbook.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+import br.edu.ifsp.ddm.ifbook.rest.UsuarioREST;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +27,7 @@ public class Login extends Activity {
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 	private Context c;
 	private UsuarioDAO dao;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {	
@@ -36,15 +39,18 @@ public class Login extends Activity {
 		Button entrar = (Button) findViewById(R.id.buttonEntrar);
 		entrar.setOnClickListener(new View.OnClickListener() {
 			
+			
 			@Override
 			public void onClick(View v) {
 				EditText login = (EditText) findViewById(R.id.editLogin);
 				EditText eSenha = (EditText) findViewById(R.id.editSenha);
-				
+			
 				String prontuario = login.getText().toString();
 				String senha = eSenha.getText().toString();
 
-				dao = new UsuarioDAO(c);
+			//	dao = new UsuarioDAO(c);
+				dao = new UsuarioDAO();
+		
 				if(prontuario.length() == 0 || senha.length() == 0){
 					exibirMensagem("Preencha os campos para logar!");
 				}
@@ -83,7 +89,7 @@ public class Login extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				exibirMensagem("Funcionalida n√£o implementada\n por excesso de motivos! ;)");
+				exibirMensagem("Funcionalida n„o implementada\n por excesso de motivos! ;)");
 				
 			}
 		});

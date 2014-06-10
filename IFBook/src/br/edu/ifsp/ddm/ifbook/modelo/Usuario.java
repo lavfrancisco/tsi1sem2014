@@ -99,13 +99,8 @@ public class Usuario implements Serializable{
 	public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
 		this.idEstadoCivil = idEstadoCivil;
 	}
-	@Override
-	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", Prontuario=" + Prontuario
-				+ ", Senha=" + Senha + ", Nivel=" + Nivel + ", Nome=" + Nome
-				+ ", Apelido=" + Apelido + ", Nascimento=" + Nascimento
-				+ ", LocalTrabalho=" + LocalTrabalho + ", Cidade=" + Cidade
-				+ ", Email=" + Email + ", Telefone=" + Telefone + ", Foto="
-				+ Foto + ", idEstadoCivil=" + idEstadoCivil + "]";
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
+
 }

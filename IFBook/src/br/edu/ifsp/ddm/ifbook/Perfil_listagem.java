@@ -44,7 +44,8 @@ public class Perfil_listagem extends Activity {
 		lvUsuarios = (ListView) findViewById(R.id.ListaAniversariantes);
 		lvUsuarios.setOnItemClickListener(selecionarUsuario);
 		usuarios = new ArrayList<Usuario>();
-		dao = new UsuarioDAO(getApplicationContext());
+		//dao = new UsuarioDAO(getApplicationContext());
+		dao = new UsuarioDAO();
 		atualizarLista();
 		this.getIntent().getStringExtra("idUsuario");
 		

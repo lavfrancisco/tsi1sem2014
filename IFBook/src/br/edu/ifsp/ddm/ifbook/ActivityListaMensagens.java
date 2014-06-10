@@ -44,7 +44,8 @@ public class ActivityListaMensagens extends Activity {
 		lvMensagens.setOnItemClickListener(selecionarMensagem);
 		lvMensagens.setOnItemClickListener(selecionarUsuarioMenssagem);
 		mensagens = new ArrayList<Mensagem>();
-		dao = new MensagemDAO(getApplicationContext());
+		//dao = new MensagemDAO(getApplicationContext());
+		dao = new MensagemDAO();
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
 		atualizarLista();	
@@ -102,9 +103,10 @@ public class ActivityListaMensagens extends Activity {
 	};
 	private void atualizarLista() {
 
-		dao = new MensagemDAO(this);
-		mensagens = dao.listAll2();
-
+		dao = new MensagemDAO();
+		mensagens = dao.listAll();
+		//dao = new MensagemDAO(this);
+		//mensagens = dao.listAll2();
 		System.out.print("Mensagens:" + mensagens.size());
 		if (mensagens != null) {
 
@@ -162,7 +164,8 @@ public class ActivityListaMensagens extends Activity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 							System.out.println("ID MENSSAGEM: "+idMensagem);
-							dao = new MensagemDAO(getApplicationContext());
+							dao = new MensagemDAO();
+							//dao = new MensagemDAO(getApplicationContext());
 							
 								if (dao.deletar(idMensagem)) {
 									

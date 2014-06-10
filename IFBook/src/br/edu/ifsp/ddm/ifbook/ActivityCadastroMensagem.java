@@ -153,15 +153,15 @@ public class ActivityCadastroMensagem extends Activity {
 			menssagem.setDescricao(descricao.getText().toString());
 			menssagem.setAreaInteresse(areas.get(area.getSelectedItemPosition()));
 			menssagem.setUsuario(usuario);
-	        dao = new MensagemDAO(getApplicationContext());
+	       // dao = new MensagemDAO(getApplicationContext());
+	        dao = new MensagemDAO();
 	    	Calendar c = Calendar.getInstance();  
 		    SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		    String data = f.format( c.getTime() );
 	        
-	        menssagem.setData(data);
-			 
-	        
-			dao.inserir(menssagem);
+	        menssagem.setData(data);        
+			//dao.inserir(menssagem);
+	        dao.salvar(menssagem);
 
 			Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
 			it.putExtra("Usuario", user);
@@ -176,7 +176,8 @@ public class ActivityCadastroMensagem extends Activity {
 
 	
 	private void preencherAreaInteresse(){
-		daoArea = new AreaInteresseDAO(this);
+		daoArea = new AreaInteresseDAO();
+		//daoArea = new AreaInteresseDAO(this);
 		areas = daoArea.listAll();
 		
 		try{

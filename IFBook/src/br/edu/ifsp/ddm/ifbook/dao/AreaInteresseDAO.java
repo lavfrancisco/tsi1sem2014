@@ -4,16 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.modelo.AreaInteresse;
-import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
-import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import br.edu.ifsp.ddm.ifbook.rest.AreaInteresseREST;
 
-public class AreaInteresseDAO extends DAO<AreaInteresse> {
+	public class AreaInteresseDAO  {
+
+		private AreaInteresseREST rest = new AreaInteresseREST("areainteresse");
+
+		public AreaInteresse getByID(Integer id) {
+			AreaInteresse areaInteresse = null;
+			try {
+				areaInteresse = rest.getAreaInteresse(id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return areaInteresse;
+		}
+
+		public List<AreaInteresse> listAll() {
+			List<AreaInteresse> list = new ArrayList<AreaInteresse>();
+			try {
+				list = rest.getListaAreaInteresses();
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+
+			return list;
+
+		}
+
+	}
 
 
+/*
 	private SQLiteDatabase database;
 	
 	public AreaInteresseDAO(Context context) {
@@ -115,3 +139,4 @@ public class AreaInteresseDAO extends DAO<AreaInteresse> {
 	}
 	
 }
+*/

@@ -43,6 +43,7 @@ public class EditarPerfil extends Activity{
 	private ImageView foto2;
 	private Intent i;
 	private EstadoCivilListAdapter adapter;
+	//private boolean alteraFoto = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -66,7 +67,7 @@ foto2 = (ImageView) findViewById(R.id.exibePerfil);
 		try{
 			imagem = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
 			foto.setImageBitmap(imagem);
-		}
+	}
 		catch(Exception e){
 			e.printStackTrace();
 		}
@@ -83,7 +84,8 @@ foto2 = (ImageView) findViewById(R.id.exibePerfil);
 		email = (EditText) findViewById(R.id.editEmail);
 		email.setText(user.getEmail());
 		
-		EstadoCivilDAO dao = new EstadoCivilDAO(getApplicationContext());
+		//EstadoCivilDAO dao = new EstadoCivilDAO(getApplicationContext());
+		EstadoCivilDAO dao = new EstadoCivilDAO();
 		adapter = new EstadoCivilListAdapter(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, dao.listAll());
 		estado_civil = (Spinner) findViewById(R.id.spinnerEstadoC);
 		estado_civil.setAdapter(adapter);
@@ -107,6 +109,7 @@ foto2 = (ImageView) findViewById(R.id.exibePerfil);
 			public void onClick(View v) {
 				Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
+              //  alteraFoto=true;
 				
 			}
 		});
@@ -118,6 +121,7 @@ foto2 = (ImageView) findViewById(R.id.exibePerfil);
 			public void onClick(View v) {
 				i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(i, RESULT_LOAD_IMAGE);
+               // alteraFoto=true;
 				
 			}
 		});
@@ -134,14 +138,22 @@ foto2 = (ImageView) findViewById(R.id.exibePerfil);
 				
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
 				imagem.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-				user.setFoto(bos.toByteArray());
+				//if(alteraFoto)
+				//{
+					user.setFoto(bos.toByteArray());
+				//}
+				
+					
+				
 				
 				user.setApelido(apelido.getText().toString());
 				user.setLocalTrabalho(trabalho.getText().toString());
 				user.setEmail(email.getText().toString());
 				
-				UsuarioDAO dao = new UsuarioDAO(getApplicationContext());
-				dao.autualizar(user);
+				//UsuarioDAO dao = new UsuarioDAO(getApplicationContext());
+				UsuarioDAO dao = new UsuarioDAO();
+				//dao.autualizar(user);
+				dao.atualizar(user);
 				
 		        
 				

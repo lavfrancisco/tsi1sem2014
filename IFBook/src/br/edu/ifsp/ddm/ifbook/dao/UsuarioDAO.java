@@ -1,6 +1,92 @@
 package br.edu.ifsp.ddm.ifbook.dao;
 
+
 import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+import br.edu.ifsp.ddm.ifbook.rest.UsuarioREST;
+
+public class UsuarioDAO {
+
+	private UsuarioREST rest = new UsuarioREST("usuario");
+
+	public Usuario getByID(Integer id) {
+		Usuario usuario = null;
+		try {
+			usuario = rest.getUsuario(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return usuario;
+	}
+	
+	public Usuario getByProntuario(String bv) {
+		Usuario usuario = null;
+		try {
+			usuario = rest.getProntuario(bv);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return usuario;
+	}
+
+
+	public List<Usuario> Aniversariantes() {
+		List<Usuario> list = new ArrayList<Usuario>();
+		try {
+			list = rest.Aniversariantes();
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return list;
+
+	}
+	public boolean atualizar(Usuario usuario) {
+	System.out.println("USUARIO DAO: "+usuario);
+		try {
+			if (rest.atualizar(usuario).equalsIgnoreCase(
+					"Usuario alterado!"))
+			
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+
+}
+
+	//public boolean salvar(Usuario usuario) {
+
+		//try {
+	//		if (rest.inserirPessoa(usuario).equalsIgnoreCase("USUARIO INSERIDO!"))
+	//			return true;
+	//	} catch (Exception e) {
+		//	e.printStackTrace();
+	//		return false;
+	//	}
+	//	return false;
+	//}
+
+	//public boolean deletar(Integer id) {
+	//	try {
+		//	if (rest.deletarPessoa(id).equalsIgnoreCase("PESSOA REMOVIDA!"))
+		//		return true;
+		//} catch (Exception e) {
+		//	e.printStackTrace();
+		//	return false;
+		//}
+	//	return false;
+	//}
+
+
+/*import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.ddm.ifbook.modelo.EstadoCivil;
@@ -173,4 +259,4 @@ public class UsuarioDAO extends DAO<Usuario>{
 	}
 	
 	
-}
+}*/

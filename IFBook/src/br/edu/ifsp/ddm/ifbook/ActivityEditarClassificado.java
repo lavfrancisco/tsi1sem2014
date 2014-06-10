@@ -56,6 +56,8 @@ public class ActivityEditarClassificado extends Activity {
 	private static int RESULT_LOAD_IMAGE = 1;
 	private static final int CAMERA_REQUEST = 1888;
 	private Usuario usuario;
+	private boolean imagemEditada;
+	private boolean erroGravacao;
 	private TextView idText;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 
@@ -63,9 +65,12 @@ public class ActivityEditarClassificado extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editar_classificado);
+		imagemEditada = false;
+		erroGravacao = false;
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
 		foto = (ImageView) findViewById(R.id.exibePerfil2);
+	
 
 		try {
 			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0,
@@ -91,10 +96,12 @@ public class ActivityEditarClassificado extends Activity {
 		System.out.println("ID: " + id);
 
 		int idclass = Integer.parseInt(id);
-		dao = new ClassificadoDAO(getApplicationContext());
+		//dao = new ClassificadoDAO(getApplicationContext());
+		dao = new ClassificadoDAO();
 		classificado = new Classificado();
 
-		classificado = dao.getById(idclass);
+		classificado = dao.getByID(idclass);
+		//classificado = dao.getById(idclass);
 
 		titulo.setText((classificado.getTitulo()));
 		idText.setText(id);
@@ -108,18 +115,19 @@ public class ActivityEditarClassificado extends Activity {
 			e.printStackTrace();
 		}
 
-		AreaInteresseDAO daoArea = new AreaInteresseDAO(getApplicationContext());
+		AreaInteresseDAO daoArea = new AreaInteresseDAO();
+		//AreaInteresseDAO daoArea = new AreaInteresseDAO(getApplicationContext());
 		adapter = new AreaInteresseListAdapter(getApplicationContext(),
 				android.R.layout.simple_spinner_dropdown_item,
 				daoArea.listAll());
 		area.setAdapter(adapter);
-		area.setSelection(classificado.getAreaInteresse_idAreaInteresse()
+		area.setSelection(classificado.getAreaInteresse()
 				.getIdAreaInteresse() - 1);
 		area.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view,
 					int position, long id) {
-				classificado.setAreaInteresse_idAreaInteresse(adapter
+				classificado.setAreaInteresse(adapter
 						.getItem(position));
 
 			}
@@ -133,47 +141,62 @@ public class ActivityEditarClassificado extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				if (titulo.getText().toString().trim().length() == 0) {
+				if(titulo.getText().toString().trim().length() == 0){
+					
+					
+					Toast.makeText(getApplicationContext(), "Título inválido!", Toast.LENGTH_LONG).show();
+					
+					
+					
+				}else if(descricao.getText().toString().trim().length() == 0){
+					
+					Toast.makeText(getApplicationContext(), "Descrição inválida!", Toast.LENGTH_LONG).show();
+					
+					
+				}else{
+					if (imagemEditada == true) {
 
-					Toast.makeText(getApplicationContext(), "Título inválido!",
-							Toast.LENGTH_LONG).show();
+						imagem = ((BitmapDrawable) img.getDrawable())
+								.getBitmap();
+						ByteArrayOutputStream bos = new ByteArrayOutputStream();
+						imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
 
-				} else if (descricao.getText().toString().trim().length() == 0) {
-
-					Toast.makeText(getApplicationContext(),
-							"Descrição inválida!", Toast.LENGTH_LONG).show();
-
-				} else {
-
-					ByteArrayOutputStream bos = new ByteArrayOutputStream();
-					imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
-					if (bos.size() <= 319324) {
-
-						classificado.setImagem(bos.toByteArray());
-
+						if (bos.size() <= 319324) {
+				
+							classificado.setImagem(bos.toByteArray());
+						}else{
+							
+							erroGravacao = true;
+							Toast.makeText(getApplicationContext(),
+									"Imagem muito grande!", Toast.LENGTH_LONG)
+									.show();
+						}
+						}
+					if (erroGravacao == false){
 						classificado.setTitulo(titulo.getText().toString());
 						classificado.setDescricao(descricao.getText()
 								.toString());
-						dao = new ClassificadoDAO(getApplicationContext());
+						dao = new ClassificadoDAO();
 
-						ClassificadoDAO dao2 = new ClassificadoDAO(
-								getApplicationContext());
+						ClassificadoDAO dao2 = new ClassificadoDAO();
+						//dao = new ClassificadoDAO(getApplicationContext());
+
+						//ClassificadoDAO dao2 = new ClassificadoDAO(getApplicationContext());
 						dao2.atualizar(classificado);
 
-						Intent it = new Intent(getApplicationContext(),
-								ActivityListaClassificados.class);
+						Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
 						it.putExtra("Usuario", user);
 						startActivity(it);
-					} else {
-						Toast.makeText(getApplicationContext(),
-								"Imagem muito grande!", Toast.LENGTH_LONG)
-								.show();
+						}else{
+							
+						Toast.makeText(getApplicationContext(), "Imagem muito grande!", Toast.LENGTH_LONG).show();
+							
+						}
 
+						}
 					}
-
-				}
-			}
-		});
+				});
+				
 
 		arquivo.setOnClickListener(new View.OnClickListener() {
 
@@ -211,6 +234,7 @@ public class ActivityEditarClassificado extends Activity {
 			cursor.close();
 			imagem = BitmapFactory.decodeFile(picturePath);
 			img.setImageBitmap(imagem);
+			imagemEditada = true;
 		}
 
 	}

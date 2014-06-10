@@ -11,8 +11,8 @@ public class Classificado implements Serializable {
 	private String Titulo;
 	private String Descricao;
 	private byte[] Imagem = null;
-	private AreaInteresse AreaInteresse_idAreaInteresse;
-	private Usuario Usuario_idUsuario;
+	private AreaInteresse AreaInteresse;
+	private Usuario Usuario;
 	
 	public Integer getIdClassificado() {
 		return idClassificado;
@@ -44,18 +44,18 @@ public class Classificado implements Serializable {
 	public void setImagem(byte[] imagem) {
 		Imagem = imagem;
 	}
-	public AreaInteresse getAreaInteresse_idAreaInteresse() {
-		return AreaInteresse_idAreaInteresse;
+	public AreaInteresse getAreaInteresse() {
+		return AreaInteresse;
 	}
-	public void setAreaInteresse_idAreaInteresse(
+	public void setAreaInteresse(
 			AreaInteresse areaInteresse_idAreaInteresse) {
-		AreaInteresse_idAreaInteresse = areaInteresse_idAreaInteresse;
+		AreaInteresse = areaInteresse_idAreaInteresse;
 	}
-	public Usuario getUsuario_idUsuario() {
-		return Usuario_idUsuario;
+	public Usuario getUsuario() {
+		return Usuario;
 	}
-	public void setUsuario_idUsuario(Usuario usuario_idUsuario) {
-		Usuario_idUsuario = usuario_idUsuario;
+	public void setUsuario(Usuario usuario_idUsuario) {
+		Usuario = usuario_idUsuario;
 	}
 	
 	

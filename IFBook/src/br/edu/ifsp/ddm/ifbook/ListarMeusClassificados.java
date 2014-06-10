@@ -42,7 +42,8 @@ public class ListarMeusClassificados extends Activity {
 		lvClassificados = (ListView) findViewById(R.id.listaMeusClassificados);
 		lvClassificados.setOnItemLongClickListener(excluirClassificado);
 		classificados = new ArrayList<Classificado>();
-		dao = new ClassificadoDAO(getApplicationContext());
+		//dao = new ClassificadoDAO(getApplicationContext());
+		dao = new ClassificadoDAO();
 		lvClassificados.setOnItemClickListener(selecionarUsuarioClassificado);
 		
 		it = getIntent();
@@ -100,11 +101,12 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 
 	private void atualizarLista() {
 
-		dao = new ClassificadoDAO(this);
+		//dao = new ClassificadoDAO(this);
+		dao = new ClassificadoDAO();
 		
 		int id = user.getIdUsuario();
-		classificados = dao.listAll(id);
-
+		//classificados = dao.listAll(id);
+		classificados = dao.listAll2(id);
 		
 		if (classificados != null) {
 

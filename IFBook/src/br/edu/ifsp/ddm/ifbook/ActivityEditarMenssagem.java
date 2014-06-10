@@ -54,12 +54,16 @@ public class ActivityEditarMenssagem extends Activity {
 	private static final int CAMERA_REQUEST = 1888;
 	private Usuario usuario;
 	private TextView idText;
+	private boolean erroGravacao;
+	private boolean imagemEditada;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editar_minha_menssagem);
+		erroGravacao = false;
+		imagemEditada = false;
 		 it = getIntent();
 		   user = (Usuario) it.getSerializableExtra("Usuario");
 	    foto = (ImageView) findViewById(R.id.exibePerfil2);
@@ -90,28 +94,24 @@ public class ActivityEditarMenssagem extends Activity {
 		
 
 		int idmen = Integer.parseInt(id);
-		dao = new MensagemDAO(getApplicationContext());
+		dao = new MensagemDAO();
 		menssagem = new Mensagem();
-		
-			menssagem = dao.getById(idmen);
-
-		
+	
+			menssagem = dao.getByID(idmen);
 		    titulo.setText((menssagem.getTitulo()));
 		    idText.setText(id);
 		    descricao.setText((menssagem.getDescricao()));
+		    
+		 
 		    try{
 				imagem = BitmapFactory.decodeByteArray(menssagem.getImagem(), 0, menssagem.getImagem().length);
 				img.setImageBitmap(imagem);
-			}
+		}
 			catch(Exception e){
 				e.printStackTrace();
 			}
 		    
-
-			
-		
-	
-		AreaInteresseDAO daoArea = new AreaInteresseDAO(getApplicationContext());
+		AreaInteresseDAO daoArea = new AreaInteresseDAO();
 		adapter = new AreaInteresseListAdapter(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, daoArea.listAll());
 		area.setAdapter(adapter);
 		area.setSelection(menssagem.getAreaInteresse().getIdAreaInteresse() - 1);
@@ -122,7 +122,7 @@ public class ActivityEditarMenssagem extends Activity {
 	     
 	       }
 		public void onNothingSelected(AdapterView<?> adapter) {  }
-		});
+	});
 	
 	
 	
@@ -131,7 +131,7 @@ public class ActivityEditarMenssagem extends Activity {
 		@Override
 		public void onClick(View v) {
 			
-	if(titulo.getText().toString().trim().length() == 0){
+		if(titulo.getText().toString().trim().length() == 0){
 				
 				
 				Toast.makeText(getApplicationContext(), "Título inválido!", Toast.LENGTH_LONG).show();
@@ -144,20 +144,32 @@ public class ActivityEditarMenssagem extends Activity {
 				
 				
 			}else{
-	
+				if (imagemEditada == true) {
+
+					imagem = ((BitmapDrawable) img.getDrawable())
+							.getBitmap();
+					ByteArrayOutputStream bos = new ByteArrayOutputStream();
+					imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
+
+					if (bos.size() <= 319324) {
 			
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
-			if(bos.size() <= 319324){
+						menssagem.setImagem(bos.toByteArray());
+					}else{
+						
+						erroGravacao = true;
+						Toast.makeText(getApplicationContext(),
+								"Imagem muito grande!", Toast.LENGTH_LONG)
+								.show();
+					}
+					}
+				if (erroGravacao == false){
+			usuario = new Usuario();
+			usuario.setIdUsuario(user.getIdUsuario());
 			
-				menssagem.setImagem(bos.toByteArray());
-			
-			
-				menssagem.setTitulo(titulo.getText().toString());
-				menssagem.setDescricao(descricao.getText().toString());
-	        dao = new MensagemDAO(getApplicationContext());
-			
-			MensagemDAO dao2 = new MensagemDAO(getApplicationContext());
+		
+			menssagem.setTitulo(titulo.getText().toString());
+			menssagem.setDescricao(descricao.getText().toString());		
+			MensagemDAO dao2 = new MensagemDAO();
 			dao2.atualizar(menssagem);
 			
 	        
@@ -166,6 +178,7 @@ public class ActivityEditarMenssagem extends Activity {
 			it.putExtra("Usuario", user);
 			startActivity(it);
 			}else{
+				
 			Toast.makeText(getApplicationContext(), "Imagem muito grande!", Toast.LENGTH_LONG).show();
 				
 			}
@@ -186,74 +199,67 @@ public class ActivityEditarMenssagem extends Activity {
 	});	
 	}
 
-	
-	
-	
-	
-	
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_editar_classificado, menu);
 		return true;
 	}
-	
-	   protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
-	    	
-		 	 
-		     if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-		         Uri selectedImage = data.getData();
-		         String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
-		         Cursor cursor = getContentResolver().query(selectedImage,
-		                 filePathColumn, null, null, null);
-		         cursor.moveToFirst();
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-		         String picturePath = cursor.getString(columnIndex);
-		         cursor.close();
-		         imagem = BitmapFactory.decodeFile(picturePath); 
-		         img.setImageBitmap(imagem);
-		     }
-		 
-		 }
-	   
-		public void exibeClassificados(View v){
-			
-			
-			Intent it = new Intent(getApplicationContext(), ActivityListaClassificados.class);
-			it.putExtra("Usuario", user);
-			startActivity(it);
-		   
-			
-			
-			
+		if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK
+				&& null != data) {
+			Uri selectedImage = data.getData();
+			String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+			Cursor cursor = getContentResolver().query(selectedImage,
+					filePathColumn, null, null, null);
+			cursor.moveToFirst();
+
+			int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+			String picturePath = cursor.getString(columnIndex);
+			cursor.close();
+			imagem = BitmapFactory.decodeFile(picturePath);
+			img.setImageBitmap(imagem);
+			imagemEditada = true;
+
 		}
-		public void exibeMensagens(View v){
-			
-			
-			Intent it = new Intent(getApplicationContext(), ActivityListaMensagens.class);
-			it.putExtra("Usuario", user);
-			startActivity(it);
-			
-		}
-		
-		public void ExibeHome(View v){
-			
-			Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
-			it.putExtra("Usuario", user);
-			startActivity(it);
-		
-			
-		}
-		public void meuPerfil(View v){
-			  
-			Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
-			it.putExtra("Usuario", user);
-			startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
-			
-			
-		}
+
+	}
+
+	public void exibeClassificados(View v) {
+
+		Intent it = new Intent(getApplicationContext(),
+				ActivityListaClassificados.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+
+	}
+
+	public void exibeMensagens(View v) {
+
+		Intent it = new Intent(getApplicationContext(),
+				ActivityListaMensagens.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+
+	}
+
+	public void ExibeHome(View v) {
+
+		Intent it = new Intent(getApplicationContext(), Perfil_listagem.class);
+		it.putExtra("Usuario", user);
+		startActivity(it);
+
+	}
+
+	public void meuPerfil(View v) {
+
+		Intent it = new Intent(getApplicationContext(), ExibePerfil.class);
+		it.putExtra("Usuario", user);
+		startActivityForResult(it, ACTIVITY_EXIBIR_PERFIL);
+
+	}
 
 }
