@@ -8,9 +8,9 @@ import java.sql.Statement;
 public abstract class ConnectionFactory {
 
 	// database URL
-	private static final String DATABASE_URL = "jdbc:mysql://10.0.0.14/ifbook";
+	private static final String DATABASE_URL = "jdbc:mysql://localhost/ifbook";
 	private static final String USERNAME = "root";
-	private static final String PASSWORD = "servermysql";
+	private static final String PASSWORD = "40804155";
 
 	public Connection getConnection() {
 		Connection con = null;

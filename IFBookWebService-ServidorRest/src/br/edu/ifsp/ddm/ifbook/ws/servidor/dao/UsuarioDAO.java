@@ -13,7 +13,7 @@ public class UsuarioDAO extends ConnectionFactory{
 
 
 	public String update(Usuario usuario) {
-EstadoCivil estado = new EstadoCivil();
+		EstadoCivil estado = new EstadoCivil();
 		Connection conn = null;
 		conn = getConnection();
 		PreparedStatement stmt = null;
@@ -40,6 +40,34 @@ EstadoCivil estado = new EstadoCivil();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return ("Erro ao alterar Usuario!");
+		} finally {
+			closeConnection(conn, stmt);
+		}
+
+	}
+	
+	public String updatePasswd(Usuario usuario) {
+		EstadoCivil estado = new EstadoCivil();
+		Connection conn = null;
+		conn = getConnection();
+		PreparedStatement stmt = null;
+		int sucesso = 0;
+		try {
+			stmt = conn
+					.prepareStatement("update usuario set senha = ? where idusuario = ?;");
+
+			stmt.setString(1, usuario.getSenha());
+			stmt.setInt(2, usuario.getIdUsuario());			
+			sucesso = stmt.executeUpdate();
+
+			if (sucesso > 0) {
+				return ("Senha alterado!");
+			} else {
+				return ("Senha não existe!");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return ("Erro ao alterar senha!");
 		} finally {
 			closeConnection(conn, stmt);
 		}
