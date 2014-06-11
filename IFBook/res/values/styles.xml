@@ -1,14 +1,15 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -16,6 +17,113 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-	<color name="RecoveryPass">#669933</color> 
+
+    <color name="RecoveryPass">#669933</color>
+    <color name="onOverEntrar">#66ccff</color>
+    <color name="bgblank">#ffffff</color>
+    <color name="bgbluebutton">#3399ff</color>
+    <color name="bgblued">#375f9d</color>
+    <color name="bgbluem">#9bafce</color>
+    <color name="bgbluel">#d7dfeb</color>
+    <color name="bgred">#ed2f59</color>
+    <color name="bgpurple">#a53692</color>
+    <color name="bggray">#585570</color>
+    <color name="bggreen">#a8cf45</color>
+    <color name="bgyellow">#ffcc29</color>
+    <color name="bgpink">#f6afce</color>
+    <color name="bgoranged">#f19800</color>
+    <color name="bgorangem">#f8cc80</color>
+    <color name="bgorangel">#fceacc</color>
+    <color name="bgblack">#000000</color>
+
+ 
+    <style name="TitulosCampos">
+        <item name="android:textColor">#666666</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TitulosBotoes">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextoPerfilLarge">
+        <item name="android:textColor">@color/bggray</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+
+    <style name="TextoPerfilMedium">
+        <item name="android:textColor">@color/bggray</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+    </style>
+
+    <style name="TextoPerfilSmall">
+        <item name="android:textColor">@color/bggray</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
+    </style>
+
+    <style name="TextoMCLarge">
+        <item name="android:textColor">@color/bggray</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+
+    <style name="TextoMCMedium">
+        <item name="android:textColor">@color/bggray</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+    </style>
+
+    <style name="TextoMCSmall">
+        <item name="android:textColor">@color/bggray</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
+    </style>
+
+    <style name="TextoAniversariantesSmall">
+        <item name="android:textColor">@color/bggray</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
+    </style>
 
 </resources>

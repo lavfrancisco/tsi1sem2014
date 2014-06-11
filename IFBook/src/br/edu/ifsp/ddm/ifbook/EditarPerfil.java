@@ -53,7 +53,7 @@ public class EditarPerfil extends Activity{
 		user = (Usuario) i.getSerializableExtra("Usuario");
 		
 		
-foto2 = (ImageView) findViewById(R.id.exibePerfil);
+foto2 = (ImageView) findViewById(R.id.exibePerfil2);
 		
 		try{
 			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);

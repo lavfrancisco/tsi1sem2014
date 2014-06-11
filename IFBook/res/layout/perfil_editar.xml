@@ -1,202 +1,229 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bgblank"
+    android:orientation="vertical" >
 
-<AbsoluteLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-        <TextView
-        android:id="@+id/textIdClassificado"
-        android:layout_width="320dp"
-        android:layout_height="29dp"
-        android:layout_x="2dp"
-        android:layout_y="84dp"
-        android:background="#104E8B"
-        android:text="Editar Perfil"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#F2F8FA"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:typeface="sans" />
-    
-     <TextView
-        android:id="@+id/textView2"
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_x="1dp"
-        android:layout_y="1dp"
-        android:background="#a8cf45"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-      
-    <ImageView
-        android:id="@+id/Home"
-        android:layout_width="111dp"
-        android:layout_height="35dp"
-        android:layout_x="5dp"
-        android:layout_y="14dp"
-        android:clickable="true"
-        android:onClick="ExibeHome"
-        android:src="@drawable/logotipovazado" />
-    <ImageView
-        android:id="@+id/exibePerfil"
-        android:layout_width="62dp"
-        android:layout_height="48dp"
-        android:layout_x="256dp"
-        android:layout_y="2dp"
-        android:clickable="true"
-        android:onClick="meuPerfil"
-        android:src="@drawable/foto_perfil" />
- 
- 
-   <TextView
-        android:id="@+id/botaoMenssagens"
-        android:layout_width="158dp"
         android:layout_height="wrap_content"
-        android:layout_x="2dp"
-        android:layout_y="55dp"
-          android:background="#4876FF"
-        android:clickable="true"
-        android:text="       Mensagens"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" 
-        android:onClick="exibeMensagens"/>
-          
+        android:minHeight="95dp"
+        android:orientation="vertical"
+        android:scrollbars="none" >
 
-    <TextView
-        android:id="@+id/botaoClassificados"
-        android:layout_width="157dp"
+        <TableRow
+            android:id="@+id/linha01"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@color/bggreen" >
+
+            <ImageView
+                android:id="@+id/Home"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:gravity="center_vertical|left"
+                android:onClick="ExibeHome"
+                android:scaleType="fitStart"
+                android:src="@drawable/logoifbook" />
+
+            <ImageView
+                android:id="@+id/exibePerfil2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:contentDescription="@string/perfil"
+                android:gravity="center_vertical|right"
+                android:onClick="meuPerfil"
+                android:scaleType="fitEnd"
+                android:src="@drawable/foto_perfil" />
+        </TableRow>
+
+        <LinearLayout
+            android:id="@+id/linha03"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@color/bgblued" >
+
+            <TextView
+                style="@style/TitulosBotoes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/editarperfil" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/Linha04"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_x="161dp"
-        android:layout_y="55dp"
-        android:background="#FFA500"
-        android:clickable="true"
-        android:text="      Classificados"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" 
-        android:onClick="exibeClassificados"/>
+        android:background="@color/bgblank"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:scrollbars="vertical" >
 
-    <ImageView
-        android:id="@+id/imgEdit"
-        android:layout_width="146dp"
-        android:layout_height="146dp"
-        android:layout_x="19dp"
-        android:layout_y="127dp"
-        android:src="@drawable/foto_perfil" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-           <EditText
-               android:id="@+id/editApelido"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_x="1dp"
-               android:layout_y="296dp"
-               android:ems="10"
-               android:inputType="textPersonName" >
-
-               <requestFocus />
-           </EditText>
-
-            <Spinner
-                android:id="@+id/spinnerEstadoC"
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_x="1dp"
-                android:layout_y="369dp" />
+                android:background="@color/bgblank" >
 
-            <TextView
-                android:id="@+id/botaoMenssagens"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_x="7dp"
-                android:layout_y="349dp"
-                android:text="Relacionamento"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <TextView
-                android:id="@+id/botaoClassificados"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_x="6dp"
-                android:layout_y="456dp"
-                android:text="Telefone"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <EditText
-                    android:id="@+id/editTelefone"
-                    android:layout_width="match_parent"
+                <TableRow
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_x="1dp"
-                    android:layout_y="476dp"
-                    android:ems="10"
-                    android:inputType="phone" />
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical|center_horizontal" >
 
-                 <EditText
-                     android:id="@+id/editEmail"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_x="2dp"
-                     android:layout_y="545dp"
-                     android:ems="10"
-                     android:inputType="textEmailAddress" />
+                    <ImageView
+                        android:id="@+id/imgEdit"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="1"
+                        android:contentDescription="@string/perfil"
+                        android:scaleType="center"
+                        android:src="@drawable/foto_perfil" />
 
-                 <TextView
-                     android:id="@+id/textIdClassificadoEditar"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_x="8dp"
-                     android:layout_y="526dp"
-                     android:text="E-mail"
-                     android:textAppearance="?android:attr/textAppearanceSmall" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:orientation="vertical" >
 
-                 <Button
-                     android:id="@+id/buttonImgArquivo"
-                     android:layout_width="wrap_content"
-                     android:layout_height="39dp"
-                     android:layout_x="258dp"
-                     android:layout_y="140dp"
-                     android:drawableTop="@drawable/file" />
+                        <Button
+                            android:id="@+id/buttonImgArquivo"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:background="@color/bgblank"
+                            android:drawableTop="@drawable/file"
+                            android:ems="10"
+                            android:text="@string/arquivo"
+                            android:textColor="@color/bggray" />
 
-                 <Button
-                     android:id="@+id/buttonImgCamera"
-                     android:layout_width="wrap_content"
-                     android:layout_height="40dp"
-                     android:layout_x="258dp"
-                     android:layout_y="194dp"
-                     android:drawableTop="@drawable/camera" />
+                        <Button
+                            android:id="@+id/buttonImgCamera"
+                            android:layout_width="100dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/bgblank"
+                            android:drawableTop="@drawable/camera"
+                            android:ems="10"
+                            android:text="@string/camera"
+                            android:textColor="@color/bggray" />
+                    </LinearLayout>
+                </TableRow>
 
-                 <TextView
-                     android:id="@+id/textView1"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_x="8dp"
-                     android:layout_y="278dp"
-                     android:text="Apelido" />
+                <LinearLayout
+                    android:id="@+id/linha04"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/bgblank"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp" >
 
-                 <Button
-                     android:id="@+id/buttonSalvar"
-                     android:layout_width="match_parent"
-                     android:layout_height="67dp"
-                     android:layout_x="4dp"
-                     android:layout_y="678dp"
-                     android:drawableTop="@drawable/save" />
+                    <TextView
+                        android:id="@+id/tvApelido"
+                        style="@style/TextoPerfilSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/apelido" />
 
-                 <EditText
-                     android:id="@+id/editTrabalho"
-                     android:layout_width="match_parent"
-                     android:layout_height="wrap_content"
-                     android:layout_x="0dp"
-                     android:layout_y="610dp"
-                     android:ems="10" />
+                    <EditText
+                        android:id="@+id/editApelido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName" />
 
-                 <TextView
-                     android:id="@+id/textView3"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:layout_x="4dp"
-                     android:layout_y="592dp"
-                     android:text="Local de Trabalho" />
+                    <TextView
+                        android:id="@+id/tvEstadoCivil"
+                        style="@style/TextoPerfilSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/estadocivil" />
 
-</AbsoluteLayout>
-</ScrollView>
+                    <Spinner
+                        android:id="@+id/spinnerEstadoC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
+                    <TextView
+                        android:id="@+id/tvTelefone"
+                        style="@style/TextoPerfilSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/telefone" />
+
+                    <EditText
+                        android:id="@+id/editTelefone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="phone" />
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        style="@style/TextoPerfilSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email" />
+
+                    <EditText
+                        android:id="@+id/editEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textEmailAddress" />
+
+                    <TextView
+                        android:id="@+id/tvTrabalho"
+                        style="@style/TextoPerfilSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/trabalho" />
+
+                    <EditText
+                        android:id="@+id/editTrabalho"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="text" />
+
+                    <Button
+                        android:id="@+id/buttonSalvar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/bgblank"
+                        android:drawableTop="@drawable/save"
+                        android:ems="10"
+                        android:text="@string/salvar"
+                        android:textColor="@color/bggray" />
+                </LinearLayout>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

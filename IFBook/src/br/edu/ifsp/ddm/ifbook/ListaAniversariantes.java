@@ -64,7 +64,7 @@ public class ListaAniversariantes extends BaseAdapter {
 		
 		imagem = (ImageView) view.findViewById(R.id.estrela);
 		
-		foto = (ImageView) view.findViewById(R.id.fotoAnivesasriante);
+		foto = (ImageView) view.findViewById(R.id.exibePerfil2);
 		
 		try{
 			Bitmap bitmap = BitmapFactory.decodeByteArray(p.getFoto(), 0, p.getFoto().length);

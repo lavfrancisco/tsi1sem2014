@@ -9,7 +9,7 @@ public class EditarMeuClassificado extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_editar_meu_classificado);
+		setContentView(R.layout.activity_editar_classificado);
 	}
 
 	@Override

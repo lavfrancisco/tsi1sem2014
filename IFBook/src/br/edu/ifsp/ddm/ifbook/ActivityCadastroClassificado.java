@@ -126,7 +126,7 @@ public class ActivityCadastroClassificado extends Activity {
 						ByteArrayOutputStream bos = new ByteArrayOutputStream();
 						imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
 
-						if (bos.size() <= 319324) {
+						if (bos.size() <= 31932400) {
 							
 							classificado.setImagem(bos.toByteArray());
 

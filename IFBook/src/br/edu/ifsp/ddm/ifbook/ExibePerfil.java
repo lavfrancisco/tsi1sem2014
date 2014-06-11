@@ -60,7 +60,7 @@ public class ExibePerfil extends Activity{
 		
 		foto = (ImageView) findViewById(R.id.imagePerfil);
 		
-foto2 = (ImageView) findViewById(R.id.exibePerfil);
+foto2 = (ImageView) findViewById(R.id.exibePerfil2);
 		
 		try{
 			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);

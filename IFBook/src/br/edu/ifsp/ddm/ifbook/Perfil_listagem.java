@@ -52,7 +52,7 @@ public class Perfil_listagem extends Activity {
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");	
 		
-		boasvindas.setText(user.getApelido()+"!");
+		boasvindas.setText("Olá, "+user.getApelido()+"!");
 		
 		
 foto = (ImageView) findViewById(R.id.exibePerfil2);

@@ -1,130 +1,162 @@
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgblank"
+    android:orientation="vertical"
     tools:context=".Perfil_listagem" >
-   
-    <TextView
-        android:id="@+id/txtEstadoCivil"
+
+    <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_x="0dp"
-        android:layout_y="173dp"
-        android:background="#104E8B"
-        android:text="        Aniversariantes"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#F2F8FA"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:typeface="sans" />
-
-    <ListView
-        android:id="@+id/ListaAniversariantes"
-        android:layout_width="match_parent"
-        android:layout_height="278dp"
-        android:layout_x="1dp"
-        android:layout_y="208dp" >
-
-    </ListView>
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="112dp"
-        android:layout_x="4dp"
-        android:layout_y="108dp"
-        android:src="@drawable/niver" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_x="1dp"
-        android:layout_y="1dp"
-        android:background="#a8cf45"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <ImageView
-        android:id="@+id/Home"
-    android:layout_width="111dp"
-        android:layout_height="35dp"
-        android:layout_x="5dp"
-        android:layout_y="14dp"
-        android:clickable="true"
-        android:onClick="ExibeHome"
-        android:src="@drawable/logotipovazado" />
-
-    <ImageView
-        android:id="@+id/fotoAnivesasriante"
-        android:layout_width="158dp"
-        android:layout_height="98dp"
-        android:layout_x="74dp"
-        android:layout_y="74dp"
-        android:src="@drawable/db2" />
-
-    <TextView
-        android:id="@+id/botaoMenssagens"
-        android:layout_width="158dp"
         android:layout_height="wrap_content"
-        android:layout_x="2dp"
-        android:layout_y="55dp"
-        android:background="#4876FF"
-        android:clickable="true"
-        android:text="       Mensagens"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" 
-        android:onClick="exibeMensagens"/>
+        android:minHeight="230dp"
+        android:orientation="vertical"
+        android:scrollbars="none" >
 
-    <TextView
-        android:id="@+id/botaoClassificados"
-        android:layout_width="157dp"
-        android:layout_height="wrap_content"
-        android:layout_x="161dp"
-        android:layout_y="55dp"
-       android:background="#FFA500"
-        android:clickable="true"
-        android:text="      Classificados"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" 
-        android:onClick="exibeClassificados"/>
+        <TableRow
+            android:id="@+id/linha01"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@color/bggreen" >
 
-    <TextView
-        android:id="@+id/textIdClassificado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="96dp"
-        android:layout_y="98dp"
-        android:text="Bem Vindo"
-        android:textColor="#1EEC6D"
-        android:textSize="22px"
-        android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/Home"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:gravity="center_vertical|left"
+                android:onClick="ExibeHome"
+                android:scaleType="fitStart"
+                android:src="@drawable/logoifbook" />
 
-    <TextView
-        android:id="@+id/TextSaudacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="114dp"
-        android:layout_y="124dp"
-        android:text="Usuario"
-        android:textSize="16px" />
+            <ImageView
+                android:id="@+id/exibePerfil2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:contentDescription="@string/perfil"
+                android:gravity="center_vertical|right"
+                android:onClick="meuPerfil"
+                android:scaleType="fitEnd"
+                android:src="@drawable/foto_perfil" />
+        </TableRow>
 
+        <TableRow
+            android:id="@+id/linha02"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@color/bggray" >
 
-    <ImageView
-        android:id="@+id/exibePerfil2"
-        android:layout_width="59dp"
-        android:layout_height="45dp"
-        android:layout_x="263dp"
-        android:layout_y="5dp"
-        android:clickable="true"
-        android:onClick="meuPerfil"
-        android:src="@drawable/foto_perfil" />
+            <TextView
+                android:id="@+id/botaoMenssagens"
+                style="@style/TitulosBotoes"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="exibeMensagens"
+                android:text="@string/mensagens" />
 
-    <ImageView
-        android:id="@+id/fotoPerfilUsuario"
-        android:layout_width="83dp"
-        android:layout_height="113dp"
-        android:layout_x="235dp"
-        android:layout_y="104dp"
-        android:src="@drawable/bemvindo" />
+            <TextView
+                android:id="@+id/botaoClassificados"
+                style="@style/TitulosBotoes"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="exibeClassificados"
+                android:text="@string/classificados" />
+        </TableRow>
 
-</AbsoluteLayout>
+        <TableRow
+            android:id="@+id/linha03"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/bgblank"
+            android:minHeight="80dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/TextSaudacao"
+                    style="@style/TextoPerfilLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:text="Usuario"
+                    android:textColor="@color/bggray"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/TextBemVindo"
+                    style="@style/TextoPerfilSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:text="@string/bemvindo"
+                    android:textColor="@color/bggray"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="1"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/android" />
+        </TableRow>
+
+        <LinearLayout
+            android:id="@+id/linha04"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@color/bgblued" >
+
+            <TextView
+                style="@style/TitulosBotoes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/aniversariantes" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linha05"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgblank"
+        android:scrollbars="vertical" >
+
+        <ListView
+            android:id="@+id/ListaAniversariantes"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>

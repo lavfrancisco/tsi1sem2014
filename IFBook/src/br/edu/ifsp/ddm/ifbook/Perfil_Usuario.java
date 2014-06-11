@@ -48,7 +48,7 @@ public class Perfil_Usuario extends Activity {
 		
 	
 
-foto = (ImageView) findViewById(R.id.exibePerfil);
+foto = (ImageView) findViewById(R.id.exibePerfil2);
 		
 		try{
 			Bitmap bitmap = BitmapFactory.decodeByteArray(user.getFoto(), 0, user.getFoto().length);
