@@ -1,0 +1,1 @@
+Quando abrir o projeto IFBOOK local, vão perceber que ira dar erros em algumas activity, elas não estão sendo usadas, basta deletalas e pronto!

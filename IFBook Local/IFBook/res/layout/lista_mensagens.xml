@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgblank"
+    android:orientation="vertical"
+    tools:context=".ActivityListaMensagens" >
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="150dp"
+        android:orientation="vertical"
+        android:scrollbars="none" >
+
+        <TableRow
+            android:id="@+id/linha01"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@color/bggreen" >
+
+            <ImageView
+                android:id="@+id/Home"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:gravity="center_vertical|left"
+                android:onClick="ExibeHome"
+                android:scaleType="fitStart"
+                android:src="@drawable/logoifbook" />
+
+            <ImageView
+                android:id="@+id/exibePerfil2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:contentDescription="@string/perfil"
+                android:gravity="center_vertical|right"
+                android:onClick="meuPerfil"
+                android:scaleType="fitEnd"
+                android:src="@drawable/foto_perfil" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/linha02"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:background="@color/bggray" >
+
+            <TextView
+                android:id="@+id/botaoMenssagens"
+                style="@style/TitulosBotoes"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/bgoranged"
+                android:clickable="false"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="exibeMensagens"
+                android:text="@string/mensagens" />
+
+            <TextView
+                android:id="@+id/botaoClassificados"
+                style="@style/TitulosBotoes"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="exibeClassificados"
+                android:text="@string/classificados" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/linha03"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@color/bgorangem" >
+
+            <Button
+                android:id="@+id/botaoNovaMenssagem"
+                style="@style/TitulosBotoes"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/bgorangem"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="NovaMenssagem"
+                android:text="@string/novamensagem" />
+
+            <Button
+                android:id="@+id/botaoEditarMenssagem"
+                style="@style/TitulosBotoes"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@color/bgorangem"
+                android:clickable="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:isScrollContainer="true"
+                android:onClick="editarMenssagem"
+                android:text="@string/editarmensagem" />
+        </TableRow>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgorangel"
+        android:scrollbars="vertical" >
+
+        <ListView
+            android:id="@+id/listaMensagens"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>
