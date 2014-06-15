@@ -33,7 +33,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/perfil"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/foto_perfil" />
+                        android:src="@drawable/foto_perfil"/> 
 
                     <TextView
                         android:id="@+id/textViewUsuario"
@@ -124,7 +124,8 @@
                         android:layout_width="220dp"
                         android:layout_height="220dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/image" />
+                        android:src="@drawable/image" 
+                     />
                 </LinearLayout>
             </TableRow>
         </TableLayout>

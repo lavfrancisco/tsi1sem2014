@@ -137,7 +137,7 @@ foto2 = (ImageView) findViewById(R.id.exibePerfil2);
 		
 				
 				ByteArrayOutputStream bos = new ByteArrayOutputStream();
-				imagem.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+				imagem.compress(Bitmap.CompressFormat.JPEG, 50, bos);
 				//if(alteraFoto)
 				//{
 					user.setFoto(bos.toByteArray());

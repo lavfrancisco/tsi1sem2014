@@ -3,6 +3,7 @@ package br.edu.ifsp.ddm.ifbook;
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
+import br.edu.ifsp.ddm.ifbook.dao.MensagemDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Classificado;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import android.os.Bundle;
@@ -115,11 +116,19 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		System.out.print("Classificados:" + classificados.size());
 		if (classificados != null) {
 
-			if (classificados.size() >=0) {
+			if (classificados.size() >0) {
 
 				ListaClassificados men = new ListaClassificados(
 						getApplicationContext(), classificados);
 				lvClassificados.setAdapter(men);
+			}
+			else{
+				
+				Toast.makeText(getApplicationContext(),
+						"Ainda não há classificados para serem lidos!", Toast.LENGTH_LONG).show();
+
+				
+				
 			}
 
 		}
@@ -158,7 +167,12 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 	
 
 	private void excluirClassificado(final int idClassificado) {
-		if(user.getNivel() == 2){
+
+		dao = new ClassificadoDAO(getApplicationContext());
+		classificado = dao.getById(idClassificado);
+		 
+		if(user.getNivel() == 2 || user.getIdUsuario() == classificado.getUsuario().getIdUsuario()){
+	
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Excluir o Classificado?")
 				.setIcon(android.R.drawable.ic_dialog_alert)
@@ -183,7 +197,10 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								dialog.cancel();
+								Toast.makeText(getApplicationContext(), "Classificado Não excluído!",
+										Toast.LENGTH_LONG).show();
 							}
+							
 						});
 		builder.create();
 		builder.show();

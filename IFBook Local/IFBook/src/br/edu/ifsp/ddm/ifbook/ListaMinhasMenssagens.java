@@ -113,14 +113,22 @@ public class ListaMinhasMenssagens extends Activity {
 	
 		if (mensagens != null) {
 
-			if (mensagens.size() >=0) {
+			if (mensagens.size() >0) {
 
 				ListaMensagens men = new ListaMensagens(
 						getApplicationContext(), mensagens);
 				lvMensagens.setAdapter(men);
+			}else{
+				
+				Toast.makeText(getApplicationContext(),
+						"Você não possui mensagens para serem editadas ou excluídas!", Toast.LENGTH_LONG).show();
+
+				
+				
 			}
 
 		}
+	
 
 	}
 	
@@ -192,6 +200,8 @@ public class ListaMinhasMenssagens extends Activity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								dialog.cancel();
+								Toast.makeText(getApplicationContext(), "Mensagem Não excluída!",
+										Toast.LENGTH_LONG).show();
 							}
 						});
 		builder.create();

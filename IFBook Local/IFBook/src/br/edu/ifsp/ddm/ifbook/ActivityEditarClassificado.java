@@ -141,27 +141,35 @@ public class ActivityEditarClassificado extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				if(titulo.getText().toString().trim().length() == 0){
-					
-					
-					Toast.makeText(getApplicationContext(), "Título inválido!", Toast.LENGTH_LONG).show();
-					
-					
-					
-				}else if(descricao.getText().toString().trim().length() == 0){
-					
-					Toast.makeText(getApplicationContext(), "Descrição inválida!", Toast.LENGTH_LONG).show();
-					
-					
+				if (titulo.getText().toString().trim().length() == 0) {
+
+					Toast.makeText(getApplicationContext(), "Título inválido: Preenchimento obrigatório desse campo!",
+							Toast.LENGTH_LONG).show();
+
+				} else if (descricao.getText().toString().trim().length() == 0) {
+
+					Toast.makeText(getApplicationContext(),
+							"Descrição inválida: Preenchimento obrigatório desse campo!", Toast.LENGTH_LONG).show();
+
+				}else if (titulo.getText().toString().trim().length() > 50) {
+
+					Toast.makeText(getApplicationContext(), "Título inválido: Limite máximo de 50 caracteres!",
+							Toast.LENGTH_LONG).show();
+
+				}else if (descricao.getText().toString().trim().length() > 200) {
+
+					Toast.makeText(getApplicationContext(),
+							"Descrição inválida: Limite máximo de 200 caracteres!", Toast.LENGTH_LONG).show();
+
 				}else{
 					if (imagemEditada == true) {
 
 						imagem = ((BitmapDrawable) img.getDrawable())
 								.getBitmap();
 						ByteArrayOutputStream bos = new ByteArrayOutputStream();
-						imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
+						imagem.compress(Bitmap.CompressFormat.JPEG, 50, bos);
 
-						if (bos.size() <= 319324) {
+						if (bos.size() <= 2097152) {
 				
 							classificado.setImagem(bos.toByteArray());
 						}else{
@@ -189,7 +197,7 @@ public class ActivityEditarClassificado extends Activity {
 						startActivity(it);
 						}else{
 							
-						Toast.makeText(getApplicationContext(), "Imagem muito grande!", Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), "Imagem inválida: Tamanho máximo de 2mb!", Toast.LENGTH_LONG).show();
 							
 						}
 

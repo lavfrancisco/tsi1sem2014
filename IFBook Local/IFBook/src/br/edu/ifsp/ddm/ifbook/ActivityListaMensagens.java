@@ -7,6 +7,7 @@ import br.edu.ifsp.ddm.ifbook.dao.ClassificadoDAO;
 import br.edu.ifsp.ddm.ifbook.dao.MensagemDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Mensagem;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,13 +33,14 @@ public class ActivityListaMensagens extends Activity {
 	private Usuario user;
 	private Intent it;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
+	private boolean irperfil;
 	private ImageView foto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lista_mensagens);
-
+		irperfil = false;
 		lvMensagens = (ListView) findViewById(R.id.listaMensagens);
 		lvMensagens.setOnItemLongClickListener(excluirMensagem);
 		lvMensagens.setOnItemClickListener(selecionarMensagem);
@@ -72,6 +74,8 @@ public class ActivityListaMensagens extends Activity {
 		startActivity(it);
 		
 	}
+
+
 	
 	public void editarMenssagem(View v){
 		
@@ -82,8 +86,10 @@ public class ActivityListaMensagens extends Activity {
 		
 	}
 
-	
+	 
 	private OnItemClickListener selecionarUsuarioMenssagem = new OnItemClickListener() {
+		
+		
 
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos, long id) {
 			
@@ -93,14 +99,18 @@ public class ActivityListaMensagens extends Activity {
 
 				
 	              String iduser = String.valueOf(mensagem.getUsuario().getIdUsuario());
-		    		
+	           
 	              intent.putExtra("idUsuario", iduser);
 	              intent.putExtra("Usuario", user);
 	              startActivity(intent);
-	          	
+	              
+	              
 		}
+	          	
+	
 
 	};
+	   
 	private void atualizarLista() {
 
 		//dao = new MensagemDAO();
@@ -110,14 +120,24 @@ public class ActivityListaMensagens extends Activity {
 		System.out.print("Mensagens:" + mensagens.size());
 		if (mensagens != null) {
 
-			if (mensagens.size() >=0) {
+			if (mensagens.size() >0) {
 
 				ListaMensagens men = new ListaMensagens(
 						getApplicationContext(), mensagens);
 				lvMensagens.setAdapter(men);
+			}else{
+				
+				Toast.makeText(getApplicationContext(),
+						"Ainda não há mensagens para serem lidas!", Toast.LENGTH_LONG).show();
+
+				
+				
 			}
+			
+			
 
 		}
+	
 
 	}
 	
@@ -154,7 +174,11 @@ public class ActivityListaMensagens extends Activity {
 	
 
 	private void excluirMensagem(final int idMensagem) {
-		if(user.getNivel() == 2){
+
+		dao = new MensagemDAO(getApplicationContext());
+		mensagem = dao.getById(idMensagem);
+		 
+		if(user.getNivel() == 2 || user.getIdUsuario() == mensagem.getUsuario().getIdUsuario()){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Excluir a Mensagem?")
 				.setIcon(android.R.drawable.ic_dialog_alert)
@@ -163,7 +187,7 @@ public class ActivityListaMensagens extends Activity {
 				.setPositiveButton("Sim",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
-							System.out.println("ID MENSSAGEM: "+idMensagem);
+			
 							//dao = new MensagemDAO();
 							dao = new MensagemDAO(getApplicationContext());
 							
@@ -181,6 +205,8 @@ public class ActivityListaMensagens extends Activity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								dialog.cancel();
+								Toast.makeText(getApplicationContext(), "Mensagem Não excluída!",
+										Toast.LENGTH_LONG).show();
 							}
 						});
 		builder.create();
@@ -194,12 +220,16 @@ public class ActivityListaMensagens extends Activity {
 	}
 
 	private OnItemLongClickListener excluirMensagem = new OnItemLongClickListener() {
+		
+		
 
 		public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos,
 				long arg3) {
+		
 			excluirMensagem(mensagens.get(pos).getIdMensagem());
 			
 			return true;
+			
 		}
 
 	};
@@ -207,6 +237,8 @@ public class ActivityListaMensagens extends Activity {
 	private void exibirMensagem(String msg) {
 		Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 	}
+	
+			
 	
 	
 	private OnItemClickListener selecionarMensagem = new OnItemClickListener() {
