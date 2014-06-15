@@ -7,6 +7,7 @@ import br.edu.ifsp.ddm.ifbook.R;
 
 import br.edu.ifsp.ddm.ifbook.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
+import br.edu.ifsp.ddm.ifbook.rest.RecuperaSenha;
 import br.edu.ifsp.ddm.ifbook.rest.UsuarioREST;
 import android.os.Bundle;
 import android.app.Activity;
@@ -71,7 +72,7 @@ public class Login extends Activity {
 							startActivity(it);
 						}
 						else{
-							exibirMensagem("Prontuario ou Senha inválidos!");
+							exibirMensagem("Prontuario ou Senha invï¿½lidos!");
 						}
 					}
 					catch(Exception e){
@@ -89,8 +90,24 @@ public class Login extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				exibirMensagem("Funcionalida não implementada\n por excesso de motivos! ;)");
-				
+				EditText login = (EditText) findViewById(R.id.editLogin);
+				String prontuario = login.getText().toString();
+				if(prontuario.length() != 0){
+					Usuario user = new Usuario();
+					user.setProntuario(prontuario);
+					String msg = null;
+					RecuperaSenha recovery = new RecuperaSenha("password");
+					try {
+						msg = recovery.novaSenha(user);
+						exibirMensagem("Sua nova senha foi enviada para seu e-mail");
+					} catch (Exception e) {
+						exibirMensagem("Falha no envio");
+						e.printStackTrace();
+					}
+				}
+				else{
+					exibirMensagem("bv Incorreto !");
+				}
 			}
 		});
 	}

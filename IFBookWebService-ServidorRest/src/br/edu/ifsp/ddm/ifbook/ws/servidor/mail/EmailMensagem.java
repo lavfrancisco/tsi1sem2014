@@ -16,7 +16,7 @@ public class EmailMensagem {
     private String nomeDestinatario;
     private String assunto;
     private String corpo;
-    private String mimeCorpo = "text/plain";
+    private String mimeCorpo = "text/html";
     private MimeBodyPart anexo = null;
 
     /**

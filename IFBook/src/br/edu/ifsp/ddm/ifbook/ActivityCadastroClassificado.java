@@ -56,7 +56,6 @@ public class ActivityCadastroClassificado extends Activity {
 	private ImageView img;
 	private Boolean erroGravacao;
 	private static int RESULT_LOAD_IMAGE = 1;
-	private static final int CAMERA_REQUEST = 1888;
 	private Usuario usuario;
 	private static final int ACTIVITY_EXIBIR_PERFIL = 1;
 
@@ -109,13 +108,13 @@ public class ActivityCadastroClassificado extends Activity {
 				classificado = new Classificado();
 				if (titulo.getText().toString().trim().length() == 0) {
 
-					Toast.makeText(getApplicationContext(), "TÌtulo inv·lido!",
+					Toast.makeText(getApplicationContext(), "T√≠tulo inv√°lido!",
 							Toast.LENGTH_LONG).show();
 
 				} else if (descricao.getText().toString().trim().length() == 0) {
 
 					Toast.makeText(getApplicationContext(),
-							"DescriÁ„o inv·lida!", Toast.LENGTH_LONG).show();
+							"Descri√ß√£oo inv√°lida!", Toast.LENGTH_LONG).show();
 
 				} else {
 
@@ -126,7 +125,7 @@ public class ActivityCadastroClassificado extends Activity {
 						ByteArrayOutputStream bos = new ByteArrayOutputStream();
 						imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
 
-						if (bos.size() <= 31932400) {
+						if (imagem.getRowBytes()*imagem.getHeight() <= 2097152) {
 							
 							classificado.setImagem(bos.toByteArray());
 

@@ -5,8 +5,6 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.mail.MessagingException;
 
-import com.sun.org.apache.regexp.internal.recompile;
-
 import br.edu.ifsp.ddm.ifbook.ws.servidor.dao.UsuarioDAO;
 import br.edu.ifsp.ddm.ifbook.ws.servidor.exception.NoContentException;
 import br.edu.ifsp.ddm.ifbook.ws.servidor.modelo.Usuario;
@@ -14,18 +12,17 @@ import br.edu.ifsp.ddm.ifbook.ws.servidor.util.GeradorDeHash;
 import br.edu.ifsp.ddm.ifbook.ws.servidor.util.GeradorDeSenha;
 
 public class RecuperaSenha {
-	private String corpo;
-	public String enviaNovaSenha(String prontuario){
+	public String enviaNovaSenha(Usuario usuario){
 		String sts = "Falha no envio!";
 		
 		EmailRemetente rmt = new EmailRemetente();
         rmt.setPortaAlternativa();
 
         UsuarioDAO dao = new UsuarioDAO();
-        Usuario user = dao.getProntuario(prontuario);
+        Usuario user = dao.getProntuario(usuario.getProntuario());
         
         if (user == null){
-			throw new NoContentException("Usuario n„o encontrado!");
+			throw new NoContentException("Usuario n√¢o encontrado!");
         }
         else{
         	GeradorDeSenha gen = new GeradorDeSenha();
@@ -38,18 +35,15 @@ public class RecuperaSenha {
 				user.setSenha(senha_cifrada);
 		        msg.setDestinatario(user.getEmail(), user.getNome());
 		        msg.setAssunto("Sua nova senha para o IFBook");
-		        msg.setCorpo("Sua nova senha para logar no IFBook È: "+senha_plana);
+		        msg.setCorpo("<h3>IFBook</h3>Ol√° "+user.getApelido()+"<br/>Sua nova senha para logar no IFBook √©: <b>"+senha_plana+"</b>");
 				EnviarEmail email = new EnviarEmail(rmt, msg);
 				dao.updatePasswd(user);
 				sts = "OK";
 			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (MessagingException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }    

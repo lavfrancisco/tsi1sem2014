@@ -1,7 +1,5 @@
 package br.edu.ifsp.ddm.ifbook.ws.servidor.resources;
 
-import java.util.ArrayList;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -30,7 +28,7 @@ public class UsuarioResource {
 		Usuario usuario = new UsuarioDAO().getById(id);
 
 		if (usuario == null)
-			throw new NoContentException("Usuario não encontrado!");
+			throw new NoContentException("Usuario nï¿½o encontrado!");
 
 		return new Gson().toJson(usuario);
 	}
@@ -42,7 +40,7 @@ public class UsuarioResource {
 		Usuario usuario = new UsuarioDAO().getProntuario(bv);
 
 		if (usuario == null)
-			throw new NoContentException("Usuario não encontrado!");
+			throw new NoContentException("Usuario nï¿½o encontrado!");
 
 		return new Gson().toJson(usuario);
 	}

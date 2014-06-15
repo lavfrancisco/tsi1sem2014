@@ -144,13 +144,13 @@ public class ActivityEditarClassificado extends Activity {
 				if(titulo.getText().toString().trim().length() == 0){
 					
 					
-					Toast.makeText(getApplicationContext(), "TÌtulo inv·lido!", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "T√≠tulo inv√°lido!", Toast.LENGTH_LONG).show();
 					
 					
 					
 				}else if(descricao.getText().toString().trim().length() == 0){
 					
-					Toast.makeText(getApplicationContext(), "DescriÁ„o inv·lida!", Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), "Descri√ß√£o inv√°lida!", Toast.LENGTH_LONG).show();
 					
 					
 				}else{

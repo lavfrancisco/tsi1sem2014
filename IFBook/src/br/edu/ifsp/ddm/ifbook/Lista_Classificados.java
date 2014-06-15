@@ -40,7 +40,7 @@ public class Lista_Classificados extends Activity {
 		setContentView(R.layout.lista_classificados);
 		lvClassificados = (ListView) findViewById(R.id.listaClassificados);
 		classificados = new ArrayList<Classificado>();
-		dao = new ClassificadoDAO(getApplicationContext());
+		dao = new ClassificadoDAO();
 		lvClassificados.setOnItemClickListener(selecionarUsuarioClassificado);
 		it = getIntent();
 		user = (Usuario) it.getSerializableExtra("Usuario");
@@ -73,7 +73,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		       final Intent intent = new Intent(Lista_Classificados.this, Perfil_Usuario.class);
 		   
 				
-	              String iduser = String.valueOf(classificado.getUsuario_idUsuario().getIdUsuario());
+	              String iduser = String.valueOf(classificado.getUsuario().getIdUsuario());
 		    		
 	              intent.putExtra("idUsuario", iduser);
 	              intent.putExtra("Usuario", user);
@@ -106,15 +106,15 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 							public void onClick(DialogInterface dialog, int id) {
 								if (dao.deletar(idClassificado)) {
 									
-									exibirClassificado("Classificado excluído com sucesso!");
+									exibirClassificado("Classificado excluï¿½do com sucesso!");
 									atualizarLista();
 								} else {
-									exibirClassificado("Não foi possível excluir o Classificado!");
+									exibirClassificado("Nï¿½o foi possï¿½vel excluir o Classificado!");
 								}
 
 							}
 						})
-				.setNegativeButton("Não",
+				.setNegativeButton("Nï¿½o",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								dialog.cancel();
@@ -166,7 +166,8 @@ private void atualizarLista() {
 	
 	 
 		
-		classificados = dao.listAll2();
+		classificados = dao.listAll();
+		
 		
 	
 		if (classificados != null) {

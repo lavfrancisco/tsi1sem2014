@@ -109,23 +109,23 @@ public class ActivityCadastroClassificado extends Activity {
 				classificado = new Classificado();
 				if (titulo.getText().toString().trim().length() == 0) {
 
-					Toast.makeText(getApplicationContext(), "Título inválido: Preenchimento obrigatório desse campo!",
+					Toast.makeText(getApplicationContext(), "Tï¿½tulo invï¿½lido: Preenchimento obrigatï¿½rio desse campo!",
 							Toast.LENGTH_LONG).show();
 
 				} else if (descricao.getText().toString().trim().length() == 0) {
 
 					Toast.makeText(getApplicationContext(),
-							"Descrição inválida: Preenchimento obrigatório desse campo!", Toast.LENGTH_LONG).show();
+							"Descriï¿½ï¿½o invï¿½lida: Preenchimento obrigatï¿½rio desse campo!", Toast.LENGTH_LONG).show();
 
 				}else if (titulo.getText().toString().trim().length() > 50) {
 
-					Toast.makeText(getApplicationContext(), "Título inválido: Limite máximo de 50 caracteres!",
+					Toast.makeText(getApplicationContext(), "Tï¿½tulo invï¿½lido: Limite mï¿½ximo de 50 caracteres!",
 							Toast.LENGTH_LONG).show();
 
 				}else if (descricao.getText().toString().trim().length() > 200) {
 
 					Toast.makeText(getApplicationContext(),
-							"Descrição inválida: Limite máximo de 200 caracteres!", Toast.LENGTH_LONG).show();
+							"Descriï¿½ï¿½o invï¿½lida: Limite mï¿½ximo de 200 caracteres!", Toast.LENGTH_LONG).show();
 
 				}  else {
 
@@ -136,14 +136,14 @@ public class ActivityCadastroClassificado extends Activity {
 						ByteArrayOutputStream bos = new ByteArrayOutputStream();
 						imagem.compress(Bitmap.CompressFormat.JPEG, 50, bos);
 
-						if (bos.size() <= 2097152) {
+						if (imagem.getRowBytes()*imagem.getHeight() <= 2097152) {
 							
 							classificado.setImagem(bos.toByteArray());
 
 						} else {
 							erroGravacao = true;
 							Toast.makeText(getApplicationContext(),
-									"Imagem inválida: Tamanho máximo de 2mb!", Toast.LENGTH_LONG)
+									"Imagem invï¿½lida: Tamanho mï¿½ximo de 2mb!", Toast.LENGTH_LONG)
 									.show();
 
 						}

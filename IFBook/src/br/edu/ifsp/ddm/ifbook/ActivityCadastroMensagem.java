@@ -116,13 +116,13 @@ public class ActivityCadastroMensagem extends Activity {
 			if(titulo.getText().toString().trim().length() == 0){
 				
 				
-				Toast.makeText(getApplicationContext(), "Título inválido!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "Tï¿½tulo invï¿½lido!", Toast.LENGTH_LONG).show();
 				
 				
 				
 			}else if(descricao.getText().toString().trim().length() == 0){
 				
-				Toast.makeText(getApplicationContext(), "Descrição inválida!", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "Descriï¿½ï¿½o invï¿½lida!", Toast.LENGTH_LONG).show();
 				
 				
 			}else{
@@ -133,7 +133,7 @@ public class ActivityCadastroMensagem extends Activity {
 					ByteArrayOutputStream bos = new ByteArrayOutputStream();
 					imagem.compress(Bitmap.CompressFormat.PNG, 100, bos);
 
-					if (bos.size() <= 319324) {
+					if (imagem.getRowBytes()*imagem.getHeight() >= 2097152) {
 			
 						menssagem.setImagem(bos.toByteArray());
 					}else{

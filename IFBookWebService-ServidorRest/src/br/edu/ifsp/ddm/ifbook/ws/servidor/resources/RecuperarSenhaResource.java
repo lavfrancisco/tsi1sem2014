@@ -1,24 +1,27 @@
 package br.edu.ifsp.ddm.ifbook.ws.servidor.resources;
 
-import java.io.UnsupportedEncodingException;
-
-import javax.mail.MessagingException;
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import com.google.gson.Gson;
+
 import br.edu.ifsp.ddm.ifbook.ws.servidor.mail.*;
+import br.edu.ifsp.ddm.ifbook.ws.servidor.modelo.Usuario;
 
 @Path("/password")
 public class RecuperarSenhaResource {
 	
-	@GET
-	@Path("/recovery/{bv}")
+	@POST
+	@Path("/recovery")
 	@Produces("application/json")
-	public String EnviaNovaSenha(@PathParam("bv") String bv){
+	@Consumes("application/json")
+	public String EnviaNovaSenha(String usuario){
+		Gson gson = new Gson();
+		Usuario user = gson.fromJson(usuario, Usuario.class);
 		RecuperaSenha pwd = new  RecuperaSenha();
 		
-		return pwd.enviaNovaSenha(bv);
+		return pwd.enviaNovaSenha(user);
 	}
 }
