@@ -120,7 +120,9 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 				Toast.makeText(getApplicationContext(),
 						"Você não possui classificados para serem editados ou excluídos!", Toast.LENGTH_LONG).show();
 
-				
+				ListaClassificados men = new ListaClassificados(
+						getApplicationContext(), classificados);
+				lvClassificados.setAdapter(men);
 				
 			}
 

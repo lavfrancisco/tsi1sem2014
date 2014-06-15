@@ -123,7 +123,9 @@ public class ListaMinhasMenssagens extends Activity {
 				Toast.makeText(getApplicationContext(),
 						"Você não possui mensagens para serem editadas ou excluídas!", Toast.LENGTH_LONG).show();
 
-				
+				ListaMensagens men = new ListaMensagens(
+						getApplicationContext(), mensagens);
+				lvMensagens.setAdapter(men);
 				
 			}
 

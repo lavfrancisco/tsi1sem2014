@@ -125,12 +125,14 @@ public class ActivityListaMensagens extends Activity {
 				ListaMensagens men = new ListaMensagens(
 						getApplicationContext(), mensagens);
 				lvMensagens.setAdapter(men);
-			}else{
+			}	else{
 				
 				Toast.makeText(getApplicationContext(),
 						"Ainda não há mensagens para serem lidas!", Toast.LENGTH_LONG).show();
 
-				
+				ListaMensagens men = new ListaMensagens(
+						getApplicationContext(), mensagens);
+				lvMensagens.setAdapter(men);
 				
 			}
 			

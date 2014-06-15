@@ -121,18 +121,19 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 				ListaClassificados men = new ListaClassificados(
 						getApplicationContext(), classificados);
 				lvClassificados.setAdapter(men);
-			}
-			else{
-				
+			}	else{
 				Toast.makeText(getApplicationContext(),
 						"Ainda não há classificados para serem lidos!", Toast.LENGTH_LONG).show();
-
 				
-				
-			}
+				ListaClassificados men = new ListaClassificados(
+						getApplicationContext(), classificados);
+				lvClassificados.setAdapter(men);
+			
+		
 
 		}
 
+	}
 	}
 	
 	public void meuPerfil(View v){
