@@ -5,7 +5,7 @@ import br.edu.ifsp.ddm.ifbook.modelo.Usuario;
 import com.google.gson.Gson;
 
 public class RecuperaSenha {
-	private StringBuilder URL_WS = new StringBuilder("http://10.0.0.102:8080/IFBookWebService-ServidorRest/");
+	private StringBuilder URL_WS = new StringBuilder("http://10.0.2.5:8080/ifbook/");
 	
 	public RecuperaSenha (String url)
     {

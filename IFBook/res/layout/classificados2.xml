@@ -75,7 +75,7 @@
 
                     <TextView
                         android:id="@+id/textTituloClassificado"
-                        style="@style/TextoPerfilSmall"
+                        style="@style/TextoAniversariantesSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#9bafce"
@@ -92,7 +92,7 @@
 
                         <TextView
                             android:id="@+id/textAreaInteresseClassificado"
-                            style="@style/TextoMCSmall"
+                            style="@style/TextoAniversariantesSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="15dp"
                             android:layout_weight="4"
@@ -104,7 +104,7 @@
 
                         <TextView
                             android:id="@+id/textDataClassificado"
-                            style="@style/TextoMCSmall"
+                            style="@style/TextoAniversariantesSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="15dp"
                             android:layout_weight="1"
@@ -117,7 +117,7 @@
 
                     <TextView
                         android:id="@+id/textDescricaoClassificado"
-                        style="@style/TextoMCSmall"
+                        style="@style/TextoAniversariantesSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical|left"

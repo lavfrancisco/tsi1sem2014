@@ -141,19 +141,27 @@ public class ActivityEditarClassificado extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				if(titulo.getText().toString().trim().length() == 0){
-					
-					
-					Toast.makeText(getApplicationContext(), "TÃ­tulo invÃ¡lido!", Toast.LENGTH_LONG).show();
-					
-					
-					
-				}else if(descricao.getText().toString().trim().length() == 0){
-					
-					Toast.makeText(getApplicationContext(), "DescriÃ§Ã£o invÃ¡lida!", Toast.LENGTH_LONG).show();
-					
-					
-				}else{
+				if (titulo.getText().toString().trim().length() == 0) {
+
+					Toast.makeText(getApplicationContext(), "Título Inválido: Preenchimento obrigatório desse campo!",
+							Toast.LENGTH_LONG).show();
+
+				} else if (descricao.getText().toString().trim().length() == 0) {
+
+					Toast.makeText(getApplicationContext(),
+							"Descrição inválida: Preenchimento obrigatório desse campo!", Toast.LENGTH_LONG).show();
+
+				}else if (titulo.getText().toString().trim().length() > 50) {
+
+					Toast.makeText(getApplicationContext(), "Título Inválido: Limite máximo de 50 caracteres!",
+							Toast.LENGTH_LONG).show();
+
+				}else if (descricao.getText().toString().trim().length() > 200) {
+
+					Toast.makeText(getApplicationContext(),
+							"Descrição inválida: Limite máximo de 200 caracteres!", Toast.LENGTH_LONG).show();
+
+				}else {
 					if (imagemEditada == true) {
 
 						imagem = ((BitmapDrawable) img.getDrawable())
@@ -168,7 +176,7 @@ public class ActivityEditarClassificado extends Activity {
 							
 							erroGravacao = true;
 							Toast.makeText(getApplicationContext(),
-									"Imagem muito grande!", Toast.LENGTH_LONG)
+									"Imagem inválida: Tamanho máximo de 2mb!", Toast.LENGTH_LONG)
 									.show();
 						}
 						}

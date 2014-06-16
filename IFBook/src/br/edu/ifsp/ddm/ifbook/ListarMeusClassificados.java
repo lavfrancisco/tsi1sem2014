@@ -110,11 +110,20 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 		
 		if (classificados != null) {
 
-			if (classificados.size() >=0) {
+			if (classificados.size() >0) {
 
 				ListaClassificados men = new ListaClassificados(
 						getApplicationContext(), classificados);
 				lvClassificados.setAdapter(men);
+	}else{
+				
+				Toast.makeText(getApplicationContext(),
+						"Você não possui classificados para serem editados ou excluídos!", Toast.LENGTH_LONG).show();
+
+				ListaClassificados men = new ListaClassificados(
+						getApplicationContext(), classificados);
+				lvClassificados.setAdapter(men);
+				
 			}
 
 		}
@@ -176,6 +185,7 @@ foto = (ImageView) findViewById(R.id.exibePerfil2);
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								dialog.cancel();
+								exibirClassificado("Classificado não excluído!");
 							}
 						});
 		builder.create();

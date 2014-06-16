@@ -65,7 +65,7 @@
 
                     <TextView
                         android:id="@+id/textViewTitulo"
-                        style="@style/TextoPerfilSmall"
+                        style="@style/TextoAniversariantesSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#9bafce"
@@ -82,7 +82,7 @@
 
                         <TextView
                             android:id="@+id/textViewAreaInteresse"
-                            style="@style/TextoMCSmall"
+                            style="@style/TextoAniversariantesSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="15dp"
                             android:layout_weight="4"
@@ -94,7 +94,7 @@
 
                         <TextView
                             android:id="@+id/textViewData"
-                            style="@style/TextoMCSmall"
+                            style="@style/TextoAniversariantesSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="15dp"
                             android:layout_weight="1"
@@ -107,7 +107,7 @@
 
                     <TextView
                         android:id="@+id/textViewDescricao"
-                        style="@style/TextoMCSmall"
+                        style="@style/TextoAniversariantesSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical|left"

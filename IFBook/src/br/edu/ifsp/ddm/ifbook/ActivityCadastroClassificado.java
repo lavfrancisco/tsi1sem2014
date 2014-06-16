@@ -108,15 +108,25 @@ public class ActivityCadastroClassificado extends Activity {
 				classificado = new Classificado();
 				if (titulo.getText().toString().trim().length() == 0) {
 
-					Toast.makeText(getApplicationContext(), "TÃ­tulo invÃ¡lido!",
+					Toast.makeText(getApplicationContext(), "Título Inválido: Preenchimento obrigatório desse campo!",
 							Toast.LENGTH_LONG).show();
 
 				} else if (descricao.getText().toString().trim().length() == 0) {
 
 					Toast.makeText(getApplicationContext(),
-							"DescriÃ§Ã£oo invÃ¡lida!", Toast.LENGTH_LONG).show();
+							"Descrição inválida: Preenchimento obrigatório desse campo!", Toast.LENGTH_LONG).show();
 
-				} else {
+				}else if (titulo.getText().toString().trim().length() > 50) {
+
+					Toast.makeText(getApplicationContext(), "Título Inválido: Limite máximo de 50 caracteres!",
+							Toast.LENGTH_LONG).show();
+
+				}else if (descricao.getText().toString().trim().length() > 200) {
+
+					Toast.makeText(getApplicationContext(),
+							"Descrição inválida: Limite máximo de 200 caracteres!", Toast.LENGTH_LONG).show();
+
+				}else {
 
 					if (img.getDrawable() != null) {
 
@@ -132,9 +142,8 @@ public class ActivityCadastroClassificado extends Activity {
 						} else {
 							erroGravacao = true;
 							Toast.makeText(getApplicationContext(),
-									"Imagem muito grande!", Toast.LENGTH_LONG)
+									"Imagem inválida: Tamanho máximo de 2mb!", Toast.LENGTH_LONG)
 									.show();
-
 						}
 					}
 

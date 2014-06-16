@@ -110,13 +110,21 @@ public class ActivityListaMensagens extends Activity {
 		System.out.print("Mensagens:" + mensagens.size());
 		if (mensagens != null) {
 
-			if (mensagens.size() >=0) {
+			if (mensagens.size() >0) {
 
 				ListaMensagens men = new ListaMensagens(
 						getApplicationContext(), mensagens);
 				lvMensagens.setAdapter(men);
-			}
+	}	else{
+				
+				Toast.makeText(getApplicationContext(),
+						"Ainda não há mensagens para serem lidas!", Toast.LENGTH_LONG).show();
 
+				ListaMensagens men = new ListaMensagens(
+						getApplicationContext(), mensagens);
+				lvMensagens.setAdapter(men);
+				
+			}
 		}
 
 	}
@@ -154,7 +162,13 @@ public class ActivityListaMensagens extends Activity {
 	
 
 	private void excluirMensagem(final int idMensagem) {
-		if(user.getNivel() == 2){
+		
+		
+		dao = new MensagemDAO();
+		mensagem = dao.getByID(idMensagem);
+		 
+		if(user.getNivel() == 2 || user.getIdUsuario() == mensagem.getUsuario().getIdUsuario()){
+	
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Excluir a Mensagem?")
 				.setIcon(android.R.drawable.ic_dialog_alert)
@@ -181,6 +195,7 @@ public class ActivityListaMensagens extends Activity {
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int id) {
 								dialog.cancel();
+								exibirMensagem("Mensagem não excluída!");
 							}
 						});
 		builder.create();
